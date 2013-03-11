@@ -17,7 +17,7 @@ Custom pack of shortcodes that include column grids, pricing tables, post slider
 
 The grid shortcode creates a responsive column grid to use in your pages or posts.
 
-**Attributes **
+**Attributes**
 
 * **span** - Set the width of the grid block. Each row of grid block is made up of 12 spans. *Default: 12*.
 * **start** - Only accepts "true". This is required only on the frist grid block in each row.
@@ -41,7 +41,7 @@ Add some content here...
 The post block shortcode allows you to display a title and excerpt of **any post type** anywher on your site.
 *There are filters built into the shortcode if you wish to override the display of any post blocks.*
 
-**Basic Attributes **
+**Basic Attributes**
 
 * **id** - Show a specific post by it's post ID. *If this is set, you do not need to set any other attributes.*
 * **excerpt_length** - The length of the post excerpt. This will max out at the set excerpt length of your theme. *Default: 80*.
@@ -49,7 +49,7 @@ The post block shortcode allows you to display a title and excerpt of **any post
 * **class** - Add custom classes to the post block.
 
 
-**Advanced Attributes **
+**Advanced Attributes**
 
 If you want to setup 3 post blocks in a row that display the latest 3 posts (or something similar) you will need to use these.
 
@@ -69,7 +69,7 @@ If you want to setup 3 post blocks in a row that display the latest 3 posts (or 
 
 Create a horizontal slider of any post type to show within your content. By default it will display a title and excerpt.
 
-**Attributes **
+**Attributes**
 
 * **type** - Show a specific post type. *Default: post*.
 * **orderby** - How the post query should order by. [WP Query Reference](https://codex.wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters). *Default: rand*.
@@ -94,7 +94,7 @@ Create pricing tables to display in your content. Pricing tables have built-in g
 
 *Each paragraph between the shortcode brackets will make up the list of items.*
 
-**Attributes **
+**Attributes**
 
 * **span** - Set the width of the pricing table block. As with the grid shortcode, each row of grid block is made up of 12 spans. *Default: 12*.
 * **start** - Only accepts "true". This is required only on the frist pricing table in each row.
