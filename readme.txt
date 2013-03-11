@@ -7,11 +7,9 @@ Tested up to: 3.5.1
 Stable tag: 1.0.4
 License: GPL2
 
-Custom pack of shortcodes that include column grids, pricing tables, post sliders, and post blocks.
+Custom pack of shortcodes that includes column grids, pricing tables, post sliders, and post blocks.
 
 == Description ==
-
-Custom pack of shortcodes that include column grids, pricing tables, post sliders, and post blocks.
 
 #### Grid Shortcode
 
