@@ -122,7 +122,7 @@ Create pricing tables to display in your content. Pricing tables have built-in g
 
 24/7 Support Line
 
-[/pricing_table][pricing_table span="4" title="PREMIUM" dollar="$29" cents="99"]
+[/pricing_table][pricing_table span="4" title="PREMIUM" dollar="$29" cents="99"]
 
 5 Websites
 
@@ -134,7 +134,7 @@ Create pricing tables to display in your content. Pricing tables have built-in g
 
 24/7 Support Line
 
-[/pricing_table][pricing_table span="4" end="true" title="ELITE" dollar="$99" cents="99"]
+[/pricing_table][pricing_table span="4" end="true" title="ELITE" dollar="$99" cents="99"]
 
 Unlimited Websites
 
@@ -162,7 +162,7 @@ Unlimited Email
 
 24/7 Support Line
 
-[/pricing_table][pricing_table span="3" style="condensed" title="PREMIUM" dollar="$29" cents="99"]
+[/pricing_table][pricing_table span="3" style="condensed" title="PREMIUM" dollar="$29" cents="99"]
 
 5 Websites
 
@@ -174,7 +174,7 @@ Unlimited Email
 
 24/7 Support Line
 
-[/pricing_table][pricing_table span="3" style="condensed" title="PRO" dollar="$59" cents="99"]
+[/pricing_table][pricing_table span="3" style="condensed" title="PRO" dollar="$59" cents="99"]
 
 10 Websites
 
@@ -186,7 +186,7 @@ Unlimited Email
 
 24/7 Support Line
 
-[/pricing_table][pricing_table span="3" end="true" style="condensed" title="ELITE" dollar="$99" cents="99"]
+[/pricing_table][pricing_table span="3" end="true" style="condensed" title="ELITE" dollar="$99" cents="99"]
 
 Unlimited Websites
 
@@ -216,7 +216,7 @@ Unlimited Email
 
 24/7 Support Line<strong>Free</strong>
 
-[/pricing_table][pricing_table span="4" style="list"]
+[/pricing_table][pricing_table span="4" style="list"]
 
 5 Websites<strong>$19.99</strong>
 
@@ -228,7 +228,7 @@ Unlimited Email
 
 24/7 Support Line<strong>Free</strong>
 
-[/pricing_table][pricing_table span="4" end="true" style="list"]
+[/pricing_table][pricing_table span="4" end="true" style="list"]
 
 10 Websites<strong>$29.99</strong>
 
