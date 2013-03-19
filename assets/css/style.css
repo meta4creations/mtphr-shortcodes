@@ -25,7 +25,7 @@
 	.mtphr-shortcodes-row:after {
 	  clear: both;
 	}
-	.mtphr-shortcodes-row [class*="span"] {
+	.mtphr-shortcodes-row [class*="mtphr-shortcodes-span"] {
 	  display: block;
 	  float: left;
 	  width: 100%;
@@ -36,7 +36,7 @@
 	     -moz-box-sizing: border-box;
 	          box-sizing: border-box;
 	}
-	.mtphr-shortcodes-row [class*="span"]:first-child {
+	.mtphr-shortcodes-row [class*="mtphr-shortcodes-span"]:first-child {
 	  margin-left: 0;
 	}
 	.mtphr-shortcodes-row .mtphr-shortcodes-span12 {
@@ -104,7 +104,7 @@
   .mtphr-shortcodes-row:after {
     clear: both;
   }
-  .mtphr-shortcodes-row [class*="span"] {
+  .mtphr-shortcodes-row [class*="mtphr-shortcodes-span"] {
     display: block;
     float: left;
     width: 100%;
@@ -115,7 +115,7 @@
        -moz-box-sizing: border-box;
             box-sizing: border-box;
   }
-  .mtphr-shortcodes-row [class*="span"]:first-child {
+  .mtphr-shortcodes-row [class*="mtphr-shortcodes-span"]:first-child {
     margin-left: 0;
   }
   .mtphr-shortcodes-row .mtphr-shortcodes-span12 {
@@ -343,3 +343,7 @@
 .clearfix:after {
   clear: both;
 }
+
+
+
+

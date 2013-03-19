@@ -18,6 +18,9 @@ function mtphr_shortcodes_scripts() {
 	
 	wp_register_style( 'mtphr-shortcodes', MTPHR_SHORTCODES_URL.'/assets/css/style.css', false, MTPHR_SHORTCODES_VERSION );
 	wp_enqueue_style( 'mtphr-shortcodes' );
+	
+	wp_register_script( 'respond', MTPHR_SHORTCODES_URL.'/assets/js/respond.min.js', array('jquery'), MTPHR_SHORTCODES_VERSION, true );
+	wp_enqueue_script( 'respond' );
 }
 
 

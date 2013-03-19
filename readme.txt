@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: shortcodes, column grid, pricing tables, post sliders, post blocks, posts
 Requires at least: 3.2
 Tested up to: 3.5.1
-Stable tag: 1.0.4
+Stable tag: /trunk/
 License: GPL2
 
 Custom pack of shortcodes that includes column grids, pricing tables, post sliders, and post blocks.
@@ -265,10 +265,16 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 1.0.2 =
+* Added respond.js to add media queries for older browsers.
+
 = 1.0.0 =
 * Initial upload of Metaphor Shortcodes.
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+Added respond.js to add media queries for older browsers.
 
 = 1.0.0 =
 Initial upload of Metaphor Shortcodes.
