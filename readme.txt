@@ -265,6 +265,10 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 1.0.3 =
+* Updated grid row classes & css.
+* Added responsive filter.
+
 = 1.0.2 =
 * Added respond.js to add media queries for older browsers.
 
@@ -272,6 +276,9 @@ Documentation is coming soon!
 * Initial upload of Metaphor Shortcodes.
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+Updated grid row classes & css. Added responsive filter.
 
 = 1.0.2 =
 Added respond.js to add media queries for older browsers.

@@ -12,7 +12,7 @@ add_shortcode( 'grid', 'mtphr_grid' );
 /**
  * Create a grid block
  *
- * @since 1.0.0
+ * @since 1.0.3
  */
 function mtphr_grid( $atts, $content = null ) {
 	extract( shortcode_atts( array(
@@ -21,18 +21,22 @@ function mtphr_grid( $atts, $content = null ) {
 		'end' => false,
 		'class' => ''
 	), $atts ) );
+	
+	// Set the responsiveness of the grid
+	$row = apply_filters( 'mtphr_shortcodes_responsive_grid', false );
+	$row_class = $row ? 'mtphr-shortcodes-row-responsive' : 'mtphr-shortcodes-row';
 
 	// Check for nested shortcode
 	$content = mtphr_shortcodes_parse_shortcode_content( $content );
 	
 	$html ='';
 	if( $start ) {
-		$html .= '<div class="mtphr-shortcodes-row">'; 
+		$html .= '<div class="'.$row_class.'">'; 
 	}
 	if( $class != '' ) {
 		$class = ' '.$class;
 	}
-	$html .= '<div class="mtphr-shortcodes-span'.$span.$class.'">'.$content.'</div>';
+	$html .= '<div class="mtphr-shortcodes-grid'.$span.$class.'">'.$content.'</div>';
 	if( $end ) {
 		$html .= '</div>'; 
 	}
@@ -183,7 +187,7 @@ add_shortcode( 'post_block', 'mtphr_post_block' );
 /**
  * Create a post block
  *
- * @since 1.0.0
+ * @since 1.0.3
  */
 function mtphr_post_block( $atts, $content = null ) {
 	
@@ -200,7 +204,11 @@ function mtphr_post_block( $atts, $content = null ) {
 	);
 	
 	// Filter the defaults
-	$post_type = isset( $atts['type'] ) ? $atts['type'] : $defaults['type'];
+	if( isset($atts['id']) && $atts['id'] != '' ) {
+		$post_type = get_post_type( $atts['id'] );
+	} else {
+		$post_type = isset( $atts['type'] ) ? $atts['type'] : $defaults['type'];
+	}
 	$defaults = apply_filters( 'mtphr_post_block_default_args', $defaults, $post_type );
 	
 	// Extrac the atts
@@ -290,7 +298,7 @@ add_shortcode( 'pricing_table', 'mtphr_pricing_table' );
 /**
  * Create a pricing table
  *
- * @since 1.0.0
+ * @since 1.0.3
  */
 function mtphr_pricing_table( $atts, $content = null ) {
 	extract( shortcode_atts( array(
@@ -308,15 +316,19 @@ function mtphr_pricing_table( $atts, $content = null ) {
 		'link' => '#'
 	), $atts ) );
 	
+	// Set the responsiveness of the grid
+	$row = apply_filters( 'mtphr_shortcodes_responsive_grid', false );
+	$row_class = $row ? 'mtphr-shortcodes-row-responsive' : 'mtphr-shortcodes-row';
+	
 	$html ='';
 	if( $start ) {
-		$html .= '<div class="mtphr-shortcodes-row">'; 
+		$html .= '<div class="'.$row_class.'">'; 
 	}
 	if( $class != '' ) {
 		$class = ' '.$class;
 	}
 	
-	$html .= '<div class="mtphr-shortcodes-span'.$span.$class.'">';
+	$html .= '<div class="mtphr-shortcodes-grid'.$span.$class.'">';
 	
 	$html .= '<div class="mtphr-pricing-table mtphr-pricing-table-'.$style.'">';
 	
