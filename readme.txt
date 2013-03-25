@@ -265,6 +265,9 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 2.0.0 =
+* Updated version number to force old installs to update.
+
 = 1.0.3 =
 * Updated grid row classes & css.
 * Added responsive filter.
@@ -276,6 +279,9 @@ Documentation is coming soon!
 * Initial upload of Metaphor Shortcodes.
 
 == Upgrade Notice ==
+
+= 2.0.0 =
+* Updated version number to force old installs to update
 
 = 1.0.3 =
 Updated grid row classes & css. Added responsive filter.
