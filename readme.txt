@@ -265,6 +265,9 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 2.0.1 =
+* Added html_entity_decode to excerpt_more attribute to allow for html characters to be passed.
+
 = 2.0.0 =
 * Updated version number to force old installs to update.
 
@@ -279,6 +282,9 @@ Documentation is coming soon!
 * Initial upload of Metaphor Shortcodes.
 
 == Upgrade Notice ==
+
+= 2.0.1 =
+Added html_entity_decode to excerpt_more attribute to allow for html characters to be passed.
 
 = 2.0.0 =
 * Updated version number to force old installs to update
