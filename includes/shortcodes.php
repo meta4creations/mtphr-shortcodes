@@ -51,7 +51,7 @@ add_shortcode( 'post_slider', 'mtphr_post_slider' );
 /**
  * Create a post slider
  *
- * @since 2.0.1
+ * @since 2.0.2
  */
 function mtphr_post_slider( $atts, $content = null ) {
 
@@ -62,7 +62,7 @@ function mtphr_post_slider( $atts, $content = null ) {
 		'orderby' => 'rand',
 		'order' => 'DESC',
 		'limit' => -1,
-		'image_size' => 'thumbnail',
+		'thumb_size' => 'thumbnail',
 		'excerpt_length' => 80,
 		'excerpt_more' => '&hellip;',
 		'prev' => __('Previous', 'mtphr-shortcodes'),
@@ -74,8 +74,9 @@ function mtphr_post_slider( $atts, $content = null ) {
 	$post_type = isset( $atts['type'] ) ? $atts['type'] : $defaults['type'];
 	$defaults = apply_filters( 'mtphr_post_slider_default_args', $defaults, $post_type );
 	
-	// Extrac the atts
-	extract( shortcode_atts( $defaults, $atts ) );
+	// Extract the atts
+	$defaults = shortcode_atts( $defaults, $atts );
+	extract( $defaults );
 	
 	$args = array(
 		'post_type'=> $type,
@@ -138,6 +139,9 @@ function mtphr_post_slider( $atts, $content = null ) {
 
 		// Set the default content
 		ob_start(); ?>
+		<?php if( $thumb_size != 'none' ) {
+			echo get_the_post_thumbnail( get_the_id(), $thumb_size ); 
+		} ?>
 		<h3 class="mtphr-post-slider-block-title"><a href="<?php echo get_permalink( $post->ID ); ?>"><?php the_title(); ?></a></h3>
 		<p class="mtphr-post-slider-block-excerpt"><?php echo $excerpt; ?></p>
 		<?php
@@ -146,7 +150,7 @@ function mtphr_post_slider( $atts, $content = null ) {
 		ob_start();
 		?>
 		<div class="mtphr-post-slider-block mtphr-<?php echo $post_type; ?>-post-slider-block <?php echo $class; ?>">
-			<?php echo apply_filters( "mtphr_{$post_type}_post_slider_block", $block, $excerpt ); ?>
+			<?php echo apply_filters( "mtphr_{$post_type}_post_slider_block", $block, $excerpt, $defaults ); ?>
 		</div>
 		<?php
 		$html .= ob_get_clean();
@@ -187,7 +191,7 @@ add_shortcode( 'post_block', 'mtphr_post_block' );
 /**
  * Create a post block
  *
- * @since 2.0.1
+ * @since 2.0.2
  */
 function mtphr_post_block( $atts, $content = null ) {
 	
@@ -199,6 +203,7 @@ function mtphr_post_block( $atts, $content = null ) {
 		'orderby' => 'date',
 		'order' => 'DESC',
 		'offset' => '0',
+		'thumb_size' => 'thumbnail',
 		'excerpt_length' => 80,
 		'excerpt_more' => '&hellip;'
 	);
@@ -211,8 +216,9 @@ function mtphr_post_block( $atts, $content = null ) {
 	}
 	$defaults = apply_filters( 'mtphr_post_block_default_args', $defaults, $post_type );
 	
-	// Extrac the atts
-	extract( shortcode_atts( $defaults, $atts ) );
+	// Extract the atts
+	$defaults = shortcode_atts( $defaults, $atts );
+	extract( $defaults );
 	
 	if( $id == '' ) {
 			
@@ -255,6 +261,10 @@ function mtphr_post_block( $atts, $content = null ) {
 	
 	ob_start(); ?>
 	
+	<?php if( $thumb_size != 'none' ) {
+		echo get_the_post_thumbnail( get_the_id(), $thumb_size ); 
+	} ?>
+	
 	<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 	
 	<?php
@@ -277,7 +287,7 @@ function mtphr_post_block( $atts, $content = null ) {
 	$block = ob_get_clean();
 
 	$html .= '<div class="mtphr-post-block-'.$type.$class.'">';
-	$html .= apply_filters( "mtphr_{$type}_post_block", $block, $excerpt );
+	$html .= apply_filters( "mtphr_{$type}_post_block", $block, $excerpt, $defaults );
 	$html .= '</div>';
 	
 	endwhile;	

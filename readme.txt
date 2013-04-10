@@ -42,6 +42,7 @@ The post block shortcode allows you to display a title and excerpt of **any post
 **Basic Attributes**
 
 * **id** - Show a specific post by it's post ID. *If this is set, you do not need to set any other attributes.*
+* **thumb_size** - The size of the thumbnail. Set to "none" to hide the thumbnail. *Default: thumbnail*.
 * **excerpt_length** - The length of the post excerpt. This will max out at the set excerpt length of your theme. *Default: 80*.
 * **excerpt_more** - The display of the 'more' link of the excerpt. Wrap text in curly brackets to create a permalink to the post. *Default: &hellip*.
 * **class** - Add custom classes to the post block.
@@ -73,6 +74,7 @@ Create a horizontal slider of any post type to show within your content. By defa
 * **orderby** - How the post query should order by. [WP Query Reference](https://codex.wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters). *Default: rand*.
 * **order** - The order of the query. Use **ASC** or **DESC**. *Default: DESC*.
 * **limit** - Limit the number of posts to show. *Default: -1*.
+* **thumb_size** - The size of the thumbnails. Set to "none" to hide the thumbnails. *Default: thumbnail*.
 * **excerpt_length** - The length of the post excerpt. This will max out at the set excerpt length of your theme. *Default: 80*.
 * **excerpt_more** - The display of the 'more' link of the excerpt. Wrap text in curly brackets to create a permalink to the post. *Default: &hellip*.
 * **title** - Display a title for the slider. *Default: Blog Posts*.
@@ -265,6 +267,10 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 2.0.2 =
+* Added thumb_size argument to post_block shortcode.
+* Added thumb_size argument to post_slider shortcode.
+
 = 2.0.1 =
 * Added html_entity_decode to excerpt_more attribute to allow for html characters to be passed.
 
@@ -282,6 +288,9 @@ Documentation is coming soon!
 * Initial upload of Metaphor Shortcodes.
 
 == Upgrade Notice ==
+
+= 2.0.2 =
+Added thumb_size argument to post_block shortcode. Added thumb_size argument to post_slider shortcode.
 
 = 2.0.1 =
 Added html_entity_decode to excerpt_more attribute to allow for html characters to be passed.
