@@ -4,9 +4,30 @@
  *
  * @package Metaphor Shortcodes
  */
- 
- 
- 
+
+
+
+/**
+ * Return a value from the options table if it exists,
+ * or return a default value
+ *
+ * @since 2.0.3
+ */
+function mtphr_shortcodes_settings() {
+
+	// Get the options
+	$settings = get_option( 'mtphr_shortcodes_settings', array() );
+
+	$defaults = array(
+		'responsive' => false
+	);
+	$defaults = apply_filters( 'mtphr_shortcodes_default_settings', $defaults );
+
+	return wp_parse_args( $settings, $defaults );
+}
+
+
+
 
 /**
  * Set a maximum excerpt length
@@ -20,7 +41,7 @@ function mtphr_shortcodes_excerpt( $length = 200, $more = '&hellip;' ) {
 function get_mtphr_shortcodes_excerpt( $length = 200, $more = '&hellip;' ) {
 	$excerpt = get_the_excerpt();
 	$length++;
-	
+
 	$output = '';
 	if ( mb_strlen( $excerpt ) > $length ) {
 		$subex = mb_substr( $excerpt, 0, $length - 5 );
@@ -50,19 +71,19 @@ function mtphr_shortcodes_parse_shortcode_content( $content ) {
 
 	/* Parse nested shortcodes and add formatting. */
 	$content = trim( wpautop(do_shortcode($content)) );
-	
+
 	/* Remove '</p>' from the start of the string. */
 	if ( substr( $content, 0, 4 ) == '</p>' )
 	    $content = substr( $content, 4 );
-	
+
 	/* Remove '<p>' from the end of the string. */
 	if ( substr( $content, -3, 3 ) == '<p>' )
 	    $content = substr( $content, 0, -3 );
-	
+
 	/* Remove any instances of '<p></p>'. */
 	$pattern = "/<p[^>]*><\\/p[^>]*>/";
-	$content = preg_replace( $pattern, '', $content ); 
-	
+	$content = preg_replace( $pattern, '', $content );
+
 	return apply_filters( 'mtphr_shortcodes_parse_shortcode_content', $content );
 }
 
@@ -75,7 +96,7 @@ add_action( 'plugins_loaded', 'mtphr_shortcodes_localization' );
  * @since 1.0.0
  */
 function mtphr_shortcodes_localization() {
-  load_plugin_textdomain( 'mtphr-shortcodes', false, MTPHR_SHORTCODES_DIR.'languages/' );
+  load_plugin_textdomain( 'mtphr-shortcodes', false, 'mtphr-shortcodes/languages/' );
 }
 
 

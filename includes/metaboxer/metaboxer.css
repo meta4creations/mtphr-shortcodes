@@ -1,0 +1,90 @@
+/* General - 1.0.1
+------------------------------------------------------------ */
+
+.mtphr-shortcodes-metaboxer-admin-fields {
+	padding-top: 10px;
+}
+.mtphr-shortcodes-metaboxer-loading-gif {
+	opacity: 0;
+}
+.mtphr-shortcodes-metaboxer-appended {
+	display: inline;
+	margin-left: 10px;
+}
+.mtphr-shortcodes-metaboxer-widget-field {
+	display: block;
+	margin: 0 0 1em;
+	padding: 0;
+}
+
+/* Fields */
+.mtphr-shortcodes-metaboxer-field {
+	margin-bottom: 20px;
+}
+#side-info-column .mtphr-shortcodes-metaboxer-field {
+	margin-bottom: 10px;
+}
+.mtphr-shortcodes-metaboxer-field:last-child {
+	margin-bottom: 20px;
+}
+
+/* Labels */
+.mtphr-shortcodes-metaboxer-label {
+	vertical-align: top;
+	width: 20%;
+	overflow: hidden;
+	padding-bottom: 20px;
+	padding-right: 20px;
+}
+.mtphr-shortcodes-metaboxer-label label {
+	display: block;
+	font-weight: bold;
+	font-size: 12px;
+}
+.mtphr-shortcodes-metaboxer-label small {
+	font-size: 10px;
+	font-style: italic;
+}
+#side-sortables .mtphr-shortcodes-metaboxer-label {
+	width: auto;
+	margin: 0;
+	padding: 0;
+}
+
+/* Content */
+.mtphr-shortcodes-metaboxer-field-content {
+	width: 80%;
+	vertical-align: top;
+	padding-bottom: 20px;
+}
+.mtphr-shortcodes-metaboxer-field-content-full {
+	width: 100%;
+}
+.vertical .mtphr-shortcodes-metaboxer-field-content,
+#side-sortables .vertical .mtphr-shortcodes-metaboxer-field-content {
+	float: none;
+	width: auto;
+}
+
+/* Clearfix */
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+
+/* --------------------------------------------------------- */
+/* !Checkbox - 1.0.1 */
+/* --------------------------------------------------------- */
+
+.mtphr-shortcodes-metaboxer-checkbox input {
+	margin-top: 0;
+	margin-right: 1px;
+}
+

@@ -267,6 +267,10 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 2.0.3 =
+* Fixed localization script.
+* Added setting to set responsive grids.
+
 = 2.0.2 =
 * Added thumb_size argument to post_block shortcode.
 * Added thumb_size argument to post_slider shortcode.
@@ -288,6 +292,9 @@ Documentation is coming soon!
 * Initial upload of Metaphor Shortcodes.
 
 == Upgrade Notice ==
+
+= 2.0.3 =
+Fixed localization script. Added setting to set responsive grids.
 
 = 2.0.2 =
 Added thumb_size argument to post_block shortcode. Added thumb_size argument to post_slider shortcode.

@@ -12,7 +12,7 @@ add_shortcode( 'grid', 'mtphr_grid' );
 /**
  * Create a grid block
  *
- * @since 1.0.3
+ * @since 2.0.3
  */
 function mtphr_grid( $atts, $content = null ) {
 	extract( shortcode_atts( array(
@@ -21,26 +21,27 @@ function mtphr_grid( $atts, $content = null ) {
 		'end' => false,
 		'class' => ''
 	), $atts ) );
-	
+
 	// Set the responsiveness of the grid
-	$row = apply_filters( 'mtphr_shortcodes_responsive_grid', false );
+	$settings = mtphr_shortcodes_settings();
+	$row = apply_filters( 'mtphr_shortcodes_responsive_grid', $settings['responsive'] );
 	$row_class = $row ? 'mtphr-shortcodes-row-responsive' : 'mtphr-shortcodes-row';
 
 	// Check for nested shortcode
 	$content = mtphr_shortcodes_parse_shortcode_content( $content );
-	
+
 	$html ='';
 	if( $start ) {
-		$html .= '<div class="'.$row_class.'">'; 
+		$html .= '<div class="'.$row_class.'">';
 	}
 	if( $class != '' ) {
 		$class = ' '.$class;
 	}
 	$html .= '<div class="mtphr-shortcodes-grid'.$span.$class.'">'.$content.'</div>';
 	if( $end ) {
-		$html .= '</div>'; 
+		$html .= '</div>';
 	}
-	
+
 	return $html;
 }
 
@@ -69,23 +70,23 @@ function mtphr_post_slider( $atts, $content = null ) {
 		'next' => __('Next', 'mtphr-shortcodes'),
 		'class' => ''
 	);
-	
+
 	// Filter the defaults
 	$post_type = isset( $atts['type'] ) ? $atts['type'] : $defaults['type'];
 	$defaults = apply_filters( 'mtphr_post_slider_default_args', $defaults, $post_type );
-	
+
 	// Extract the atts
 	$defaults = shortcode_atts( $defaults, $atts );
 	extract( $defaults );
-	
+
 	$args = array(
 		'post_type'=> $type,
 		'orderby' => $orderby,
 		'order' => $order,
 		'posts_per_page' => $limit,
-		'post__not_in' => array( get_the_ID() )	
+		'post__not_in' => array( get_the_ID() )
 	);
-	
+
 	// Filter the args
 	$args = apply_filters( 'mtphr_post_slider_query_args', $args );
 
@@ -95,14 +96,14 @@ function mtphr_post_slider( $atts, $content = null ) {
 	$wp_query = null;
 	$wp_query = new WP_Query();
 	$wp_query->query( $args );
-	
+
 	$html = '';
 
 	if ( $wp_query->have_posts() ) :
-		
+
 		ob_start(); ?>
 		<div class="mtphr-post-slider mtphr-post-slider-<?php echo $type; ?> clearfix <?php echo esc_attr($class); ?>">
-			
+
 			<div class="mtphr-post-slider-header clearfix">
 				<?php if( $title != '' ) { ?>
 					<h3 class="mtphr-post-slider-title"><?php echo $title; ?></h3>
@@ -116,18 +117,18 @@ function mtphr_post_slider( $atts, $content = null ) {
 		<?php
 		// Return the output
 		$html = ob_get_clean();
-	
+
 	/* Start the Loop */
 	while ( $wp_query->have_posts() ) : $wp_query->the_post();
-	
+
 		//$post = get_post( get_the_ID() );
 		$post = get_post( get_the_ID() );
 		$post_type = $type;
-		
+
 		// Get the excerpt
 		$excerpt = '';
 		if( $excerpt_length > 0 ) {
-		
+
 			$links = array();
 			preg_match('/{(.*?)\}/s', $excerpt_more, $links);
 			if( isset($links[0]) ) {
@@ -140,13 +141,13 @@ function mtphr_post_slider( $atts, $content = null ) {
 		// Set the default content
 		ob_start(); ?>
 		<?php if( $thumb_size != 'none' ) {
-			echo get_the_post_thumbnail( get_the_id(), $thumb_size ); 
+			echo get_the_post_thumbnail( get_the_id(), $thumb_size );
 		} ?>
 		<h3 class="mtphr-post-slider-block-title"><a href="<?php echo get_permalink( $post->ID ); ?>"><?php the_title(); ?></a></h3>
 		<p class="mtphr-post-slider-block-excerpt"><?php echo $excerpt; ?></p>
 		<?php
 		$block = ob_get_clean();
-		
+
 		ob_start();
 		?>
 		<div class="mtphr-post-slider-block mtphr-<?php echo $post_type; ?>-post-slider-block <?php echo $class; ?>">
@@ -156,7 +157,7 @@ function mtphr_post_slider( $atts, $content = null ) {
 		$html .= ob_get_clean();
 
 	endwhile;
-	
+
 	ob_start(); ?>
 	</div></div>
 	<?php
@@ -168,10 +169,10 @@ function mtphr_post_slider( $atts, $content = null ) {
 	$wp_query = null;
 	$wp_query = $original_query;
 	wp_reset_postdata();
-	
+
 	// Add footer scripts
 	add_action( 'wp_footer', 'mtphr_post_slider_footer_scripts' );
-	
+
 	ob_start(); ?>
 	<script>
 	jQuery( document ).ready( function($) {
@@ -194,7 +195,7 @@ add_shortcode( 'post_block', 'mtphr_post_block' );
  * @since 2.0.2
  */
 function mtphr_post_block( $atts, $content = null ) {
-	
+
 	// Set the defaults
 	$defaults = array(
 		'id' => '',
@@ -207,7 +208,7 @@ function mtphr_post_block( $atts, $content = null ) {
 		'excerpt_length' => 80,
 		'excerpt_more' => '&hellip;'
 	);
-	
+
 	// Filter the defaults
 	if( isset($atts['id']) && $atts['id'] != '' ) {
 		$post_type = get_post_type( $atts['id'] );
@@ -215,13 +216,13 @@ function mtphr_post_block( $atts, $content = null ) {
 		$post_type = isset( $atts['type'] ) ? $atts['type'] : $defaults['type'];
 	}
 	$defaults = apply_filters( 'mtphr_post_block_default_args', $defaults, $post_type );
-	
+
 	// Extract the atts
 	$defaults = shortcode_atts( $defaults, $atts );
 	extract( $defaults );
-	
+
 	if( $id == '' ) {
-			
+
 		$args = array(
 			'post_type' => $type,
 			'orderby' => $orderby,
@@ -230,14 +231,14 @@ function mtphr_post_block( $atts, $content = null ) {
 			'offset' => $offset
 		);
 	} else {
-		
+
 		$type = get_post_type($id);
 		$args = array(
 			'post_type' => $type,
 			'p' => $id
 		);
 	}
-	
+
 	// Filter the args
 	$args = apply_filters( 'mtphr_post_block_query_args', $args, $type );
 
@@ -247,7 +248,7 @@ function mtphr_post_block( $atts, $content = null ) {
 	$wp_query = null;
 	$wp_query = new WP_Query();
 	$wp_query->query( $args );
-	
+
 	$html = '';
 
 	if ( $wp_query->have_posts() ) : while ( $wp_query->have_posts() ) : $wp_query->the_post();
@@ -258,20 +259,20 @@ function mtphr_post_block( $atts, $content = null ) {
 	if( $id != '' ) {
 		$type = get_post_type();
 	}
-	
+
 	ob_start(); ?>
-	
+
 	<?php if( $thumb_size != 'none' ) {
-		echo get_the_post_thumbnail( get_the_id(), $thumb_size ); 
+		echo get_the_post_thumbnail( get_the_id(), $thumb_size );
 	} ?>
-	
+
 	<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-	
+
 	<?php
 	// Get the excerpt
 	$excerpt = '';
 	if( $excerpt_length > 0 ) {
-	
+
 		$links = array();
 		preg_match('/{(.*?)\}/s', $excerpt_more, $links);
 		if( isset($links[0]) ) {
@@ -282,22 +283,22 @@ function mtphr_post_block( $atts, $content = null ) {
 	}
 	?>
 	<p><?php echo $excerpt; ?></p>
-	
+
 	<?php
 	$block = ob_get_clean();
 
 	$html .= '<div class="mtphr-post-block-'.$type.$class.'">';
 	$html .= apply_filters( "mtphr_{$type}_post_block", $block, $excerpt, $defaults );
 	$html .= '</div>';
-	
-	endwhile;	
+
+	endwhile;
 	else :
 	endif;
 
 	$wp_query = null;
 	$wp_query = $original_query;
 	wp_reset_postdata();
-		
+
 	return $html;
 }
 
@@ -308,7 +309,7 @@ add_shortcode( 'pricing_table', 'mtphr_pricing_table' );
 /**
  * Create a pricing table
  *
- * @since 1.0.3
+ * @since 2.0.3
  */
 function mtphr_pricing_table( $atts, $content = null ) {
 	extract( shortcode_atts( array(
@@ -325,23 +326,24 @@ function mtphr_pricing_table( $atts, $content = null ) {
 		'button' => __('Sign Up', 'mtphr-shortcodes'),
 		'link' => '#'
 	), $atts ) );
-	
+
 	// Set the responsiveness of the grid
-	$row = apply_filters( 'mtphr_shortcodes_responsive_grid', false );
+	$settings = mtphr_shortcodes_settings();
+	$row = apply_filters( 'mtphr_shortcodes_responsive_grid', $settings['responsive'] );
 	$row_class = $row ? 'mtphr-shortcodes-row-responsive' : 'mtphr-shortcodes-row';
-	
+
 	$html ='';
 	if( $start ) {
-		$html .= '<div class="'.$row_class.'">'; 
+		$html .= '<div class="'.$row_class.'">';
 	}
 	if( $class != '' ) {
 		$class = ' '.$class;
 	}
-	
+
 	$html .= '<div class="mtphr-shortcodes-grid'.$span.$class.'">';
-	
+
 	$html .= '<div class="mtphr-pricing-table mtphr-pricing-table-'.$style.'">';
-	
+
 	if( $style != 'list' ) {
 		if( $title != '' ) {
 			$title = apply_filters( 'mtphr_pricing_table_title', $title );
@@ -365,20 +367,20 @@ function mtphr_pricing_table( $atts, $content = null ) {
 			$html .= '</p>';
 		}
 	}
-	
+
 	$html .= '<div class="mtphr-pricing-table-values">'.mtphr_shortcodes_parse_shortcode_content( $content ).'</div>';
-	
+
 	if( $style != 'list' ) {
 		if( $button != '' ) {
 			$button = apply_filters( 'mtphr_pricing_table_button', $button );
 			$html .= '<p class="mtphr-pricing-table-button"><a href="'.$link.'">'.$button.'</a></p>';
 		}
 	}
-	
+
 	$html .= '</div></div>';
-	
+
 	if( $end ) {
-		$html .= '</div>'; 
+		$html .= '</div>';
 	}
 
 	return $html;

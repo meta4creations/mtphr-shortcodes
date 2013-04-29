@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Metaphor Shortcodes v1.0.0\n"
+"Project-Id-Version: Metaphor Shortcodes v2.0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-03-11 16:11:40+0000\n"
+"PO-Revision-Date: 2013-04-29 21:01:35+0000\n"
 "Last-Translator: admin <joe@metaphorcreations.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,17 +20,17 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
 
-#: includes/shortcodes.php:57
+#: includes/shortcodes.php:62
 #@ mtphr-shortcodes
 msgid "Blog Posts"
 msgstr "Blog Posts"
 
-#: includes/shortcodes.php:64
+#: includes/shortcodes.php:69
 #@ mtphr-shortcodes
 msgid "Previous"
 msgstr "Previous"
 
-#: includes/shortcodes.php:65
+#: includes/shortcodes.php:70
 #@ mtphr-shortcodes
 msgid "Next"
 msgstr "Next"
@@ -40,13 +40,39 @@ msgstr "Next"
 msgid "In order to use the new <strong>Metaphor Shortcodes</strong> you must deactivate <strong>Metaphor Shortcodes Pack #1</strong>"
 msgstr "In order to use the new <strong>Metaphor Shortcodes</strong> you must deactivate <strong>Metaphor Shortcodes Pack #1</strong>"
 
-#: includes/shortcodes.php:306
+#: includes/shortcodes.php:325
 #@ mtphr-shortcodes
 msgid "per month"
 msgstr "per month"
 
-#: includes/shortcodes.php:307
+#: includes/shortcodes.php:326
 #@ mtphr-shortcodes
 msgid "Sign Up"
 msgstr "Sign Up"
+
+#: includes/settings.php:20
+#: includes/settings.php:21
+#@ mtphr-shortcodes
+msgid "Metaphor Shortcodes"
+msgstr "Metaphor Shortcodes"
+
+#: includes/settings.php:43
+#@ mtphr-shortcodes
+msgid "Responsive Grid"
+msgstr "Responsive Grid"
+
+#: includes/settings.php:45
+#@ mtphr-shortcodes
+msgid "Make grids responsive"
+msgstr "Make grids responsive"
+
+#: includes/settings.php:46
+#@ mtphr-shortcodes
+msgid "*Note: This may be overriden by theme settings, if your theme hooks into the shortcodes."
+msgstr "*Note: This may be overriden by theme settings, if your theme hooks into the shortcodes."
+
+#: includes/settings.php:88
+#@ mtphr-shortcodes
+msgid "Metaphor Shortcodes Settings"
+msgstr "Metaphor Shortcodes Settings"
 
