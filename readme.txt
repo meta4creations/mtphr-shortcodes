@@ -242,6 +242,24 @@ Unlimited Email
 
 [/pricing_table]`
 
+- - -
+
+#### Slide Graph Shortcode
+
+Documentation coming soon!
+
+- - -
+
+#### Tabs Shortcode
+
+Documentation coming soon!
+
+- - -
+
+#### Toggle Shortcode
+
+Documentation coming soon!
+
 
 
 
@@ -266,6 +284,16 @@ Documentation is coming soon!
 6. List pricing table sample.
 
 == Changelog ==
+
+= 2.0.4 =
+* Added new filters to post_slider shortcode.
+* Modified jQuery script loading for post_slider.
+* Added Slide Graph shortcode.
+* Added Tabs shortcode.
+* Added Toggle shortcode.
+* Fixed typo in post slider code.
+* Added it_IT.mo & it_IT.po files.
+* Added content wrapper to post slider and modified CSS.
 
 = 2.0.3 =
 * Fixed localization script.
@@ -292,6 +320,9 @@ Documentation is coming soon!
 * Initial upload of Metaphor Shortcodes.
 
 == Upgrade Notice ==
+
+= 2.0.4 =
+Added new filters to post_slider shortcode. Modified jQuery script loading for post_slider. Added Slide Graph shortcode. Added Tabs shortcode. Added Toggle shortcode. Fixed typo in post slider code. Added it_IT.mo & it_IT.po files. Added content wrapper to post slider and modified CSS.
 
 = 2.0.3 =
 Fixed localization script. Added setting to set responsive grids.

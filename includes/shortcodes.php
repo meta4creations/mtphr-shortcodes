@@ -8,13 +8,14 @@
 
 
 
-add_shortcode( 'grid', 'mtphr_grid' );
+add_shortcode( 'grid', 'mtphr_grid_display' );
+add_shortcode( 'mtphr_grid', 'mtphr_grid_display' );
 /**
  * Create a grid block
  *
- * @since 2.0.3
+ * @since 2.0.4
  */
-function mtphr_grid( $atts, $content = null ) {
+function mtphr_grid_display( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'span' => 12,
 		'start' => false,
@@ -48,13 +49,14 @@ function mtphr_grid( $atts, $content = null ) {
 
 
 
-add_shortcode( 'post_slider', 'mtphr_post_slider' );
+add_shortcode( 'post_slider', 'mtphr_post_slider_display' );
+add_shortcode( 'mtphr_post_slider', 'mtphr_post_slider_display' );
 /**
  * Create a post slider
  *
- * @since 2.0.2
+ * @since 2.0.4
  */
-function mtphr_post_slider( $atts, $content = null ) {
+function mtphr_post_slider_display( $atts, $content = null ) {
 
 	// Set the defaults
 	$defaults = array(
@@ -76,40 +78,20 @@ function mtphr_post_slider( $atts, $content = null ) {
 	$defaults = apply_filters( 'mtphr_post_slider_default_args', $defaults, $post_type );
 
 	// Extract the atts
-	$defaults = shortcode_atts( $defaults, $atts );
-	extract( $defaults );
+	$args = shortcode_atts( $defaults, $atts );
+	extract( $args );
 
-	$args = array(
-		'post_type'=> $type,
-		'orderby' => $orderby,
-		'order' => $order,
-		'posts_per_page' => $limit,
-		'post__not_in' => array( get_the_ID() )
-	);
-
-	// Filter the args
-	$args = apply_filters( 'mtphr_post_slider_query_args', $args );
-
-	// Save the original query & create a new one
-	global $wp_query;
-	$original_query = $wp_query;
-	$wp_query = null;
-	$wp_query = new WP_Query();
-	$wp_query->query( $args );
-
-	$html = '';
-
-	if ( $wp_query->have_posts() ) :
+	if( $post_type == 'custom' ) {
 
 		ob_start(); ?>
 		<div class="mtphr-post-slider mtphr-post-slider-<?php echo $type; ?> clearfix <?php echo esc_attr($class); ?>">
 
 			<div class="mtphr-post-slider-header clearfix">
 				<?php if( $title != '' ) { ?>
-					<h3 class="mtphr-post-slider-title"><?php echo $title; ?></h3>
+					<?php echo apply_filters( 'mtphr_post_slider_title', '<h3 class="mtphr-post-slider-title">'.$title.'</h3>', $defaults ); ?>
 				<?php } ?>
 				<div class="mtphr-post-slider-navigation clearfix">
-					<?php echo apply_filters( 'mtphr_post_slider_prev', '<a class="mtphr-post-slider-prev" href="#" class="disabled"><span>'.$prev.'</span></a>', $prev ); ?>
+					<?php echo apply_filters( 'mtphr_post_slider_prev', '<a class="mtphr-post-slider-prev disabled" href="#"><span>'.$prev.'</span></a>', $prev ); ?>
 					<?php echo apply_filters( 'mtphr_post_slider_next', '<a class="mtphr-post-slider-next" href="#"><span>'.$next.'</span></a>', $next ); ?>
 				</div>
 			</div>
@@ -118,69 +100,113 @@ function mtphr_post_slider( $atts, $content = null ) {
 		// Return the output
 		$html = ob_get_clean();
 
-	/* Start the Loop */
-	while ( $wp_query->have_posts() ) : $wp_query->the_post();
+		$html .= mtphr_shortcodes_parse_shortcode_content($content);
 
-		//$post = get_post( get_the_ID() );
-		$post = get_post( get_the_ID() );
-		$post_type = $type;
-
-		// Get the excerpt
-		$excerpt = '';
-		if( $excerpt_length > 0 ) {
-
-			$links = array();
-			preg_match('/{(.*?)\}/s', $excerpt_more, $links);
-			if( isset($links[0]) ) {
-				$more_link = '<a href="'.get_permalink().'">'.$links[1].'</a>';
-				$excerpt_more = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more);
-			}
-			$excerpt = get_mtphr_shortcodes_excerpt( $excerpt_length, html_entity_decode($excerpt_more) );
-		}
-
-		// Set the default content
 		ob_start(); ?>
-		<?php if( $thumb_size != 'none' ) {
-			echo get_the_post_thumbnail( get_the_id(), $thumb_size );
-		} ?>
-		<h3 class="mtphr-post-slider-block-title"><a href="<?php echo get_permalink( $post->ID ); ?>"><?php the_title(); ?></a></h3>
-		<p class="mtphr-post-slider-block-excerpt"><?php echo $excerpt; ?></p>
+		</div></div>
 		<?php
-		$block = ob_get_clean();
+		$html .= ob_get_clean();
 
-		ob_start();
-		?>
-		<div class="mtphr-post-slider-block mtphr-<?php echo $post_type; ?>-post-slider-block <?php echo $class; ?>">
-			<?php echo apply_filters( "mtphr_{$post_type}_post_slider_block", $block, $excerpt, $defaults ); ?>
+	} else {
+
+		$query_args = array(
+			'post_type'=> $type,
+			'orderby' => $orderby,
+			'order' => $order,
+			'posts_per_page' => $limit,
+			'post__not_in' => array( get_the_ID() )
+		);
+
+		// Filter the args
+		$query_args = apply_filters( 'mtphr_post_slider_query_args', $query_args );
+
+		// Save the original query & create a new one
+		global $wp_query;
+		$original_query = $wp_query;
+		$wp_query = null;
+		$wp_query = new WP_Query();
+		$wp_query->query( $query_args );
+
+		$html = '';
+
+		if ( $wp_query->have_posts() ) :
+
+			ob_start(); ?>
+			<div class="mtphr-post-slider mtphr-post-slider-<?php echo $type; ?> clearfix <?php echo esc_attr($class); ?>">
+
+				<div class="mtphr-post-slider-header clearfix">
+					<?php if( $title != '' ) { ?>
+						<?php echo apply_filters( 'mtphr_post_slider_title', '<h3 class="mtphr-post-slider-title">'.$title.'</h3>', $args ); ?>
+					<?php } ?>
+					<div class="mtphr-post-slider-navigation clearfix">
+						<?php echo apply_filters( 'mtphr_post_slider_prev', '<a class="mtphr-post-slider-prev" href="#" class="disabled"><span>'.$prev.'</span></a>', $prev ); ?>
+						<?php echo apply_filters( 'mtphr_post_slider_next', '<a class="mtphr-post-slider-next" href="#"><span>'.$next.'</span></a>', $next ); ?>
+					</div>
+				</div>
+				<div class="mtphr-post-slider-content-wrapper">
+					<div class="mtphr-post-slider-content clearfix">
+					<?php
+					// Return the output
+					$html = ob_get_clean();
+
+					/* Start the Loop */
+					while ( $wp_query->have_posts() ) : $wp_query->the_post();
+
+						//$post = get_post( get_the_ID() );
+						$post = get_post( get_the_ID() );
+						$post_type = $type;
+
+						// Get the excerpt
+						$excerpt = '';
+						if( $excerpt_length > 0 ) {
+
+							$links = array();
+							preg_match('/{(.*?)\}/s', $excerpt_more, $links);
+							if( isset($links[0]) ) {
+								$more_link = '<a href="'.get_permalink().'">'.$links[1].'</a>';
+								$excerpt_more = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more);
+							}
+							$excerpt = get_mtphr_shortcodes_excerpt( $excerpt_length, html_entity_decode($excerpt_more) );
+						}
+
+						// Set the default content
+						ob_start(); ?>
+						<?php if( $thumb_size != 'none' ) {
+							echo get_the_post_thumbnail( get_the_id(), $thumb_size );
+						} ?>
+						<h3 class="mtphr-post-slider-block-title"><a href="<?php echo get_permalink( $post->ID ); ?>"><?php the_title(); ?></a></h3>
+						<p class="mtphr-post-slider-block-excerpt"><?php echo $excerpt; ?></p>
+						<?php
+						$block = ob_get_clean();
+
+						ob_start();
+						?>
+						<div class="mtphr-post-slider-block mtphr-<?php echo $post_type; ?>-post-slider-block <?php echo $class; ?>">
+							<?php echo apply_filters( "mtphr_{$post_type}_post_slider_block", $block, $excerpt, $args ); ?>
+						</div>
+						<?php
+						$html .= ob_get_clean();
+
+					endwhile;
+
+				ob_start(); ?>
+				</div>
+			</div>
 		</div>
 		<?php
 		$html .= ob_get_clean();
 
-	endwhile;
+		else :
+		endif;
 
-	ob_start(); ?>
-	</div></div>
-	<?php
-	$html .= ob_get_clean();
+		$wp_query = null;
+		$wp_query = $original_query;
+		wp_reset_postdata();
+	}
 
-	else :
-	endif;
-
-	$wp_query = null;
-	$wp_query = $original_query;
-	wp_reset_postdata();
-
-	// Add footer scripts
-	add_action( 'wp_footer', 'mtphr_post_slider_footer_scripts' );
-
-	ob_start(); ?>
-	<script>
-	jQuery( document ).ready( function($) {
-		$('.mtphr-post-slider').mtphr_post_slider();
-	});
-	</script>
-	<?php
-	$html .= ob_get_clean();
+	// Add the global variable
+	global $mtphr_post_slider;
+	$mtphr_post_slider = true;
 
 	return $html;
 }
@@ -188,13 +214,14 @@ function mtphr_post_slider( $atts, $content = null ) {
 
 
 
-add_shortcode( 'post_block', 'mtphr_post_block' );
+add_shortcode( 'post_block', 'mtphr_post_block_display' );
+add_shortcode( 'mtphr_post_block', 'mtphr_post_block_display' );
 /**
  * Create a post block
  *
- * @since 2.0.2
+ * @since 2.0.4
  */
-function mtphr_post_block( $atts, $content = null ) {
+function mtphr_post_block_display( $atts, $content = null ) {
 
 	// Set the defaults
 	$defaults = array(
@@ -305,13 +332,14 @@ function mtphr_post_block( $atts, $content = null ) {
 
 
 
-add_shortcode( 'pricing_table', 'mtphr_pricing_table' );
+add_shortcode( 'pricing_table', 'mtphr_pricing_table_display' );
+add_shortcode( 'mtphr_pricing_table', 'mtphr_pricing_table_display' );
 /**
  * Create a pricing table
  *
  * @since 2.0.3
  */
-function mtphr_pricing_table( $atts, $content = null ) {
+function mtphr_pricing_table_display( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'span' => 12,
 		'start' => false,
@@ -385,5 +413,158 @@ function mtphr_pricing_table( $atts, $content = null ) {
 
 	return $html;
 }
+
+
+
+
+add_shortcode( 'mtphr_slide_graph', 'mtphr_slide_graph_display' );
+/**
+ * Create a slide graph
+ *
+ * @since 2.0.4
+ */
+function mtphr_slide_graph_display( $atts, $content = null ) {
+
+	// Set the defaults
+	$defaults = array(
+		'title' => false,
+		'title_width' => 80,
+		'percent' => 50,
+		'percent_label' => false
+	);
+
+	// Filter the defaults
+	$defaults = apply_filters( 'mtphr_slide_graph_default_args', $defaults );
+
+	// Extract the atts
+	$args = shortcode_atts( $defaults, $atts );
+	extract( $args );
+
+	$html = '<div class="mtphr-slide-graph">';
+	$html .= '<input type="hidden" value="'.floatval($percent).'" />';
+	if( $title ) {
+		$html .= '<div class="mtphr-slide-graph-title" style="width:'.intval($title_width).'px">'.apply_filters( 'mtphr_slide_graph_title', sanitize_text_field($title), $args ).'</div>';
+	} else {
+		$title_width = 0;
+	}
+	$html .= '<div class="mtphr-slide-graph-container" style="margin-left:'.intval($title_width).'px">';
+	if( !$percent_label ) {
+		$percent_label = floatval($percent).'%';
+	}
+	$html .= '<div class="mtphr-slide-graph-fill-bg">';
+	$html .= '<span class="mtphr-slide-graph-percent">'.apply_filters( 'mtphr_slide_graph_percent_label', $percent_label, $args ).'</span>';
+	$html .= '<div class="mtphr-slide-graph-fill"></div>';
+	$html .= '</div>';
+	$html .= '</div>';
+	$html .= '</div>';
+
+	// Add the global variable
+	global $mtphr_slide_graphs;
+	$mtphr_slide_graphs = true;
+
+	return $html;
+}
+
+
+
+
+add_shortcode( 'mtphr_tab', 'mtphr_tab_display' );
+/**
+ * Create a tabbed area
+ *
+ * @since 2.0.4
+ */
+function mtphr_tab_display( $atts, $content = null ) {
+
+	// Set the defaults
+	$defaults = array(
+		'title' => false,
+		'image' => false,
+		'image_width' => 100,
+		'image_alt' => '',
+		'start' => false,
+		'end' => false
+	);
+
+	// Filter the defaults
+	$defaults = apply_filters( 'mtphr_tab_default_args', $defaults );
+
+	// Extract the atts
+	$args = shortcode_atts( $defaults, $atts );
+	extract( $args );
+
+	$html = '';
+	if( $start ) {
+		$html .= '<table class="mtphr-tabs-container"><tr>';
+	}
+	$tab_content = '<div class="mtphr-tab-content"><div class="mtphr-tab-content-wrapper">';
+	if( $image ) {
+		$tab_content .= '<img class="mtphr-tab-content-image" src="'.sanitize_text_field($image).'" width="'.intval($image_width).'" alt="'.sanitize_text_field($title).'" />';
+		$tab_content .= '<div class="mtphr-tab-content-text" style="margin-left:'.intval($image_width).'px">'.mtphr_shortcodes_parse_shortcode_content( $content ).'</div>';
+	} else {
+		$tab_content .= mtphr_shortcodes_parse_shortcode_content( $content );
+	}
+	$tab_content .= '</div></div>';
+	$html .= '<td class="mtphr-tab-link"><a href="#" rel="nofollow">'.sanitize_text_field($title).'</a>'.$tab_content.'</td>';
+	if( $end ) {
+		$html .= '</tr><tr><td class="mtphr-tab-content-container" colspan="1"></td></tr></table>';
+	}
+
+	// Add the global variable
+	global $mtphr_tabs;
+	$mtphr_tabs = true;
+
+	return $html;
+}
+
+
+
+
+add_shortcode( 'mtphr_toggle', 'mtphr_toggle_display' );
+/**
+ * Create a toggle
+ *
+ * @since 2.0.4
+ */
+function mtphr_toggle_display( $atts, $content = null ) {
+	extract( shortcode_atts( array(
+		'id' => '',
+		'heading' => '',
+		'condensed' => '',
+		'class' => ''
+	), $atts ) );
+	?>
+
+	<?php ob_start(); ?>
+
+	<?php do_action( 'mtphr_toggle_before', $id ); ?>
+	<div class="mtphr-toggle <?php echo sanitize_html_class($class); ?>">
+		<?php do_action( 'mtphr_toggle_top', $id ); ?>
+
+		<?php
+		$heading = sanitize_text_field($heading);
+		$heading = apply_filters( 'mtphr_toggle_heading', '<a href="#"><span class="mtphr-toggle-button mtphr-toggle-button-condensed">&ndash;</span><span class="mtphr-toggle-button mtphr-toggle-button-expanded">&plus;</span>'.$heading.'</a>', $heading, $id );
+		$content = apply_filters( 'mtphr_toggle_content', apply_filters('the_content', mtphr_shortcodes_parse_shortcode_content($content)), $id );
+		?>
+
+		<?php $active = ( $condensed == 'false' || $condensed == '0' ) ? ' active' : ''; ?>
+		<p class="mtphr-toggle-heading<?php echo $active; ?>"><?php echo $heading; ?></p>
+		<div class="mtphr-toggle-content"><?php echo $content; ?></div>
+
+		<?php do_action( 'mtphr_toggle_bottom', $id ); ?>
+	</div>
+	<?php do_action( 'mtphr_toggle_after', $id ); ?>
+
+	<?php
+	// Add the global variable
+	global $mtphr_toggles;
+	$mtphr_toggles = true;
+	?>
+
+	<?php
+	// Return the output
+	return ob_get_clean();
+}
+
 
 

@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Metaphor Shortcodes v2.0.3\n"
+"Project-Id-Version: Metaphor Shortcodes v2.0.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-04-29 21:01:35+0000\n"
+"PO-Revision-Date: 2013-06-07 14:45:59+0000\n"
 "Last-Translator: admin <joe@metaphorcreations.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,17 +20,17 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
 
-#: includes/shortcodes.php:62
+#: includes/shortcodes.php:64
 #@ mtphr-shortcodes
 msgid "Blog Posts"
 msgstr "Blog Posts"
 
-#: includes/shortcodes.php:69
+#: includes/shortcodes.php:71
 #@ mtphr-shortcodes
 msgid "Previous"
 msgstr "Previous"
 
-#: includes/shortcodes.php:70
+#: includes/shortcodes.php:72
 #@ mtphr-shortcodes
 msgid "Next"
 msgstr "Next"
@@ -40,12 +40,12 @@ msgstr "Next"
 msgid "In order to use the new <strong>Metaphor Shortcodes</strong> you must deactivate <strong>Metaphor Shortcodes Pack #1</strong>"
 msgstr "In order to use the new <strong>Metaphor Shortcodes</strong> you must deactivate <strong>Metaphor Shortcodes Pack #1</strong>"
 
-#: includes/shortcodes.php:325
+#: includes/shortcodes.php:350
 #@ mtphr-shortcodes
 msgid "per month"
 msgstr "per month"
 
-#: includes/shortcodes.php:326
+#: includes/shortcodes.php:351
 #@ mtphr-shortcodes
 msgid "Sign Up"
 msgstr "Sign Up"
@@ -75,4 +75,94 @@ msgstr "*Note: This may be overriden by theme settings, if your theme hooks into
 #@ mtphr-shortcodes
 msgid "Metaphor Shortcodes Settings"
 msgstr "Metaphor Shortcodes Settings"
+
+#: includes/shortcode-gen.php:12
+#@ mtphr-shortcodes
+msgid "Grid"
+msgstr "Grid"
+
+#: includes/shortcode-gen.php:15
+#@ mtphr-shortcodes
+msgid "Post Slider"
+msgstr "Post Slider"
+
+#: includes/shortcode-gen.php:18
+#@ mtphr-shortcodes
+msgid "Post Block"
+msgstr "Post Block"
+
+#: includes/shortcode-gen.php:21
+#@ mtphr-shortcodes
+msgid "Pricing Table"
+msgstr "Pricing Table"
+
+#: includes/shortcode-gen.php:24
+#@ mtphr-shortcodes
+msgid "Slide Graph"
+msgstr "Slide Graph"
+
+#: includes/shortcode-gen.php:27
+#@ mtphr-shortcodes
+msgid "Content Tabs"
+msgstr "Content Tabs"
+
+#: includes/shortcode-gen.php:30
+#@ mtphr-shortcodes
+msgid "Content Toggle"
+msgstr "Content Toggle"
+
+#: includes/shortcode-gen.php:133
+#@ mtphr-shortcodes
+msgid "Heading"
+msgstr "Heading"
+
+#: includes/shortcode-gen.php:139
+#@ mtphr-shortcodes
+msgid "Expanded"
+msgstr "Expanded"
+
+#: includes/shortcode-gen.php:145
+#@ mtphr-shortcodes
+msgid "CSS Class"
+msgstr "CSS Class"
+
+#: includes/shortcode-gen.php:151
+#@ mtphr-shortcodes
+msgid "Filter ID"
+msgstr "Filter ID"
+
+#: includes/shortcode-gen.php:167
+#@ mtphr-shortcodes
+msgid "Generate Metaphor Shortcode"
+msgstr "Generate Metaphor Shortcode"
+
+#: includes/shortcode-gen.php:167
+#@ mtphr-shortcodes
+msgid "Shortcodes"
+msgstr "Shortcodes"
+
+#: includes/shortcode-gen.php:217
+#@ mtphr-shortcodes
+msgid "Shortcode generator"
+msgstr "Shortcode generator"
+
+#: includes/shortcode-gen.php:218
+#@ mtphr-shortcodes
+msgid "Select a shortcode to add to your post."
+msgstr "Select a shortcode to add to your post."
+
+#: includes/shortcode-gen.php:222
+#@ mtphr-shortcodes
+msgid "Select a Shortcode"
+msgstr "Select a Shortcode"
+
+#: includes/shortcode-gen.php:234
+#@ mtphr-shortcodes
+msgid "Insert Shortcode"
+msgstr "Insert Shortcode"
+
+#: includes/shortcode-gen.php:235
+#@ mtphr-shortcodes
+msgid "Cancel"
+msgstr "Cancel"
 
