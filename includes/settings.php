@@ -45,6 +45,12 @@ function mtphr_shortcodes_initialize_settings() {
 		'label' => __( 'Make grids responsive', 'mtphr-shortcodes' ),
 		'description' => __( '*Note: This may be overriden by theme settings, if your theme hooks into the shortcodes.', 'mtphr-shortcodes' )
 	);
+	$fields['slide_speed'] = array(
+		'title' => __( 'Post Slider Speed', 'mtphr-shortcodes' ),
+		'description' => __( 'Set the speed of the post slider in milliseconds.', 'mtphr-shortcodes' ),
+		'type' => 'number',
+		'default' => 500
+	);
 
 	if( false == get_option('mtphr_shortcodes_settings') ) {
 		add_option( 'mtphr_shortcodes_settings' );
@@ -77,15 +83,15 @@ function mtphr_shortcodes_initialize_settings() {
 /**
  * Render the theme options page
  *
- * @since 2.0.3
+ * @since 2.0.5
  */
 function mtphr_shortcodes_settings_display( $active_tab = null ) {
 	?>
 	<!-- Create a header in the default WordPress 'wrap' container -->
 	<div class="wrap">
 
-		<div id="icon-themes" class="icon32"></div>
-		<h2><?php _e( 'Metaphor Shortcodes Settings', 'mtphr-shortcodes' ); ?></h2>
+		<div id="icon-mtphr-shortcodes" class="icon32"></div>
+		<h2><?php _e( 'Shortcodes Settings', 'mtphr-shortcodes' ); ?></h2>
 		<?php settings_errors(); ?>
 
 		<ul style="margin-bottom:20px;" class="subsubsub">

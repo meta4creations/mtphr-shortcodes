@@ -163,5 +163,23 @@ function mtphr_shortcodes_metaboxer_append_field( $field ) {
 	}
 
 
+/* --------------------------------------------------------- */
+/* !Number - 1.0.1 */
+/* --------------------------------------------------------- */
+
+	function mtphr_shortcodes_metaboxer_number( $field, $value='' ) {
+		$style = ( isset($field['style']) ) ? ' style="'.$field['style'].'"' : '';
+		$before = ( isset($field['before']) ) ? '<span>'.$field['before'].' </span>' : '';
+		$after = ( isset($field['after']) ) ? '<span> '.$field['after'].'</span>' : '';
+		$output = $before.'<input name="'.$field['id'].'" id="'.$field['id'].'" type="number" value="'.$value.'" class="small-text"'.$style.'>'.$after;
+		echo $output;
+
+		// Add appended fields
+		mtphr_shortcodes_metaboxer_append_field($field);
+	}
+
+
+
+
 
 

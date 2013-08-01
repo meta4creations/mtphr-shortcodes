@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Metaphor Shortcodes v2.0.4\n"
+"Project-Id-Version: Metaphor Shortcodes v2.0.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-07 14:45:59+0000\n"
+"PO-Revision-Date: 2013-08-01 17:17:23+0000\n"
 "Last-Translator: admin <joe@metaphorcreations.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,149 +20,592 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
 
-#: includes/shortcodes.php:64
+#: includes/shortcodes.php:60
 #@ mtphr-shortcodes
 msgid "Blog Posts"
-msgstr "Blog Posts"
+msgstr ""
 
-#: includes/shortcodes.php:71
+#: includes/shortcodes.php:67
 #@ mtphr-shortcodes
 msgid "Previous"
-msgstr "Previous"
+msgstr ""
 
-#: includes/shortcodes.php:72
+#: includes/shortcodes.php:68
 #@ mtphr-shortcodes
 msgid "Next"
-msgstr "Next"
+msgstr ""
 
 #: mtphr-shortcodes.php:42
 #@ mtphr-shortcodes
 msgid "In order to use the new <strong>Metaphor Shortcodes</strong> you must deactivate <strong>Metaphor Shortcodes Pack #1</strong>"
-msgstr "In order to use the new <strong>Metaphor Shortcodes</strong> you must deactivate <strong>Metaphor Shortcodes Pack #1</strong>"
+msgstr ""
 
-#: includes/shortcodes.php:350
+#: includes/shortcode-gen.php:353
+#: includes/shortcodes.php:373
 #@ mtphr-shortcodes
 msgid "per month"
-msgstr "per month"
+msgstr ""
 
-#: includes/shortcodes.php:351
+#: includes/shortcode-gen.php:357
+#: includes/shortcodes.php:374
 #@ mtphr-shortcodes
 msgid "Sign Up"
-msgstr "Sign Up"
+msgstr ""
 
 #: includes/settings.php:20
 #: includes/settings.php:21
+#: includes/shortcode-gen.php:39
 #@ mtphr-shortcodes
 msgid "Metaphor Shortcodes"
-msgstr "Metaphor Shortcodes"
+msgstr ""
 
 #: includes/settings.php:43
 #@ mtphr-shortcodes
 msgid "Responsive Grid"
-msgstr "Responsive Grid"
+msgstr ""
 
 #: includes/settings.php:45
 #@ mtphr-shortcodes
 msgid "Make grids responsive"
-msgstr "Make grids responsive"
+msgstr ""
 
 #: includes/settings.php:46
 #@ mtphr-shortcodes
 msgid "*Note: This may be overriden by theme settings, if your theme hooks into the shortcodes."
-msgstr "*Note: This may be overriden by theme settings, if your theme hooks into the shortcodes."
+msgstr ""
 
-#: includes/settings.php:88
-#@ mtphr-shortcodes
-msgid "Metaphor Shortcodes Settings"
-msgstr "Metaphor Shortcodes Settings"
-
-#: includes/shortcode-gen.php:12
+#: includes/shortcode-gen.php:13
 #@ mtphr-shortcodes
 msgid "Grid"
-msgstr "Grid"
+msgstr ""
 
-#: includes/shortcode-gen.php:15
+#: includes/shortcode-gen.php:16
 #@ mtphr-shortcodes
 msgid "Post Slider"
-msgstr "Post Slider"
+msgstr ""
 
-#: includes/shortcode-gen.php:18
+#: includes/shortcode-gen.php:19
 #@ mtphr-shortcodes
 msgid "Post Block"
-msgstr "Post Block"
+msgstr ""
 
-#: includes/shortcode-gen.php:21
+#: includes/shortcode-gen.php:22
 #@ mtphr-shortcodes
 msgid "Pricing Table"
-msgstr "Pricing Table"
+msgstr ""
 
-#: includes/shortcode-gen.php:24
+#: includes/shortcode-gen.php:25
 #@ mtphr-shortcodes
 msgid "Slide Graph"
-msgstr "Slide Graph"
+msgstr ""
 
-#: includes/shortcode-gen.php:27
+#: includes/shortcode-gen.php:28
 #@ mtphr-shortcodes
 msgid "Content Tabs"
-msgstr "Content Tabs"
+msgstr ""
 
-#: includes/shortcode-gen.php:30
+#: includes/shortcode-gen.php:31
 #@ mtphr-shortcodes
 msgid "Content Toggle"
-msgstr "Content Toggle"
+msgstr ""
 
-#: includes/shortcode-gen.php:133
+#: includes/shortcode-gen.php:454
 #@ mtphr-shortcodes
 msgid "Heading"
-msgstr "Heading"
+msgstr ""
 
-#: includes/shortcode-gen.php:139
-#@ mtphr-shortcodes
-msgid "Expanded"
-msgstr "Expanded"
-
-#: includes/shortcode-gen.php:145
+#: includes/shortcode-gen.php:364
+#: includes/shortcode-gen.php:458
+#: includes/shortcode-gen.php:840
 #@ mtphr-shortcodes
 msgid "CSS Class"
-msgstr "CSS Class"
+msgstr ""
 
-#: includes/shortcode-gen.php:151
+#: includes/shortcode-gen.php:462
 #@ mtphr-shortcodes
 msgid "Filter ID"
-msgstr "Filter ID"
+msgstr ""
 
-#: includes/shortcode-gen.php:167
+#: includes/shortcode-gen.php:895
 #@ mtphr-shortcodes
 msgid "Generate Metaphor Shortcode"
-msgstr "Generate Metaphor Shortcode"
+msgstr ""
 
-#: includes/shortcode-gen.php:167
+#: includes/shortcode-gen.php:895
 #@ mtphr-shortcodes
 msgid "Shortcodes"
-msgstr "Shortcodes"
+msgstr ""
 
-#: includes/shortcode-gen.php:217
+#: includes/shortcode-gen.php:948
 #@ mtphr-shortcodes
 msgid "Shortcode generator"
-msgstr "Shortcode generator"
+msgstr ""
 
-#: includes/shortcode-gen.php:218
+#: includes/shortcode-gen.php:949
 #@ mtphr-shortcodes
 msgid "Select a shortcode to add to your post."
-msgstr "Select a shortcode to add to your post."
+msgstr ""
 
-#: includes/shortcode-gen.php:222
+#: includes/shortcode-gen.php:953
 #@ mtphr-shortcodes
 msgid "Select a Shortcode"
-msgstr "Select a Shortcode"
+msgstr ""
 
-#: includes/shortcode-gen.php:234
+#: includes/shortcode-gen.php:971
 #@ mtphr-shortcodes
 msgid "Insert Shortcode"
-msgstr "Insert Shortcode"
+msgstr ""
 
-#: includes/shortcode-gen.php:235
+#: includes/shortcode-gen.php:971
 #@ mtphr-shortcodes
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
+
+#: includes/scripts.php:37
+#@ mtphr-shortcodes
+msgid "<p>Add grid content here...</p>"
+msgstr ""
+
+#: includes/scripts.php:38
+#@ mtphr-shortcodes
+msgid "<p>Add toggled content here...</p>"
+msgstr ""
+
+#: includes/scripts.php:39
+#@ mtphr-shortcodes
+msgid "<p>Add each line item as a new paragraph...</p>"
+msgstr ""
+
+#: includes/scripts.php:40
+#@ mtphr-shortcodes
+msgid "<p>Add each line item as a new paragraph. <strong>Make the value bold ($9.99)</strong></p>"
+msgstr ""
+
+#: includes/scripts.php:41
+#@ mtphr-shortcodes
+msgid "<p>Add tab content here...</p>"
+msgstr ""
+
+#: includes/settings.php:49
+#@ mtphr-shortcodes
+msgid "Post Slider Speed"
+msgstr ""
+
+#: includes/settings.php:50
+#@ mtphr-shortcodes
+msgid "Set the speed of the post slider in milliseconds."
+msgstr ""
+
+#: includes/settings.php:94
+#@ mtphr-shortcodes
+msgid "Shortcodes Settings"
+msgstr ""
+
+#: includes/shortcode-gen.php:34
+#@ mtphr-shortcodes
+msgid "Icon"
+msgstr ""
+
+#: includes/shortcode-gen.php:58
+#@ mtphr-shortcodes
+msgid "Column Spans"
+msgstr ""
+
+#: includes/shortcode-gen.php:58
+#: includes/shortcode-gen.php:213
+#: includes/shortcode-gen.php:454
+#: includes/shortcode-gen.php:487
+#@ mtphr-shortcodes
+msgid "Required"
+msgstr ""
+
+#: includes/shortcode-gen.php:59
+#@ mtphr-shortcodes
+msgid "Total spans must equal 12"
+msgstr ""
+
+#: includes/shortcode-gen.php:84
+#: includes/shortcode-gen.php:204
+#@ mtphr-shortcodes
+msgid "Post Type"
+msgstr ""
+
+#: includes/shortcode-gen.php:92
+#: includes/shortcode-gen.php:340
+#: includes/shortcode-gen.php:341
+#: includes/shortcode-gen.php:385
+#: includes/shortcode-gen.php:386
+#: includes/shortcode-gen.php:848
+#@ mtphr-shortcodes
+msgid "Title"
+msgstr ""
+
+#: includes/shortcode-gen.php:92
+#: includes/shortcode-gen.php:133
+#: includes/shortcode-gen.php:137
+#: includes/shortcode-gen.php:142
+#: includes/shortcode-gen.php:146
+#: includes/shortcode-gen.php:150
+#: includes/shortcode-gen.php:154
+#: includes/shortcode-gen.php:168
+#: includes/shortcode-gen.php:173
+#: includes/shortcode-gen.php:239
+#: includes/shortcode-gen.php:254
+#: includes/shortcode-gen.php:258
+#: includes/shortcode-gen.php:263
+#: includes/shortcode-gen.php:268
+#: includes/shortcode-gen.php:282
+#: includes/shortcode-gen.php:287
+#: includes/shortcode-gen.php:352
+#: includes/shortcode-gen.php:356
+#: includes/shortcode-gen.php:385
+#: includes/shortcode-gen.php:389
+#: includes/shortcode-gen.php:397
+#: includes/shortcode-gen.php:422
+#: includes/shortcode-gen.php:426
+#: includes/shortcode-gen.php:430
+#: includes/shortcode-gen.php:458
+#: includes/shortcode-gen.php:459
+#: includes/shortcode-gen.php:462
+#: includes/shortcode-gen.php:463
+#: includes/shortcode-gen.php:466
+#: includes/shortcode-gen.php:840
+#: includes/shortcode-gen.php:844
+#: includes/shortcode-gen.php:848
+#: includes/shortcode-gen.php:853
+#: includes/shortcode-gen.php:857
+#: includes/shortcode-gen.php:862
+#: includes/shortcode-gen.php:867
+#: includes/shortcode-gen.php:871
+#: includes/shortcode-gen.php:875
+#@ mtphr-shortcodes
+msgid "Optional"
+msgstr ""
+
+#: includes/shortcode-gen.php:96
+#: includes/shortcode-gen.php:217
+#@ mtphr-shortcodes
+msgid "Order By"
+msgstr ""
+
+#: includes/shortcode-gen.php:111
+#: includes/shortcode-gen.php:232
+#@ mtphr-shortcodes
+msgid "Order"
+msgstr ""
+
+#: includes/shortcode-gen.php:118
+#@ mtphr-shortcodes
+msgid "Limit"
+msgstr ""
+
+#: includes/shortcode-gen.php:118
+#@ mtphr-shortcodes
+msgid "Use -1 to display all"
+msgstr ""
+
+#: includes/shortcode-gen.php:122
+#: includes/shortcode-gen.php:243
+#@ mtphr-shortcodes
+msgid "Thumbnail Size"
+msgstr ""
+
+#: includes/shortcode-gen.php:124
+#: includes/shortcode-gen.php:245
+#@ mtphr-shortcodes
+msgid "None"
+msgstr ""
+
+#: includes/shortcode-gen.php:125
+#: includes/shortcode-gen.php:246
+#@ mtphr-shortcodes
+msgid "Use Default"
+msgstr ""
+
+#: includes/shortcode-gen.php:126
+#: includes/shortcode-gen.php:247
+#@ mtphr-shortcodes
+msgid "Thumbnail"
+msgstr ""
+
+#: includes/shortcode-gen.php:127
+#: includes/shortcode-gen.php:248
+#@ mtphr-shortcodes
+msgid "Medium"
+msgstr ""
+
+#: includes/shortcode-gen.php:128
+#: includes/shortcode-gen.php:249
+#@ mtphr-shortcodes
+msgid "Large"
+msgstr ""
+
+#: includes/shortcode-gen.php:129
+#: includes/shortcode-gen.php:250
+#@ mtphr-shortcodes
+msgid "Full"
+msgstr ""
+
+#: includes/shortcode-gen.php:133
+#: includes/shortcode-gen.php:254
+#@ mtphr-shortcodes
+msgid "Excerpt Length"
+msgstr ""
+
+#: includes/shortcode-gen.php:137
+#: includes/shortcode-gen.php:258
+#@ mtphr-shortcodes
+msgid "Excerpt More"
+msgstr ""
+
+#: includes/shortcode-gen.php:139
+#: includes/shortcode-gen.php:260
+#@ mtphr-shortcodes
+msgid "Link to post"
+msgstr ""
+
+#: includes/shortcode-gen.php:142
+#@ mtphr-shortcodes
+msgid "Previous Text"
+msgstr ""
+
+#: includes/shortcode-gen.php:146
+#@ mtphr-shortcodes
+msgid "Next Text"
+msgstr ""
+
+#: includes/shortcode-gen.php:150
+#: includes/shortcode-gen.php:263
+#@ mtphr-shortcodes
+msgid "Class"
+msgstr ""
+
+#: includes/shortcode-gen.php:154
+#: includes/shortcode-gen.php:268
+#@ mtphr-shortcodes
+msgid "Taxonomy"
+msgstr ""
+
+#: includes/shortcode-gen.php:168
+#: includes/shortcode-gen.php:282
+#@ mtphr-shortcodes
+msgid "Terms"
+msgstr ""
+
+#: includes/shortcode-gen.php:169
+#: includes/shortcode-gen.php:283
+#@ mtphr-shortcodes
+msgid "Use slugs separated by (,) commas."
+msgstr ""
+
+#: includes/shortcode-gen.php:173
+#: includes/shortcode-gen.php:287
+#@ mtphr-shortcodes
+msgid "Operator"
+msgstr ""
+
+#: includes/shortcode-gen.php:206
+#@ mtphr-shortcodes
+msgid "Use Post ID"
+msgstr ""
+
+#: includes/shortcode-gen.php:213
+#@ mtphr-shortcodes
+msgid "Post ID"
+msgstr ""
+
+#: includes/shortcode-gen.php:239
+#@ mtphr-shortcodes
+msgid "Query Offset"
+msgstr ""
+
+#: includes/shortcode-gen.php:315
+#@ mtphr-shortcodes
+msgid "Grid Span"
+msgstr ""
+
+#: includes/shortcode-gen.php:332
+#@ mtphr-shortcodes
+msgid "Style"
+msgstr ""
+
+#: includes/shortcode-gen.php:334
+#@ mtphr-shortcodes
+msgid "Normal"
+msgstr ""
+
+#: includes/shortcode-gen.php:335
+#@ mtphr-shortcodes
+msgid "Condensed"
+msgstr ""
+
+#: includes/shortcode-gen.php:336
+#@ mtphr-shortcodes
+msgid "List"
+msgstr ""
+
+#: includes/shortcode-gen.php:344
+#@ mtphr-shortcodes
+msgid "Dollar Amount"
+msgstr ""
+
+#: includes/shortcode-gen.php:348
+#@ mtphr-shortcodes
+msgid "Cent Amount"
+msgstr ""
+
+#: includes/shortcode-gen.php:352
+#@ mtphr-shortcodes
+msgid "Per"
+msgstr ""
+
+#: includes/shortcode-gen.php:356
+#@ mtphr-shortcodes
+msgid "Button Text"
+msgstr ""
+
+#: includes/shortcode-gen.php:360
+#@ mtphr-shortcodes
+msgid "Button Link"
+msgstr ""
+
+#: includes/shortcode-gen.php:361
+#@ mtphr-shortcodes
+msgid "http://www.paypal.com"
+msgstr ""
+
+#: includes/shortcode-gen.php:389
+#@ mtphr-shortcodes
+msgid "Title Width"
+msgstr ""
+
+#: includes/shortcode-gen.php:390
+#@ mtphr-shortcodes
+msgid "pixels"
+msgstr ""
+
+#: includes/shortcode-gen.php:393
+#@ mtphr-shortcodes
+msgid "Percentage"
+msgstr ""
+
+#: includes/shortcode-gen.php:397
+#@ mtphr-shortcodes
+msgid "Percentage Label"
+msgstr ""
+
+#: includes/shortcode-gen.php:418
+#@ mtphr-shortcodes
+msgid "Tab Title"
+msgstr ""
+
+#: includes/shortcode-gen.php:422
+#@ mtphr-shortcodes
+msgid "Image Path"
+msgstr ""
+
+#: includes/shortcode-gen.php:426
+#@ mtphr-shortcodes
+msgid "Image Width"
+msgstr ""
+
+#: includes/shortcode-gen.php:430
+#@ mtphr-shortcodes
+msgid "Image Alt Text"
+msgstr ""
+
+#: includes/shortcode-gen.php:433
+#@ mtphr-shortcodes
+msgid "Add tab"
+msgstr ""
+
+#: includes/shortcode-gen.php:434
+#@ mtphr-shortcodes
+msgid "Delete tab"
+msgstr ""
+
+#: includes/shortcode-gen.php:466
+#@ mtphr-shortcodes
+msgid "Initial state expanded"
+msgstr ""
+
+#: includes/shortcode-gen.php:487
+#@ mtphr-shortcodes
+msgid "ID"
+msgstr ""
+
+#: includes/shortcode-gen.php:841
+#@ mtphr-shortcodes
+msgid "Add a class to the icon"
+msgstr ""
+
+#: includes/shortcode-gen.php:844
+#@ mtphr-shortcodes
+msgid "CSS Style"
+msgstr ""
+
+#: includes/shortcode-gen.php:845
+#@ mtphr-shortcodes
+msgid "Add additional styles to the icon"
+msgstr ""
+
+#: includes/shortcode-gen.php:849
+#@ mtphr-shortcodes
+msgid "Add a title next to the icon"
+msgstr ""
+
+#: includes/shortcode-gen.php:853
+#@ mtphr-shortcodes
+msgid "Title Class"
+msgstr ""
+
+#: includes/shortcode-gen.php:854
+#@ mtphr-shortcodes
+msgid "Add a class to the title"
+msgstr ""
+
+#: includes/shortcode-gen.php:857
+#@ mtphr-shortcodes
+msgid "Title Style"
+msgstr ""
+
+#: includes/shortcode-gen.php:858
+#@ mtphr-shortcodes
+msgid "Add additional styles to the title"
+msgstr ""
+
+#: includes/shortcode-gen.php:862
+#@ mtphr-shortcodes
+msgid "Link"
+msgstr ""
+
+#: includes/shortcode-gen.php:863
+#@ mtphr-shortcodes
+msgid "Add a link to the icon"
+msgstr ""
+
+#: includes/shortcode-gen.php:867
+#@ mtphr-shortcodes
+msgid "Link Class"
+msgstr ""
+
+#: includes/shortcode-gen.php:868
+#@ mtphr-shortcodes
+msgid "Add a class to the link"
+msgstr ""
+
+#: includes/shortcode-gen.php:871
+#@ mtphr-shortcodes
+msgid "Link Style"
+msgstr ""
+
+#: includes/shortcode-gen.php:872
+#@ mtphr-shortcodes
+msgid "Add additional styles to the link"
+msgstr ""
+
+#: includes/shortcode-gen.php:875
+#@ mtphr-shortcodes
+msgid "Link Target"
+msgstr ""
 

@@ -1,9 +1,9 @@
 /**
  * Metaphor Post Slider
- * Date: 2/23/2013
+ * Date: 7/30/2013
  *
  * @author Metaphor Creations
- * @version 1.0.0
+ * @version 1.0.1
  *
  **/
 
@@ -17,7 +17,7 @@
 
 				// Create default options
 				var settings = {
-					slide_speed						: 2000,
+					slide_speed						: 500,
 					slide_ease						: 'easeOutExpo',
 					before_change					: function(){},
 					after_change					: function(){},
@@ -30,6 +30,7 @@
 				}
 
 				var $slider = $(this),
+						$content_wrapper = $slider.find('.mtphr-post-slider-content-wrapper'),
 						$content = $slider.find('.mtphr-post-slider-content'),
 						$navigation = $slider.find('.mtphr-post-slider-navigation'),
 						$prev = $navigation.children('.mtphr-post-slider-prev'),
@@ -114,7 +115,7 @@
 
 					$content.stop().animate( {
 						marginLeft: position+'px'
-					}, 500, 'easeOutExpo', function() {
+					}, settings.slide_speed, 'easeOutExpo', function() {
 						// Animation complete.
 					});
 
@@ -142,6 +143,44 @@
 					mtphr_post_slider_position( 'next' );
 				});
 
+				/**
+				 * Mobile swipe
+				 *
+				 * @since 1.0.1
+				 */
+				$content_wrapper.swipe( {
+					triggerOnTouchEnd : true,
+					swipeStatus : mtphr_post_slider_swipe,
+					allowPageScroll: 'vertical'
+				});
+				function mtphr_post_slider_swipe( event, phase, direction, distance, fingers ) {
+
+					/*
+if( phase=="move" && (direction=="left" || direction=="right") ) {
+						var duration=0;
+
+						if (direction == "left") {
+							scrollImages((vars.slider_position) + distance, duration);
+						} else if (direction == "right") {
+							scrollImages((vars.slider_position) - distance, duration);
+						}
+
+					} else
+*/				if ( phase =="end" ) {
+						if (direction == "right") {
+							mtphr_post_slider_position( 'prev' );
+						} else if (direction == "left") {
+							mtphr_post_slider_position( 'next' );
+						}
+					}
+				}
+				/*
+function scrollImages(distance, duration) {
+					$content.css("-webkit-transition-duration", (duration/1000).toFixed(1) + "s");
+					var value = (distance<0 ? "" : "-") + Math.abs(distance).toString();
+					$content.css("-webkit-transform", "translate3d(-"+distance +"px,0px,0px)");
+				}
+*/
 
 
 

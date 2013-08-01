@@ -1,9 +1,9 @@
 /**
  * Metaphor Tabs
- * Date: 4/9/2013
+ * Date: 7/17/2013
  *
  * @author Metaphor Creations
- * @version 1.0.0
+ * @version 1.0.1
  *
  **/
 
@@ -48,7 +48,7 @@
 				/**
 				 * Display the content
 				 *
-				 * @since 1.0.0
+				 * @since 1.0.1
 				 */
 				function mtphr_tabs_display_content( i ) {
 
@@ -60,11 +60,11 @@
 							$container.css('height', h+'px');
 							$(tabs[current]).removeClass('active');
 							$(content[current]).css('position', 'absolute');
-							$(content[current]).fadeOut( settings.anim_speed );
+							$(content[current]).stop().fadeOut( settings.anim_speed );
 						}
 
 						$(tabs[i]).addClass('active');
-						$(content[i]).fadeIn( settings.anim_speed );
+						$(content[i]).stop().fadeIn( settings.anim_speed );
 
 						// Save the current
 						current = i;

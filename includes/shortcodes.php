@@ -1,27 +1,25 @@
 <?php
-/**
- * Put all the shortcodes here
- *
- * @package Metaphor Shortcodes
- */
 
+/* --------------------------------------------------------- */
+/* !Create a grid block - 2.0.5 */
+/* --------------------------------------------------------- */
 
-
-
-add_shortcode( 'grid', 'mtphr_grid_display' );
-add_shortcode( 'mtphr_grid', 'mtphr_grid_display' );
-/**
- * Create a grid block
- *
- * @since 2.0.4
- */
 function mtphr_grid_display( $atts, $content = null ) {
-	extract( shortcode_atts( array(
+
+	// Set the defaults
+	$defaults = array(
 		'span' => 12,
 		'start' => false,
 		'end' => false,
 		'class' => ''
-	), $atts ) );
+	);
+
+	// Filter the defaults
+	$defaults = apply_filters( 'mtphr_grid_default_args', $defaults );
+
+	// Extract the atts
+	$args = shortcode_atts( $defaults, $atts );
+	extract( $args );
 
 	// Set the responsiveness of the grid
 	$settings = mtphr_shortcodes_settings();
@@ -45,17 +43,15 @@ function mtphr_grid_display( $atts, $content = null ) {
 
 	return $html;
 }
+add_shortcode( 'grid', 'mtphr_grid_display' );
+add_shortcode( 'mtphr_grid', 'mtphr_grid_display' );
 
 
 
+/* --------------------------------------------------------- */
+/* !Create a post slider - 2.0.5 */
+/* --------------------------------------------------------- */
 
-add_shortcode( 'post_slider', 'mtphr_post_slider_display' );
-add_shortcode( 'mtphr_post_slider', 'mtphr_post_slider_display' );
-/**
- * Create a post slider
- *
- * @since 2.0.4
- */
 function mtphr_post_slider_display( $atts, $content = null ) {
 
 	// Set the defaults
@@ -70,7 +66,10 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 		'excerpt_more' => '&hellip;',
 		'prev' => __('Previous', 'mtphr-shortcodes'),
 		'next' => __('Next', 'mtphr-shortcodes'),
-		'class' => ''
+		'class' => '',
+		'taxonomy' => false,
+		'terms' => '',
+		'operator' => 'IN'
 	);
 
 	// Filter the defaults
@@ -95,15 +94,16 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 					<?php echo apply_filters( 'mtphr_post_slider_next', '<a class="mtphr-post-slider-next" href="#"><span>'.$next.'</span></a>', $next ); ?>
 				</div>
 			</div>
-			<div class="mtphr-post-slider-content clearfix">
-		<?php
-		// Return the output
-		$html = ob_get_clean();
+			<div class="mtphr-post-slider-content-wrapper">
+				<div class="mtphr-post-slider-content clearfix">
+				<?php
+				// Return the output
+				$html = ob_get_clean();
 
-		$html .= mtphr_shortcodes_parse_shortcode_content($content);
+				$html .= mtphr_shortcodes_parse_shortcode_content($content);
 
-		ob_start(); ?>
-		</div></div>
+				ob_start(); ?>
+			</div></div></div>
 		<?php
 		$html .= ob_get_clean();
 
@@ -116,6 +116,15 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 			'posts_per_page' => $limit,
 			'post__not_in' => array( get_the_ID() )
 		);
+		if( $taxonomy && $terms ) {
+			$tax_query = array(
+				'taxonomy' => $taxonomy,
+				'field' => 'slug',
+				'terms' => explode(',', $terms),
+				'operator' => $operator
+			);
+			$query_args['tax_query'] = array( $tax_query );
+		}
 
 		// Filter the args
 		$query_args = apply_filters( 'mtphr_post_slider_query_args', $query_args );
@@ -210,17 +219,15 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 
 	return $html;
 }
+add_shortcode( 'post_slider', 'mtphr_post_slider_display' );
+add_shortcode( 'mtphr_post_slider', 'mtphr_post_slider_display' );
 
 
 
+/* --------------------------------------------------------- */
+/* !Create a post block - 2.0.5 */
+/* --------------------------------------------------------- */
 
-add_shortcode( 'post_block', 'mtphr_post_block_display' );
-add_shortcode( 'mtphr_post_block', 'mtphr_post_block_display' );
-/**
- * Create a post block
- *
- * @since 2.0.4
- */
 function mtphr_post_block_display( $atts, $content = null ) {
 
 	// Set the defaults
@@ -233,7 +240,10 @@ function mtphr_post_block_display( $atts, $content = null ) {
 		'offset' => '0',
 		'thumb_size' => 'thumbnail',
 		'excerpt_length' => 80,
-		'excerpt_more' => '&hellip;'
+		'excerpt_more' => '&hellip;',
+		'taxonomy' => false,
+		'terms' => '',
+		'operator' => 'IN'
 	);
 
 	// Filter the defaults
@@ -245,36 +255,46 @@ function mtphr_post_block_display( $atts, $content = null ) {
 	$defaults = apply_filters( 'mtphr_post_block_default_args', $defaults, $post_type );
 
 	// Extract the atts
-	$defaults = shortcode_atts( $defaults, $atts );
-	extract( $defaults );
+	$args = shortcode_atts( $defaults, $atts );
+	extract( $args );
 
 	if( $id == '' ) {
 
-		$args = array(
+		$query_args = array(
 			'post_type' => $type,
 			'orderby' => $orderby,
 			'order' => $order,
 			'posts_per_page' => 1,
 			'offset' => $offset
 		);
+		if( $taxonomy && $terms ) {
+			$tax_query = array(
+				'taxonomy' => $taxonomy,
+				'field' => 'slug',
+				'terms' => explode(',', $terms),
+				'operator' => $operator
+			);
+			$query_args['tax_query'] = array( $tax_query );
+		}
+
 	} else {
 
 		$type = get_post_type($id);
-		$args = array(
+		$query_args = array(
 			'post_type' => $type,
 			'p' => $id
 		);
 	}
 
 	// Filter the args
-	$args = apply_filters( 'mtphr_post_block_query_args', $args, $type );
+	$query_args = apply_filters( 'mtphr_post_block_query_args', $query_args, $type );
 
 	// Save the original query & create a new one
 	global $wp_query;
 	$original_query = $wp_query;
 	$wp_query = null;
 	$wp_query = new WP_Query();
-	$wp_query->query( $args );
+	$wp_query->query( $query_args );
 
 	$html = '';
 
@@ -315,7 +335,7 @@ function mtphr_post_block_display( $atts, $content = null ) {
 	$block = ob_get_clean();
 
 	$html .= '<div class="mtphr-post-block-'.$type.$class.'">';
-	$html .= apply_filters( "mtphr_{$type}_post_block", $block, $excerpt, $defaults );
+	$html .= apply_filters( "mtphr_{$type}_post_block", $block, $excerpt, $args );
 	$html .= '</div>';
 
 	endwhile;
@@ -328,19 +348,19 @@ function mtphr_post_block_display( $atts, $content = null ) {
 
 	return $html;
 }
+add_shortcode( 'post_block', 'mtphr_post_block_display' );
+add_shortcode( 'mtphr_post_block', 'mtphr_post_block_display' );
 
 
 
+/* --------------------------------------------------------- */
+/* !Create a pricing table - 2.0.5 */
+/* --------------------------------------------------------- */
 
-add_shortcode( 'pricing_table', 'mtphr_pricing_table_display' );
-add_shortcode( 'mtphr_pricing_table', 'mtphr_pricing_table_display' );
-/**
- * Create a pricing table
- *
- * @since 2.0.3
- */
 function mtphr_pricing_table_display( $atts, $content = null ) {
-	extract( shortcode_atts( array(
+
+	// Set the defaults
+	$defaults = array(
 		'span' => 12,
 		'start' => false,
 		'end' => false,
@@ -353,7 +373,14 @@ function mtphr_pricing_table_display( $atts, $content = null ) {
 		'per' => __('per month', 'mtphr-shortcodes'),
 		'button' => __('Sign Up', 'mtphr-shortcodes'),
 		'link' => '#'
-	), $atts ) );
+	);
+
+	// Filter the defaults
+	$defaults = apply_filters( 'mtphr_pricing_table_default_args', $defaults );
+
+	// Extract the atts
+	$args = shortcode_atts( $defaults, $atts );
+	extract( $args );
 
 	// Set the responsiveness of the grid
 	$settings = mtphr_shortcodes_settings();
@@ -413,16 +440,15 @@ function mtphr_pricing_table_display( $atts, $content = null ) {
 
 	return $html;
 }
+add_shortcode( 'pricing_table', 'mtphr_pricing_table_display' );
+add_shortcode( 'mtphr_pricing_table', 'mtphr_pricing_table_display' );
 
 
 
+/* --------------------------------------------------------- */
+/* !Create a slide graph - 2.0.4 */
+/* --------------------------------------------------------- */
 
-add_shortcode( 'mtphr_slide_graph', 'mtphr_slide_graph_display' );
-/**
- * Create a slide graph
- *
- * @since 2.0.4
- */
 function mtphr_slide_graph_display( $atts, $content = null ) {
 
 	// Set the defaults
@@ -464,16 +490,14 @@ function mtphr_slide_graph_display( $atts, $content = null ) {
 
 	return $html;
 }
+add_shortcode( 'mtphr_slide_graph', 'mtphr_slide_graph_display' );
 
 
 
+/* --------------------------------------------------------- */
+/* !Create a tabbed area - 2.0.4 */
+/* --------------------------------------------------------- */
 
-add_shortcode( 'mtphr_tab', 'mtphr_tab_display' );
-/**
- * Create a tabbed area
- *
- * @since 2.0.4
- */
 function mtphr_tab_display( $atts, $content = null ) {
 
 	// Set the defaults
@@ -516,23 +540,30 @@ function mtphr_tab_display( $atts, $content = null ) {
 
 	return $html;
 }
+add_shortcode( 'mtphr_tab', 'mtphr_tab_display' );
 
 
 
+/* --------------------------------------------------------- */
+/* !Create a toggle - 2.0.5 */
+/* --------------------------------------------------------- */
 
-add_shortcode( 'mtphr_toggle', 'mtphr_toggle_display' );
-/**
- * Create a toggle
- *
- * @since 2.0.4
- */
 function mtphr_toggle_display( $atts, $content = null ) {
-	extract( shortcode_atts( array(
+
+	// Set the defaults
+	$defaults = array(
 		'id' => '',
 		'heading' => '',
 		'condensed' => '',
 		'class' => ''
-	), $atts ) );
+	);
+
+	// Filter the defaults
+	$defaults = apply_filters( 'mtphr_toggle_default_args', $defaults );
+
+	// Extract the atts
+	$args = shortcode_atts( $defaults, $atts );
+	extract( $args );
 	?>
 
 	<?php ob_start(); ?>
@@ -543,7 +574,7 @@ function mtphr_toggle_display( $atts, $content = null ) {
 
 		<?php
 		$heading = sanitize_text_field($heading);
-		$heading = apply_filters( 'mtphr_toggle_heading', '<a href="#"><span class="mtphr-toggle-button mtphr-toggle-button-condensed">&ndash;</span><span class="mtphr-toggle-button mtphr-toggle-button-expanded">&plus;</span>'.$heading.'</a>', $heading, $id );
+		$heading = apply_filters( 'mtphr_toggle_heading', '<a href="#"><span class="mtphr-toggle-button mtphr-toggle-button-condensed">&plus;</span><span class="mtphr-toggle-button mtphr-toggle-button-expanded">&ndash;</span>'.$heading.'</a>', $heading, $id );
 		$content = apply_filters( 'mtphr_toggle_content', apply_filters('the_content', mtphr_shortcodes_parse_shortcode_content($content)), $id );
 		?>
 
@@ -565,6 +596,65 @@ function mtphr_toggle_display( $atts, $content = null ) {
 	// Return the output
 	return ob_get_clean();
 }
+add_shortcode( 'mtphr_toggle', 'mtphr_toggle_display' );
+
+
+
+/* --------------------------------------------------------- */
+/* !Create icons - 2.0.5 */
+/* --------------------------------------------------------- */
+
+function mtphr_icon_display( $atts, $content = null ) {
+
+	// Set the defaults
+	$defaults = array(
+		'id' => '',
+		'class' => '',
+		'style' => '',
+		'title' => '',
+		'title_class' => '',
+		'title_style' => '',
+		'link' => '',
+		'link_class' => '',
+		'link_style' => '',
+		'target' => '_self'
+	);
+
+	// Filter the defaults
+	$defaults = apply_filters( 'mtphr_icon_default_args', $defaults );
+
+	// Extract the atts
+	$args = shortcode_atts( $defaults, $atts );
+	extract( $args );
+
+	$html = '';
+	if( $id != '' ) {
+		$html .= '<span class="metaphor-icon">';
+		if( $link != '' ) {
+			$link_class = ( $link_class != '' ) ? ' '.sanitize_html_class( $link_class ) : '';
+			$link_style = ( $link_style != '' ) ? ' style="'.sanitize_text_field($link_style).'"' : '';
+			$html .= '<a class="metaphor-icon-link clearfix'.$link_class.'"'.$link_style.' href="'.esc_url($link).'" target="'.sanitize_text_field($target).'">';
+		}
+		$icon_class = 'mtphr-icon-'.$id;
+		$class = ( $class == '' ) ? sanitize_html_class( $icon_class ) : sanitize_html_class( $icon_class ).' '.sanitize_html_class( $class );
+		$style = ( $style != '' ) ? ' style="'.sanitize_text_field($style).'"' : '';
+		$html .= '<i class="'.$class.'"'.$style.'></i>';
+		if( $title != '' ) {
+			$title_class = ( $title_class != '' ) ? ' '.sanitize_html_class( $title_class ) : '';
+			$title_style = ( $title_style != '' ) ? ' style="'.sanitize_text_field($title_style).'"' : '';
+			$html .= '<span class="metaphor-icon-title'.$title_class.'"'.$title_style.'>'.$title.'</span>';
+		}
+		if( $link != '' ) {
+			$html .= '</a>';
+		}
+		$html .= '</span>';
+	}
+
+
+	return $html;
+}
+add_shortcode( 'mtphr_icon', 'mtphr_icon_display' );
+
 
 
 

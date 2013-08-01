@@ -19,7 +19,8 @@ function mtphr_shortcodes_settings() {
 	$settings = get_option( 'mtphr_shortcodes_settings', array() );
 
 	$defaults = array(
-		'responsive' => false
+		'responsive' => false,
+		'slide_speed' => 500
 	);
 	$defaults = apply_filters( 'mtphr_shortcodes_default_settings', $defaults );
 
