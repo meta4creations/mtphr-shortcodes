@@ -474,7 +474,7 @@ add_action( 'wp_ajax_mtphr_shortcode_toggle_gen', 'mtphr_shortcode_toggle_gen' )
 
 
 /* --------------------------------------------------------- */
-/* !Ajax icon shortcode - 2.0.5 */
+/* !Ajax icon shortcode - 2.0.6 */
 /* --------------------------------------------------------- */
 
 function mtphr_shortcode_icon_gen() {
@@ -546,7 +546,7 @@ function mtphr_shortcode_icon_gen() {
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-inbox"></i><span class="mtphr-shortcode-gen-icon-id">inbox</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-inbox-incoming"></i><span class="mtphr-shortcode-gen-icon-id">inbox-incoming</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-inbox-outgoing"></i><span class="mtphr-shortcode-gen-icon-id">inbox-outgoing</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-inbox-full"></i><span class="mtphr-shortcode-gen-icon-id">full</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-inbox-full"></i><span class="mtphr-shortcode-gen-icon-id">inbox-full</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-check"></i><span class="mtphr-shortcode-gen-icon-id">check</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-check-transparent"></i><span class="mtphr-shortcode-gen-icon-id">check-transparent</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-error"></i><span class="mtphr-shortcode-gen-icon-id">error</span></a>
@@ -631,8 +631,8 @@ function mtphr_shortcode_icon_gen() {
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-hand"></i><span class="mtphr-shortcode-gen-icon-id">hand</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-satellite"></i><span class="mtphr-shortcode-gen-icon-id">satellite</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-satellite-2"></i><span class="mtphr-shortcode-gen-icon-id">satellite-2</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-award-ribbon"></i><span class="mtphr-shortcode-gen-icon-id">ribbon</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-award-ribbon-2"></i><span class="mtphr-shortcode-gen-icon-id">ribbon-2</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-award-ribbon"></i><span class="mtphr-shortcode-gen-icon-id">award-ribbon</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-award-ribbon-2"></i><span class="mtphr-shortcode-gen-icon-id">award-ribbon-2</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-switcher"></i><span class="mtphr-shortcode-gen-icon-id">switcher</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-key"></i><span class="mtphr-shortcode-gen-icon-id">key</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-connect"></i><span class="mtphr-shortcode-gen-icon-id">connect</span></a>
@@ -670,19 +670,19 @@ function mtphr_shortcode_icon_gen() {
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-pil"></i><span class="mtphr-shortcode-gen-icon-id">pil</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-injection"></i><span class="mtphr-shortcode-gen-icon-id">injection</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-thermometer"></i><span class="mtphr-shortcode-gen-icon-id">thermometer</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-light-bulb"></i><span class="mtphr-shortcode-gen-icon-id">bulb</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-light-bulb-2"></i><span class="mtphr-shortcode-gen-icon-id">bulb-2</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-light-bulb-3"></i><span class="mtphr-shortcode-gen-icon-id">bulb-3</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-box-closed"></i><span class="mtphr-shortcode-gen-icon-id">closed</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-box-open"></i><span class="mtphr-shortcode-gen-icon-id">open</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-box-closed-2"></i><span class="mtphr-shortcode-gen-icon-id">closed-2</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-light-bulb"></i><span class="mtphr-shortcode-gen-icon-id">light-bulb</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-light-bulb-2"></i><span class="mtphr-shortcode-gen-icon-id">light-bulb-2</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-light-bulb-3"></i><span class="mtphr-shortcode-gen-icon-id">light-bulb-3</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-box-closed"></i><span class="mtphr-shortcode-gen-icon-id">box-closed</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-box-open"></i><span class="mtphr-shortcode-gen-icon-id">box-open</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-box-closed-2"></i><span class="mtphr-shortcode-gen-icon-id">box-closed-2</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-diamond"></i><span class="mtphr-shortcode-gen-icon-id">diamond</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-bag"></i><span class="mtphr-shortcode-gen-icon-id">bag</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-dollar-bag"></i><span class="mtphr-shortcode-gen-icon-id">dollar-bag</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-view-thumbnail"></i><span class="mtphr-shortcode-gen-icon-id">thumbnail</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-view-thumbnail-2"></i><span class="mtphr-shortcode-gen-icon-id">thumbnail-2</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-view-list"></i><span class="mtphr-shortcode-gen-icon-id">list</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-view-list-2"></i><span class="mtphr-shortcode-gen-icon-id">list-2</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-view-thumbnail"></i><span class="mtphr-shortcode-gen-icon-id">view-thumbnail</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-view-thumbnail-2"></i><span class="mtphr-shortcode-gen-icon-id">view-thumbnail-2</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-view-list"></i><span class="mtphr-shortcode-gen-icon-id">view-list</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-view-list-2"></i><span class="mtphr-shortcode-gen-icon-id">view-list-2</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-ruler"></i><span class="mtphr-shortcode-gen-icon-id">ruler</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-ruler-2"></i><span class="mtphr-shortcode-gen-icon-id">ruler-2</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-layout"></i><span class="mtphr-shortcode-gen-icon-id">layout</span></a>
@@ -770,9 +770,9 @@ function mtphr_shortcode_icon_gen() {
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-info"></i><span class="mtphr-shortcode-gen-icon-id">info</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-info-2"></i><span class="mtphr-shortcode-gen-icon-id">info-2</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-piano-keyboard"></i><span class="mtphr-shortcode-gen-icon-id">piano-keyboard</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-weather-rain"></i><span class="mtphr-shortcode-gen-icon-id">rain</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-weather-snow"></i><span class="mtphr-shortcode-gen-icon-id">snow</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-weather-storm"></i><span class="mtphr-shortcode-gen-icon-id">storm</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-weather-rain"></i><span class="mtphr-shortcode-gen-icon-id">weather-rain</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-weather-snow"></i><span class="mtphr-shortcode-gen-icon-id">weather-snow</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-weather-storm"></i><span class="mtphr-shortcode-gen-icon-id">weather-storm</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-sun"></i><span class="mtphr-shortcode-gen-icon-id">sun</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-moon"></i><span class="mtphr-shortcode-gen-icon-id">moon</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-weather-partly-cloudy"></i><span class="mtphr-shortcode-gen-icon-id">weather-partly-cloudy</span></a>
@@ -786,7 +786,7 @@ function mtphr_shortcode_icon_gen() {
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-plane-2"></i><span class="mtphr-shortcode-gen-icon-id">plane-2</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-rocket"></i><span class="mtphr-shortcode-gen-icon-id">rocket</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-open-book"></i><span class="mtphr-shortcode-gen-icon-id">open-book</span></a>
-			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-open-book-2"></i><span class="mtphr-shortcode-gen-icon-id">open-book-2-</span></a>
+			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-open-book-2"></i><span class="mtphr-shortcode-gen-icon-id">open-book-2</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-scan-label"></i><span class="mtphr-shortcode-gen-icon-id">scan-label</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-scan-label-2"></i><span class="mtphr-shortcode-gen-icon-id">scan-label-2</span></a>
 			<a class="mtphr-shortcode-gen-icon-group" href="#"><i class="mtphr-icon-expand-2"></i><span class="mtphr-shortcode-gen-icon-id">expand-2</span></a>

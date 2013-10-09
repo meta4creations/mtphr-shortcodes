@@ -1,9 +1,9 @@
 /**
  * Metaphor Post Slider
- * Date: 7/30/2013
+ * Date: 8/08/2013
  *
  * @author Metaphor Creations
- * @version 1.0.1
+ * @version 2.0.6
  *
  **/
 
@@ -146,41 +146,21 @@
 				/**
 				 * Mobile swipe
 				 *
-				 * @since 1.0.1
+				 * @since 2.0.6
 				 */
 				$content_wrapper.swipe( {
 					triggerOnTouchEnd : true,
-					swipeStatus : mtphr_post_slider_swipe,
-					allowPageScroll: 'vertical'
-				});
-				function mtphr_post_slider_swipe( event, phase, direction, distance, fingers ) {
-
-					/*
-if( phase=="move" && (direction=="left" || direction=="right") ) {
-						var duration=0;
-
-						if (direction == "left") {
-							scrollImages((vars.slider_position) + distance, duration);
-						} else if (direction == "right") {
-							scrollImages((vars.slider_position) - distance, duration);
-						}
-
-					} else
-*/				if ( phase =="end" ) {
-						if (direction == "right") {
-							mtphr_post_slider_position( 'prev' );
-						} else if (direction == "left") {
-							mtphr_post_slider_position( 'next' );
+					allowPageScroll: 'vertical',
+					swipeStatus : function(event, phase, direction, distance, duration, fingers) {
+						if ( phase =="end" ) {
+							if (direction == "right") {
+								mtphr_post_slider_position( 'prev' );
+							} else if (direction == "left") {
+								mtphr_post_slider_position( 'next' );
+							}
 						}
 					}
-				}
-				/*
-function scrollImages(distance, duration) {
-					$content.css("-webkit-transition-duration", (duration/1000).toFixed(1) + "s");
-					var value = (distance<0 ? "" : "-") + Math.abs(distance).toString();
-					$content.css("-webkit-transform", "translate3d(-"+distance +"px,0px,0px)");
-				}
-*/
+				});
 
 
 

@@ -49,7 +49,7 @@ add_shortcode( 'mtphr_grid', 'mtphr_grid_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a post slider - 2.0.5 */
+/* !Create a post slider - 2.0.6 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_slider_display( $atts, $content = null ) {
@@ -83,19 +83,19 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 	if( $post_type == 'custom' ) {
 
 		ob_start(); ?>
-		<div class="mtphr-post-slider mtphr-post-slider-<?php echo $type; ?> clearfix <?php echo esc_attr($class); ?>">
+		<div class="mtphr-post-slider mtphr-post-slider-<?php echo $type; ?> mtphr-clearfix <?php echo esc_attr($class); ?>">
 
-			<div class="mtphr-post-slider-header clearfix">
+			<div class="mtphr-post-slider-header mtphr-clearfix">
 				<?php if( $title != '' ) { ?>
 					<?php echo apply_filters( 'mtphr_post_slider_title', '<h3 class="mtphr-post-slider-title">'.$title.'</h3>', $defaults ); ?>
 				<?php } ?>
-				<div class="mtphr-post-slider-navigation clearfix">
+				<div class="mtphr-post-slider-navigation mtphr-clearfix">
 					<?php echo apply_filters( 'mtphr_post_slider_prev', '<a class="mtphr-post-slider-prev disabled" href="#"><span>'.$prev.'</span></a>', $prev ); ?>
 					<?php echo apply_filters( 'mtphr_post_slider_next', '<a class="mtphr-post-slider-next" href="#"><span>'.$next.'</span></a>', $next ); ?>
 				</div>
 			</div>
 			<div class="mtphr-post-slider-content-wrapper">
-				<div class="mtphr-post-slider-content clearfix">
+				<div class="mtphr-post-slider-content mtphr-clearfix">
 				<?php
 				// Return the output
 				$html = ob_get_clean();
@@ -141,19 +141,19 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 		if ( $wp_query->have_posts() ) :
 
 			ob_start(); ?>
-			<div class="mtphr-post-slider mtphr-post-slider-<?php echo $type; ?> clearfix <?php echo esc_attr($class); ?>">
+			<div class="mtphr-post-slider mtphr-post-slider-<?php echo $type; ?> mtphr-clearfix <?php echo esc_attr($class); ?>">
 
-				<div class="mtphr-post-slider-header clearfix">
+				<div class="mtphr-post-slider-header mtphr-clearfix">
 					<?php if( $title != '' ) { ?>
 						<?php echo apply_filters( 'mtphr_post_slider_title', '<h3 class="mtphr-post-slider-title">'.$title.'</h3>', $args ); ?>
 					<?php } ?>
-					<div class="mtphr-post-slider-navigation clearfix">
+					<div class="mtphr-post-slider-navigation mtphr-clearfix">
 						<?php echo apply_filters( 'mtphr_post_slider_prev', '<a class="mtphr-post-slider-prev" href="#" class="disabled"><span>'.$prev.'</span></a>', $prev ); ?>
 						<?php echo apply_filters( 'mtphr_post_slider_next', '<a class="mtphr-post-slider-next" href="#"><span>'.$next.'</span></a>', $next ); ?>
 					</div>
 				</div>
 				<div class="mtphr-post-slider-content-wrapper">
-					<div class="mtphr-post-slider-content clearfix">
+					<div class="mtphr-post-slider-content mtphr-clearfix">
 					<?php
 					// Return the output
 					$html = ob_get_clean();
@@ -354,7 +354,7 @@ add_shortcode( 'mtphr_post_block', 'mtphr_post_block_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a pricing table - 2.0.5 */
+/* !Create a pricing table - 2.0.6 */
 /* --------------------------------------------------------- */
 
 function mtphr_pricing_table_display( $atts, $content = null ) {
@@ -406,7 +406,7 @@ function mtphr_pricing_table_display( $atts, $content = null ) {
 			$html .= '<'.$title_tag.' class="mtphr-pricing-table-title">'.$title.'</'.$title_tag.'>';
 		}
 		if( $dollar != '' || $cents != '' ) {
-			$html .= '<p class="mtphr-pricing-table-price clearfix">';
+			$html .= '<p class="mtphr-pricing-table-price mtphr-clearfix">';
 			if( $dollar != '' ) {
 				$dollar = apply_filters( 'mtphr_pricing_table_dollar', $dollar );
 				$html .= '<span class="mtphr-pricing-table-dollar">'.$dollar.'</span>';
@@ -574,7 +574,7 @@ function mtphr_toggle_display( $atts, $content = null ) {
 
 		<?php
 		$heading = sanitize_text_field($heading);
-		$heading = apply_filters( 'mtphr_toggle_heading', '<a href="#"><span class="mtphr-toggle-button mtphr-toggle-button-condensed">&plus;</span><span class="mtphr-toggle-button mtphr-toggle-button-expanded">&ndash;</span>'.$heading.'</a>', $heading, $id );
+		$heading = apply_filters( 'mtphr_toggle_heading', '<a href="#"><span class="mtphr-toggle-button mtphr-toggle-button-condensed">+</span><span class="mtphr-toggle-button mtphr-toggle-button-expanded">&ndash;</span>'.$heading.'</a>', $heading, $id );
 		$content = apply_filters( 'mtphr_toggle_content', apply_filters('the_content', mtphr_shortcodes_parse_shortcode_content($content)), $id );
 		?>
 
@@ -601,7 +601,7 @@ add_shortcode( 'mtphr_toggle', 'mtphr_toggle_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create icons - 2.0.5 */
+/* !Create icons - 2.0.6 */
 /* --------------------------------------------------------- */
 
 function mtphr_icon_display( $atts, $content = null ) {
@@ -633,7 +633,7 @@ function mtphr_icon_display( $atts, $content = null ) {
 		if( $link != '' ) {
 			$link_class = ( $link_class != '' ) ? ' '.sanitize_html_class( $link_class ) : '';
 			$link_style = ( $link_style != '' ) ? ' style="'.sanitize_text_field($link_style).'"' : '';
-			$html .= '<a class="metaphor-icon-link clearfix'.$link_class.'"'.$link_style.' href="'.esc_url($link).'" target="'.sanitize_text_field($target).'">';
+			$html .= '<a class="metaphor-icon-link mtphr-clearfix'.$link_class.'"'.$link_style.' href="'.esc_url($link).'" target="'.sanitize_text_field($target).'">';
 		}
 		$icon_class = 'mtphr-icon-'.$id;
 		$class = ( $class == '' ) ? sanitize_html_class( $icon_class ) : sanitize_html_class( $icon_class ).' '.sanitize_html_class( $class );

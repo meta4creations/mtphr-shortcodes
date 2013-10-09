@@ -29,7 +29,7 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !Shortcode generator initialize */
+	/* !Shortcode generator initialize - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	$('body').on('mtphr_shortcode_generator_init', function() {
@@ -68,7 +68,7 @@ jQuery( document ).ready( function($) {
 	});
 
 	/* --------------------------------------------------------- */
-	/* !Shortcode generator trigger */
+	/* !Shortcode generator trigger - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	$('body').on('mtphr_shortcode_generator_value', function() {
@@ -107,7 +107,7 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_grid init */
+	/* !mtphr_grid init - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_grid_init( $container ) {
@@ -156,7 +156,7 @@ jQuery( document ).ready( function($) {
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_grid value */
+	/* !mtphr_grid value - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_grid_value( $container ) {
@@ -179,7 +179,7 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_post_slider init */
+	/* !mtphr_post_slider init - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_post_slider_init( $container ) {
@@ -200,7 +200,7 @@ jQuery( document ).ready( function($) {
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_post_slider value */
+	/* !mtphr_post_slider value - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_post_slider_value( $container ) {
@@ -251,7 +251,7 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_post_block init */
+	/* !mtphr_post_block init - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_post_block_init( $container ) {
@@ -298,7 +298,7 @@ jQuery( document ).ready( function($) {
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_post_block value */
+	/* !mtphr_post_block value - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_post_block_value( $container ) {
@@ -347,7 +347,7 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_pricing_table init */
+	/* !mtphr_pricing_table init - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_pricing_table_init( $container ) {
@@ -408,7 +408,7 @@ jQuery( document ).ready( function($) {
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_pricing_table value */
+	/* !mtphr_pricing_table value - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_pricing_table_value( $container ) {
@@ -455,7 +455,7 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_slide_graph init */
+	/* !mtphr_slide_graph init - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_slide_graph_init( $container ) {
@@ -473,7 +473,7 @@ jQuery( document ).ready( function($) {
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_slide_graph value */
+	/* !mtphr_slide_graph value - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_slide_graph_value( $container ) {
@@ -497,7 +497,7 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_tab init */
+	/* !mtphr_tab init - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_tab_init( $container ) {
@@ -546,7 +546,7 @@ jQuery( document ).ready( function($) {
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_tab check the deletes */
+	/* !mtphr_tab check the deletes - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_tab_check_delete( $container ) {
@@ -558,7 +558,7 @@ jQuery( document ).ready( function($) {
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_tab check for insert button */
+	/* !mtphr_tab check for insert button - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_tab_check_insert( $container ) {
@@ -579,7 +579,7 @@ jQuery( document ).ready( function($) {
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_tab value */
+	/* !mtphr_tab value - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_tab_value( $container ) {
@@ -615,7 +615,7 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_toggle init */
+	/* !mtphr_toggle init - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_toggle_init( $container ) {
@@ -633,7 +633,7 @@ jQuery( document ).ready( function($) {
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_toggle value */
+	/* !mtphr_toggle value - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_toggle_value( $container ) {
@@ -657,7 +657,7 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_icon init */
+	/* !mtphr_icon init - 2.0.6 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_icon_init( $container ) {
@@ -670,8 +670,15 @@ jQuery( document ).ready( function($) {
 
 		$('.mtphr-shortcode-gen-icon-group').live('click', function(e) {
 			e.preventDefault();
-			$('.mtphr-shortcode-gen-icon-group').removeClass('active');
-			$(this).addClass('active');
+
+			if( !e.shiftKey ) {
+				$('.mtphr-shortcode-gen-icon-group').removeClass('active');
+			}
+			if( $(this).hasClass('active') ) {
+				$(this).removeClass('active');
+			} else {
+				$(this).addClass('active');
+			}
 			$button.show();
 		});
 
@@ -693,13 +700,12 @@ jQuery( document ).ready( function($) {
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_icon value */
+	/* !mtphr_icon value - 2.0.5 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_icon_value( $container ) {
 
 		var $insert = $container.children('input.shortcode-insert'),
-				att_id = $container.find('.mtphr-shortcode-gen-icon-group.active').find('.mtphr-shortcode-gen-icon-id').text(),
 				att_class = $container.find('input[name="class"]').val(),
 				att_style = $container.find('input[name="style"]').val(),
 				att_title = $container.find('input[name="title"]').val(),
@@ -709,23 +715,28 @@ jQuery( document ).ready( function($) {
 				att_link_class = $container.find('input[name="link_class"]').val(),
 				att_link_style = $container.find('input[name="link_style"]').val(),
 				att_target = $container.find('select[name="target"]').val(),
-				value = '[mtphr_icon';
+				value = '';
 
-		value += ' id="'+att_id+'"';
-		if( att_class != '' ) { value += ' class="'+att_class+'"'; }
-		if( att_style != '' ) { value += ' style="'+att_style+'"'; }
-		if( att_title != '' ) {
-			value += ' title="'+att_title+'"';
-			if( att_title_class != '' ) { value += ' title_class="'+att_title_class+'"'; }
-			if( att_title_style != '' ) { value += ' title_style="'+att_title_style+'"'; }
-		}
-		if( att_link != '' ) {
-			value += ' link="'+att_link+'"';
-			if( att_link_class != '' ) { value += ' link_class="'+att_link_class+'"'; }
-			if( att_link_style != '' ) { value += ' link_style="'+att_link_style+'"'; }
-			if( att_target != '_self' ) { value += ' target="'+att_target+'"'; }
-		}
-		value += ']';
+		$container.find('.mtphr-shortcode-gen-icon-group.active').each( function(index) {
+
+			var att_id = $(this).find('.mtphr-shortcode-gen-icon-id').text();
+
+			value += '[mtphr_icon id="'+att_id+'"';
+			if( att_class != '' ) { value += ' class="'+att_class+'"'; }
+			if( att_style != '' ) { value += ' style="'+att_style+'"'; }
+			if( att_title != '' ) {
+				value += ' title="'+att_title+'"';
+				if( att_title_class != '' ) { value += ' title_class="'+att_title_class+'"'; }
+				if( att_title_style != '' ) { value += ' title_style="'+att_title_style+'"'; }
+			}
+			if( att_link != '' ) {
+				value += ' link="'+att_link+'"';
+				if( att_link_class != '' ) { value += ' link_class="'+att_link_class+'"'; }
+				if( att_link_style != '' ) { value += ' link_style="'+att_link_style+'"'; }
+				if( att_target != '_self' ) { value += ' target="'+att_target+'"'; }
+			}
+			value += ']';
+		});
 
 		$insert.val( value );
 	}

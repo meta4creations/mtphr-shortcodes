@@ -1,6 +1,6 @@
 === Metaphor Shortcodes ===
 Contributors: metaphorcreations
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FUZKZGAJSBAE6
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSERTX5M7NKES
 Tags: shortcodes, column grid, pricing tables, post sliders, post blocks, posts
 Requires at least: 3.2
 Tested up to: 3.5.2
@@ -43,6 +43,12 @@ Documentation is coming soon!
 6. List pricing table sample.
 
 == Changelog ==
+
+= 2.0.6 =
+* Icon CSS adjustments.
+* Changed .clearfix class to .mtphr-clearfix
+* Changed &plus; to + in the mtphr_toggle shortcode due to IE errors
+* Adjusted swipe function in js
 
 = 2.0.5 =
 * Adjusted mtphr_toggle expanded/condensed button code & css.
@@ -90,4 +96,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Multiple updates including new shortcodes, taxonomy filters for the post block/slider shortcode, and an all new shortcode generator!
+Minor adjustments to mtphr_toggle toggle, css, & js.

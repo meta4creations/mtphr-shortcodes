@@ -503,12 +503,14 @@
 ------------------------------------------------------------ */
 
 .metaphor-icon i {
+	display: inline-block;
 	width: 50px;
 	height: 50px;
   font-size: 32px;
   text-align: center;
   line-height: 50px;
   background: #e3e6e8;
+  margin: 0 4px 4px 0;
 }
 .metaphor-icon-link {
 	display: block;
@@ -518,28 +520,28 @@
 	float: left;
 }
 .metaphor-icon-title {
-	margin-left: 15px;
+	margin-left: 10px;
 }
 .metaphor-icon-link .metaphor-icon-title {
 	display: block;
 	float: left;
 	line-height: 48px;
-	margin-top: 2px;
+	margin-top: 4px;
 }
 
 /* Clearfix
 ------------------------------------------------------------ */
 
-.clearfix {
+.mtphr-clearfix {
   *zoom: 1;
 }
-.clearfix:before,
-.clearfix:after {
+.mtphr-clearfix:before,
+.mtphr-clearfix:after {
   display: table;
   line-height: 0;
   content: "";
 }
-.clearfix:after {
+.mtphr-clearfix:after {
   clear: both;
 }
 
