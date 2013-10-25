@@ -31,39 +31,6 @@ function mtphr_shortcodes_settings() {
 
 
 /**
- * Set a maximum excerpt length
- *
- * @since 1.0.0
- */
-function mtphr_shortcodes_excerpt( $length = 200, $more = '&hellip;' ) {
-	echo get_mtphr_shortcodes_excerpt( $length, $more );
-}
-
-function get_mtphr_shortcodes_excerpt( $length = 200, $more = '&hellip;' ) {
-	$excerpt = get_the_excerpt();
-	$length++;
-
-	$output = '';
-	if ( mb_strlen( $excerpt ) > $length ) {
-		$subex = mb_substr( $excerpt, 0, $length - 5 );
-		$exwords = explode( ' ', $subex );
-		$excut = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
-		if ( $excut < 0 ) {
-			$output .= mb_substr( $subex, 0, $excut );
-		} else {
-			$output .= $subex;
-		}
-		$output .= $more;
-	} else {
-		$output .= $excerpt;
-	}
-	return $output;
-}
-
-
-
-
-/**
  * Parse the shortcode content
  *
  * @since 1.0.0

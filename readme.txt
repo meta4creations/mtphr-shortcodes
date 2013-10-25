@@ -44,6 +44,11 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 2.0.7 =
+* Updated localization text
+* Added default .mtphr-post-block class to post blocks
+* Modified excerpt functionality
+
 = 2.0.6 =
 * Icon CSS adjustments.
 * Changed .clearfix class to .mtphr-clearfix

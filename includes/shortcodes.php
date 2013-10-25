@@ -49,7 +49,7 @@ add_shortcode( 'mtphr_grid', 'mtphr_grid_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a post slider - 2.0.6 */
+/* !Create a post slider - 2.0.7 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_slider_display( $atts, $content = null ) {
@@ -175,7 +175,7 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 								$more_link = '<a href="'.get_permalink().'">'.$links[1].'</a>';
 								$excerpt_more = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more);
 							}
-							$excerpt = get_mtphr_shortcodes_excerpt( $excerpt_length, html_entity_decode($excerpt_more) );
+							$excerpt = wp_html_excerpt( get_the_excerpt(), intval($excerpt_length) ).$excerpt_more;
 						}
 
 						// Set the default content
@@ -225,7 +225,7 @@ add_shortcode( 'mtphr_post_slider', 'mtphr_post_slider_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a post block - 2.0.5 */
+/* !Create a post block - 2.0.7 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_block_display( $atts, $content = null ) {
@@ -326,7 +326,7 @@ function mtphr_post_block_display( $atts, $content = null ) {
 			$more_link = '<a href="'.get_permalink().'">'.$links[1].'</a>';
 			$excerpt_more = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more);
 		}
-		$excerpt = get_mtphr_shortcodes_excerpt( $excerpt_length, html_entity_decode($excerpt_more) );
+		$excerpt = wp_html_excerpt( get_the_excerpt(), intval($excerpt_length) ).$excerpt_more;
 	}
 	?>
 	<p><?php echo $excerpt; ?></p>
@@ -334,7 +334,7 @@ function mtphr_post_block_display( $atts, $content = null ) {
 	<?php
 	$block = ob_get_clean();
 
-	$html .= '<div class="mtphr-post-block-'.$type.$class.'">';
+	$html .= '<div class="mtphr-post-block mtphr-post-block-'.$type.$class.'">';
 	$html .= apply_filters( "mtphr_{$type}_post_block", $block, $excerpt, $args );
 	$html .= '</div>';
 

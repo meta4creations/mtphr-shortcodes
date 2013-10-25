@@ -67,7 +67,7 @@ add_action( 'wp_ajax_mtphr_shortcode_grid_gen', 'mtphr_shortcode_grid_gen' );
 
 
 /* --------------------------------------------------------- */
-/* !Ajax post slider shortcode - 2.0.5 */
+/* !Ajax post slider shortcode - 2.0.7 */
 /* --------------------------------------------------------- */
 
 function mtphr_shortcode_post_slider_gen() {
@@ -95,16 +95,16 @@ function mtphr_shortcode_post_slider_gen() {
 		<div class="mtphr-shortcode-gen-attribute">
 			<label><?php _e('Order By', 'mtphr-shortcodes'); ?></label>
 			<select name="orderby">
-				<option>ID</option>
-				<option>author</option>
-				<option>title</option>
-				<option>name</option>
-				<option>date</option>
-				<option>modified</option>
-				<option>parent</option>
-				<option selected="selected">rand</option>
-				<option>comment_count</option>
-				<option>menu_order</option>
+				<option value="ID"><?php _e('ID', 'mtphr-shortcodes'); ?></option>
+				<option value="author"><?php _e('Author', 'mtphr-shortcodes'); ?></option>
+				<option value="title"><?php _e('Title', 'mtphr-shortcodes'); ?></option>
+				<option value="name"><?php _e('Name', 'mtphr-shortcodes'); ?></option>
+				<option value="date"><?php _e('Date', 'mtphr-shortcodes'); ?></option>
+				<option value="modified"><?php _e('Modified', 'mtphr-shortcodes'); ?></option>
+				<option value="parent"><?php _e('Parent', 'mtphr-shortcodes'); ?></option>
+				<option value="rand" selected="selected"><?php _e('Random', 'mtphr-shortcodes'); ?></option>
+				<option value="comment_count"><?php _e('Comment Count', 'mtphr-shortcodes'); ?></option>
+				<option value="menu_order"><?php _e('Menu Order', 'mtphr-shortcodes'); ?></option>
 			</select>
 		</div>
 		<div class="mtphr-shortcode-gen-attribute">
@@ -172,9 +172,9 @@ function mtphr_shortcode_post_slider_gen() {
 			<div class="mtphr-shortcode-gen-attribute">
 				<label><?php _e('Operator', 'mtphr-shortcodes'); ?> <small class="optional">(<?php _e('Optional', 'mtphr-shortcodes'); ?>)</small></label>
 				<select name="operator">
-					<option>IN</option>
-					<option>NOT IN</option>
-					<option>AND</option>
+					<option value="IN"><?php _e('IN', 'mtphr-shortcodes'); ?></option>
+					<option value="NOT IN"><?php _e('NOT IN', 'mtphr-shortcodes'); ?></option>
+					<option value="AND"><?php _e('AND', 'mtphr-shortcodes'); ?></option>
 				</select>
 			</div>
 		</div>
@@ -187,7 +187,7 @@ add_action( 'wp_ajax_mtphr_shortcode_post_slider_gen', 'mtphr_shortcode_post_sli
 
 
 /* --------------------------------------------------------- */
-/* !Ajax post block shortcode - 2.0.5 */
+/* !Ajax post block shortcode - 2.0.7 */
 /* --------------------------------------------------------- */
 
 function mtphr_shortcode_post_block_gen() {
@@ -216,16 +216,16 @@ function mtphr_shortcode_post_block_gen() {
 		<div class="mtphr-shortcode-gen-attribute mtphr-shortcode-gen-set-2">
 			<label><?php _e('Order By', 'mtphr-shortcodes'); ?></label>
 			<select name="orderby">
-				<option>ID</option>
-				<option>author</option>
-				<option>title</option>
-				<option>name</option>
-				<option selected="selected">date</option>
-				<option>modified</option>
-				<option>parent</option>
-				<option>rand</option>
-				<option>comment_count</option>
-				<option>menu_order</option>
+				<option value="ID"><?php _e('ID', 'mtphr-shortcodes'); ?></option>
+				<option value="author"><?php _e('Author', 'mtphr-shortcodes'); ?></option>
+				<option value="title"><?php _e('Title', 'mtphr-shortcodes'); ?></option>
+				<option value="name"><?php _e('Name', 'mtphr-shortcodes'); ?></option>
+				<option value="date" selected="selected"><?php _e('Date', 'mtphr-shortcodes'); ?></option>
+				<option value="modified"><?php _e('Modified', 'mtphr-shortcodes'); ?></option>
+				<option value="parent"><?php _e('Parent', 'mtphr-shortcodes'); ?></option>
+				<option value="rand"><?php _e('Random', 'mtphr-shortcodes'); ?></option>
+				<option value="comment_count"><?php _e('Comment Count', 'mtphr-shortcodes'); ?></option>
+				<option value="menu_order"><?php _e('Menu Order', 'mtphr-shortcodes'); ?></option>
 			</select>
 		</div>
 		<div class="mtphr-shortcode-gen-attribute mtphr-shortcode-gen-set-2">
@@ -286,9 +286,9 @@ function mtphr_shortcode_post_block_gen() {
 				<div class="mtphr-shortcode-gen-attribute">
 					<label><?php _e('Operator', 'mtphr-shortcodes'); ?> <small class="optional">(<?php _e('Optional', 'mtphr-shortcodes'); ?>)</small></label>
 					<select name="operator">
-						<option>IN</option>
-						<option>NOT IN</option>
-						<option>AND</option>
+						<option value="IN"><?php _e('IN', 'mtphr-shortcodes'); ?></option>
+						<option value="NOT IN"><?php _e('NOT IN', 'mtphr-shortcodes'); ?></option>
+						<option value="AND"><?php _e('AND', 'mtphr-shortcodes'); ?></option>
 					</select>
 				</div>
 			</div>
@@ -302,7 +302,7 @@ add_action( 'wp_ajax_mtphr_shortcode_post_block_gen', 'mtphr_shortcode_post_bloc
 
 
 /* --------------------------------------------------------- */
-/* !Ajax pricing table shortcode - 2.0.5 */
+/* !Ajax pricing table shortcode - 2.0.7 */
 /* --------------------------------------------------------- */
 
 function mtphr_shortcode_pricing_table_gen() {
@@ -342,11 +342,11 @@ function mtphr_shortcode_pricing_table_gen() {
 			</div>
 			<div class="mtphr-shortcode-gen-attribute mtphr-shortcode-gen-set-1">
 				<label><?php _e('Dollar Amount', 'mtphr-shortcodes'); ?></label>
-				<input type="text" name="dollar" placeholder="$9" />
+				<input type="text" name="dollar" placeholder="<?php _e('$9', 'mtphr-shortcodes'); ?>" />
 			</div>
 			<div class="mtphr-shortcode-gen-attribute mtphr-shortcode-gen-set-1">
 				<label><?php _e('Cent Amount', 'mtphr-shortcodes'); ?></label>
-				<input type="text" name="cents" placeholder="99" />
+				<input type="text" name="cents" placeholder="<?php _e('99', 'mtphr-shortcodes'); ?>" />
 			</div>
 			<div class="mtphr-shortcode-gen-attribute mtphr-shortcode-gen-set-1">
 				<label><?php _e('Per', 'mtphr-shortcodes'); ?> <small class="optional">(<?php _e('Optional', 'mtphr-shortcodes'); ?>)</small></label>

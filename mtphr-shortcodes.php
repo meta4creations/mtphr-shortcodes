@@ -2,7 +2,7 @@
 /*
 Plugin Name: Metaphor Shortcodes
 Description: Includes Column Grids, Pricing Tables, Post Sliders & Post Blocks.
-Version: 2.0.6
+Version: 2.0.7
 Author: Metaphor Creations
 Author URI: http://www.metaphorcreations.com
 License: GPL2
@@ -46,9 +46,9 @@ if( in_array('mtphr-shortcodes-pack-1/mtphr-shortcodes-pack-1.php', $active_plug
 
 	/**Define Widget Constants */
 	if ( WP_DEBUG ) {
-		define ( 'MTPHR_SHORTCODES_VERSION', '2.0.6-'.time() );
+		define ( 'MTPHR_SHORTCODES_VERSION', '2.0.7-'.time() );
 	} else {
-		define ( 'MTPHR_SHORTCODES_VERSION', '2.0.6' );
+		define ( 'MTPHR_SHORTCODES_VERSION', '2.0.7' );
 	}
 	define ( 'MTPHR_SHORTCODES_DIR', plugin_dir_path(__FILE__) );
 	define ( 'MTPHR_SHORTCODES_URL', plugins_url().'/mtphr-shortcodes' );
