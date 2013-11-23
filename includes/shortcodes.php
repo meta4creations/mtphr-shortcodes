@@ -49,7 +49,7 @@ add_shortcode( 'mtphr_grid', 'mtphr_grid_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a post slider - 2.0.7 */
+/* !Create a post slider - 2.0.8 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_slider_display( $atts, $content = null ) {
@@ -114,7 +114,8 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 			'orderby' => $orderby,
 			'order' => $order,
 			'posts_per_page' => $limit,
-			'post__not_in' => array( get_the_ID() )
+			'post__not_in' => array( get_the_ID() ),
+			'tax_query' => array()
 		);
 		if( $taxonomy && $terms ) {
 			$tax_query = array(
@@ -123,7 +124,19 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 				'terms' => explode(',', $terms),
 				'operator' => $operator
 			);
-			$query_args['tax_query'] = array( $tax_query );
+			$query_args['tax_query'][] = $tax_query;
+		}
+		
+		// Check for query args
+		$q_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : false;
+		$q_terms = isset($_GET['terms']) ? $_GET['terms'] : false;
+		if( $q_taxonomy && $q_terms ) {
+			$tax_query = array(
+				'taxonomy' => $q_taxonomy,
+				'field' => 'slug',
+				'terms' => explode(',', $q_terms)
+			);
+			$query_args['tax_query'][] = $tax_query;
 		}
 
 		// Filter the args
@@ -160,9 +173,11 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 
 					/* Start the Loop */
 					while ( $wp_query->have_posts() ) : $wp_query->the_post();
-
-						//$post = get_post( get_the_ID() );
-						$post = get_post( get_the_ID() );
+						
+						// Create the permalink w/query args
+						$permalink = ( $q_taxonomy && $q_terms ) ? add_query_arg( array('taxonomy' => $q_taxonomy, 'terms' => $q_terms), get_permalink() ) : remove_query_arg( array('taxonomy', 'terms'), get_permalink() );
+						
+						$post = get_post( get_the_id() );
 						$post_type = $type;
 
 						// Get the excerpt
@@ -172,7 +187,7 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 							$links = array();
 							preg_match('/{(.*?)\}/s', $excerpt_more, $links);
 							if( isset($links[0]) ) {
-								$more_link = '<a href="'.get_permalink().'">'.$links[1].'</a>';
+								$more_link = '<a href="'.$permalink.'">'.$links[1].'</a>';
 								$excerpt_more = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more);
 							}
 							$excerpt = wp_html_excerpt( get_the_excerpt(), intval($excerpt_length) ).$excerpt_more;
@@ -183,7 +198,7 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 						<?php if( $thumb_size != 'none' ) {
 							echo get_the_post_thumbnail( get_the_id(), $thumb_size );
 						} ?>
-						<h3 class="mtphr-post-slider-block-title"><a href="<?php echo get_permalink( $post->ID ); ?>"><?php the_title(); ?></a></h3>
+						<h3 class="mtphr-post-slider-block-title"><a href="<?php echo $permalink; ?>"><?php the_title(); ?></a></h3>
 						<p class="mtphr-post-slider-block-excerpt"><?php echo $excerpt; ?></p>
 						<?php
 						$block = ob_get_clean();
@@ -191,7 +206,7 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 						ob_start();
 						?>
 						<div class="mtphr-post-slider-block mtphr-<?php echo $post_type; ?>-post-slider-block <?php echo $class; ?>">
-							<?php echo apply_filters( "mtphr_{$post_type}_post_slider_block", $block, $excerpt, $args ); ?>
+							<?php echo apply_filters( "mtphr_{$post_type}_post_slider_block", $block, $excerpt, $args, $permalink ); ?>
 						</div>
 						<?php
 						$html .= ob_get_clean();

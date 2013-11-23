@@ -44,6 +44,9 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 2.0.8 =
+* Added taxonomy query args to filter post slider
+
 = 2.0.7 =
 * Updated localization text
 * Added default .mtphr-post-block class to post blocks
@@ -101,4 +104,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Minor adjustments to mtphr_toggle toggle, css, & js.
+Added taxonomy query args to filter post slider.
