@@ -1,11 +1,4 @@
-/**
- * Metaphor Slide Graph
- * Date: 4/8/2013
- *
- * @author Metaphor Creations
- * @version 1.0.0
- *
- **/
+/* Metaphor Slide Graph */
 
 ( function($) {
 
@@ -31,6 +24,9 @@
 						$fill = $graph.find('.mtphr-slide-graph-fill'),
 						$percent = $graph.find('.mtphr-slide-graph-percent'),
 						p = $graph.children('input').val();
+						
+				// Set the percent margin
+				$percent.css('margin-left', '-'+($percent.width()/2)+'px');
 
 				// Animate the objects
 				$fill.stop().animate( {
@@ -40,7 +36,11 @@
 				// Animate the objects
 				$percent.stop().animate( {
 					left: p+'%'
-				}, settings.slide_speed*(p/100), settings.slide_ease );
+				}, settings.slide_speed*(p/100), settings.slide_ease, function(){		
+						$percent.stop().animate( {
+							top: '-'+($percent.height()+3)+'px'
+						}, settings.slide_speed*(p/100), settings.slide_ease );
+				});
 
 		    // Trigger the afterLoad callback
         settings.after_load.call(this, $graph);

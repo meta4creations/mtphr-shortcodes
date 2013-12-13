@@ -510,7 +510,7 @@ add_shortcode( 'mtphr_slide_graph', 'mtphr_slide_graph_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a tabbed area - 2.0.4 */
+/* !Create a tabbed area - 2.0.9 */
 /* --------------------------------------------------------- */
 
 function mtphr_tab_display( $atts, $content = null ) {
@@ -536,14 +536,14 @@ function mtphr_tab_display( $atts, $content = null ) {
 	if( $start ) {
 		$html .= '<table class="mtphr-tabs-container"><tr>';
 	}
-	$tab_content = '<div class="mtphr-tab-content"><div class="mtphr-tab-content-wrapper">';
+	$tab_content = '<div class="mtphr-tab-content"><table><tr>';
 	if( $image ) {
-		$tab_content .= '<img class="mtphr-tab-content-image" src="'.sanitize_text_field($image).'" width="'.intval($image_width).'" alt="'.sanitize_text_field($title).'" />';
-		$tab_content .= '<div class="mtphr-tab-content-text" style="margin-left:'.intval($image_width).'px">'.mtphr_shortcodes_parse_shortcode_content( $content ).'</div>';
+		$tab_content .= '<td class="mtphr-tab-content-image" style="width:'.intval($image_width).'px"><img src="'.sanitize_text_field($image).'" width="'.intval($image_width).'" alt="'.sanitize_text_field($title).'" /></td>';
+		$tab_content .= '<td class="mtphr-tab-content-text">'.mtphr_shortcodes_parse_shortcode_content( $content ).'</td>';
 	} else {
 		$tab_content .= mtphr_shortcodes_parse_shortcode_content( $content );
 	}
-	$tab_content .= '</div></div>';
+	$tab_content .= '</tr></table></div>';
 	$html .= '<td class="mtphr-tab-link"><a href="#" rel="nofollow">'.sanitize_text_field($title).'</a>'.$tab_content.'</td>';
 	if( $end ) {
 		$html .= '</tr><tr><td class="mtphr-tab-content-container" colspan="1"></td></tr></table>';
@@ -560,7 +560,7 @@ add_shortcode( 'mtphr_tab', 'mtphr_tab_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a toggle - 2.0.5 */
+/* !Create a toggle - 2.0.9 */
 /* --------------------------------------------------------- */
 
 function mtphr_toggle_display( $atts, $content = null ) {
@@ -590,7 +590,7 @@ function mtphr_toggle_display( $atts, $content = null ) {
 		<?php
 		$heading = sanitize_text_field($heading);
 		$heading = apply_filters( 'mtphr_toggle_heading', '<a href="#"><span class="mtphr-toggle-button mtphr-toggle-button-condensed">+</span><span class="mtphr-toggle-button mtphr-toggle-button-expanded">&ndash;</span>'.$heading.'</a>', $heading, $id );
-		$content = apply_filters( 'mtphr_toggle_content', apply_filters('the_content', mtphr_shortcodes_parse_shortcode_content($content)), $id );
+		$content = apply_filters( 'mtphr_toggle_content', wpautop(convert_chars(wptexturize(mtphr_shortcodes_parse_shortcode_content($content)))), $id );
 		?>
 
 		<?php $active = ( $condensed == 'false' || $condensed == '0' ) ? ' active' : ''; ?>

@@ -385,7 +385,8 @@
 	font-size: 14px;
 	line-height: 14px;
 	text-align: center;
-	width: 100px;
+	/* width: 100px; */
+	/* white-space: nowrap; */
 	margin-left: -50px;
 }
 
@@ -430,17 +431,19 @@
 	left: 0;
 	padding: 20px 20px 0;
 }
-.mtphr-tab-content-wrapper {
-	position: relative;
+.mtphr-tab-content > table {
+	width: 100%;
 }
-.mtphr-tab-content-image {
+.mtphr-tab-content > table td {
+	vertical-align: top;
+}
+.mtphr-tab-content-image img {
 	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
+	max-width: 100%;
 	height: auto;
+	margin-bottom: 20px;
 }
-.mtphr-tab-content-text {
+.mtphr-tabs-container td.mtphr-tab-content-text {
 	padding-left: 20px;
 }
 .mtphr-tab-content p:last-child,

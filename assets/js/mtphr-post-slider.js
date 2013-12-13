@@ -1,11 +1,4 @@
-/**
- * Metaphor Post Slider
- * Date: 8/08/2013
- *
- * @author Metaphor Creations
- * @version 2.0.6
- *
- **/
+/* Metaphor Post Slider */
 
 ( function($) {
 
@@ -41,6 +34,8 @@
         var vars = {
         	slider_width					: $slider.outerWidth(),
         	slider_position				: 0,
+        	slider_current				: 0,
+        	slide_count						: 0,
 	        post_width						: $(posts[0]).outerWidth(),
 	        post_margin						: parseInt($(posts[0]).css('marginRight').substr(0, $(posts[0]).css('marginRight').length-2)),
 	        total_posts						: posts.length,
@@ -69,6 +64,9 @@
 				if( vars.num_posts < 2 ) {
 					$navigation.remove();
 				}
+				
+				// Set the slide count
+				mtphr_post_slider_slide_count();
 
 				// Position the slider
 				mtphr_post_slider_position();
@@ -76,21 +74,21 @@
 				/**
 				 * Find the closest post to the left
 				 *
-				 * @since 1.0.0
+				 * @since 2.0.9
 				 */
 				function mtphr_post_slider_position( button ) {
 
 					var position = vars.slider_position;
 					if (button == 'prev') {
-						position = position+vars.slider_width;
+						vars.slider_current = vars.slider_current-vars.slide_count;
+						if( vars.slider_current < 0 ) vars.slider_current = 0;
+						position = -(vars.slider_current*(vars.post_width+vars.post_margin));
 					}
 					if (button == 'next') {
-						position = position-vars.slider_width;
+						vars.slider_current = vars.slider_current+vars.slide_count;
+						if( vars.slider_current > posts.length-1 ) vars.slider_current = posts.length-1;
+						position = -(vars.slider_current*(vars.post_width+vars.post_margin));
 					}
-
-					var closest = parseInt(position/(vars.post_width+vars.post_margin));
-					if( button == 'next' ) closest--;
-					position = closest*(vars.post_width+vars.post_margin);
 
 					// Enable the buttons
 					$prev.removeClass('disabled');
@@ -121,6 +119,18 @@
 
 					// Return the position
 					return position;
+				}
+				
+				/**
+				 * Set the slide count
+				 *
+				 * @since 2.0.9
+				 */
+				function mtphr_post_slider_slide_count() {
+					vars.slide_count = Math.floor( (vars.slider_width+vars.post_margin)/(vars.post_width+vars.post_margin) );
+					if( vars.slide_count < 1 ) {
+						vars.slide_count = 1;
+					}
 				}
 
 				/**
@@ -179,6 +189,7 @@
 					}
 
 			    // Reset the position
+			    mtphr_post_slider_slide_count();
 			    mtphr_post_slider_position();
 		    });
 

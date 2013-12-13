@@ -3,7 +3,7 @@ Contributors: metaphorcreations
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSERTX5M7NKES
 Tags: shortcodes, column grid, pricing tables, post sliders, post blocks, posts
 Requires at least: 3.2
-Tested up to: 3.5.2
+Tested up to: 3.8
 Stable tag: /trunk/
 License: GPL2
 
@@ -43,6 +43,12 @@ Documentation is coming soon!
 6. List pricing table sample.
 
 == Changelog ==
+
+= 2.0.9 =
+* Fixed post slider issue with small screens
+* Adjusted slide graph label to work with longer strings
+* Fixed issue with large images not fitting in tabs content
+* Fixed post_block ID="undefined" issue with shortcode generator
 
 = 2.0.8 =
 * Added taxonomy query args to filter post slider
@@ -104,4 +110,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Added taxonomy query args to filter post slider.
+Bug fixes.

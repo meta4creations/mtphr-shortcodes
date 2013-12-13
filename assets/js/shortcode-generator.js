@@ -298,14 +298,14 @@ jQuery( document ).ready( function($) {
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_post_block value - 2.0.5 */
+	/* !mtphr_post_block value - 2.0.9 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_post_block_value( $container ) {
 
 		var $insert = $container.children('input.shortcode-insert'),
 				att_type = $container.find('select[name="type"]').val(),
-				att_id = $container.find('select[name="id"]').val(),
+				att_id = $container.find('input[name="id"]').val(),
 				att_orderby = $container.find('select[name="orderby"]').val(),
 				att_order = $container.find('select[name="order"]').val(),
 				att_offset = $container.find('input[name="offset"]').val(),

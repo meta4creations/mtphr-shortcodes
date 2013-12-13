@@ -4,7 +4,7 @@
 #add_mtphr_shortcode .wp-media-buttons-icon {
 	width: 21px;
 	background: url(../images/mtphr-shortcodes-icon.png) no-repeat;
-	margin-top: -1px;
+	margin-top: 1px;
 }
 #icon-mtphr-shortcodes {
 	background: url(../images/mtphr-shortcodes-icon-32.png) no-repeat;
