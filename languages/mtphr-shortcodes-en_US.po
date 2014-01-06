@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Metaphor Shortcodes v2.0.6\n"
+"Project-Id-Version: Metaphor Shortcodes v2.0.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-10-09 12:55:01+0000\n"
+"PO-Revision-Date: 2014-01-06 16:09:22+0000\n"
 "Last-Translator: admin <joe@metaphorcreations.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,13 +41,13 @@ msgid "In order to use the new <strong>Metaphor Shortcodes</strong> you must dea
 msgstr ""
 
 #: includes/shortcode-gen.php:353
-#: includes/shortcodes.php:373
+#: includes/shortcodes.php:388
 #@ mtphr-shortcodes
 msgid "per month"
 msgstr ""
 
 #: includes/shortcode-gen.php:357
-#: includes/shortcodes.php:374
+#: includes/shortcodes.php:389
 #@ mtphr-shortcodes
 msgid "Sign Up"
 msgstr ""
@@ -231,6 +231,8 @@ msgid "Post Type"
 msgstr ""
 
 #: includes/shortcode-gen.php:92
+#: includes/shortcode-gen.php:100
+#: includes/shortcode-gen.php:221
 #: includes/shortcode-gen.php:340
 #: includes/shortcode-gen.php:341
 #: includes/shortcode-gen.php:385
@@ -529,6 +531,8 @@ msgstr ""
 msgid "Initial state expanded"
 msgstr ""
 
+#: includes/shortcode-gen.php:98
+#: includes/shortcode-gen.php:219
 #: includes/shortcode-gen.php:487
 #@ mtphr-shortcodes
 msgid "ID"
@@ -607,5 +611,81 @@ msgstr ""
 #: includes/shortcode-gen.php:875
 #@ mtphr-shortcodes
 msgid "Link Target"
+msgstr ""
+
+#: includes/shortcode-gen.php:99
+#: includes/shortcode-gen.php:220
+#@ mtphr-shortcodes
+msgid "Author"
+msgstr ""
+
+#: includes/shortcode-gen.php:101
+#: includes/shortcode-gen.php:222
+#@ mtphr-shortcodes
+msgid "Name"
+msgstr ""
+
+#: includes/shortcode-gen.php:102
+#: includes/shortcode-gen.php:223
+#@ mtphr-shortcodes
+msgid "Date"
+msgstr ""
+
+#: includes/shortcode-gen.php:103
+#: includes/shortcode-gen.php:224
+#@ mtphr-shortcodes
+msgid "Modified"
+msgstr ""
+
+#: includes/shortcode-gen.php:104
+#: includes/shortcode-gen.php:225
+#@ mtphr-shortcodes
+msgid "Parent"
+msgstr ""
+
+#: includes/shortcode-gen.php:105
+#: includes/shortcode-gen.php:226
+#@ mtphr-shortcodes
+msgid "Random"
+msgstr ""
+
+#: includes/shortcode-gen.php:106
+#: includes/shortcode-gen.php:227
+#@ mtphr-shortcodes
+msgid "Comment Count"
+msgstr ""
+
+#: includes/shortcode-gen.php:107
+#: includes/shortcode-gen.php:228
+#@ mtphr-shortcodes
+msgid "Menu Order"
+msgstr ""
+
+#: includes/shortcode-gen.php:175
+#: includes/shortcode-gen.php:289
+#@ mtphr-shortcodes
+msgid "IN"
+msgstr ""
+
+#: includes/shortcode-gen.php:176
+#: includes/shortcode-gen.php:290
+#@ mtphr-shortcodes
+msgid "NOT IN"
+msgstr ""
+
+#: includes/shortcode-gen.php:177
+#: includes/shortcode-gen.php:291
+#@ mtphr-shortcodes
+msgid "AND"
+msgstr ""
+
+#: includes/shortcode-gen.php:345
+#@ mtphr-shortcodes
+msgid "$9"
+msgstr ""
+
+#: includes/shortcode-gen.php:349
+#@ mtphr-shortcodes
+msgid "99"
 msgstr ""
 

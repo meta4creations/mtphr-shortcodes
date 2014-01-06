@@ -510,7 +510,7 @@ add_shortcode( 'mtphr_slide_graph', 'mtphr_slide_graph_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a tabbed area - 2.0.9 */
+/* !Create a tabbed area - 2.0.10 */
 /* --------------------------------------------------------- */
 
 function mtphr_tab_display( $atts, $content = null ) {
@@ -541,7 +541,7 @@ function mtphr_tab_display( $atts, $content = null ) {
 		$tab_content .= '<td class="mtphr-tab-content-image" style="width:'.intval($image_width).'px"><img src="'.sanitize_text_field($image).'" width="'.intval($image_width).'" alt="'.sanitize_text_field($title).'" /></td>';
 		$tab_content .= '<td class="mtphr-tab-content-text">'.mtphr_shortcodes_parse_shortcode_content( $content ).'</td>';
 	} else {
-		$tab_content .= mtphr_shortcodes_parse_shortcode_content( $content );
+		$tab_content .= '<td>'.mtphr_shortcodes_parse_shortcode_content( $content ).'</td>';
 	}
 	$tab_content .= '</tr></table></div>';
 	$html .= '<td class="mtphr-tab-link"><a href="#" rel="nofollow">'.sanitize_text_field($title).'</a>'.$tab_content.'</td>';

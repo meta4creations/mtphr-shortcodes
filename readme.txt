@@ -44,6 +44,11 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 2.0.10 =
+* Tabs shorcode bug fix
+* Updated Italian translation
+* Added French translation
+
 = 2.0.9 =
 * Fixed post slider issue with small screens
 * Adjusted slide graph label to work with longer strings
@@ -110,4 +115,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Bug fixes.
+Bug fixe and updated translations.
