@@ -1,17 +1,45 @@
 <?php
 
 /* --------------------------------------------------------- */
-/* !Create a grid block - 2.0.5 */
+/* !Create a grid block - 2.0.2 */
 /* --------------------------------------------------------- */
 
 function mtphr_grid_display( $atts, $content = null ) {
+	return mtphr_grid_render_display( $atts, $content );
+}
+add_shortcode( 'grid', 'mtphr_grid_display' );
+add_shortcode( 'mtphr_grid', 'mtphr_grid_display' );
+
+function mtphr_grid_display_2( $atts, $content = null ) {
+	return mtphr_grid_render_display( $atts, $content );
+}
+add_shortcode( 'mtphr_grid_2', 'mtphr_grid_display_2' );
+
+function mtphr_grid_display_3( $atts, $content = null ) {
+	return mtphr_grid_render_display( $atts, $content );
+}
+add_shortcode( 'mtphr_grid_3', 'mtphr_grid_display_3' );
+
+function mtphr_grid_display_4( $atts, $content = null ) {
+	return mtphr_grid_render_display( $atts, $content );
+}
+add_shortcode( 'mtphr_grid_4', 'mtphr_grid_display_4' );
+
+function mtphr_grid_display_5( $atts, $content = null ) {
+	return mtphr_grid_render_display( $atts, $content );
+}
+add_shortcode( 'mtphr_grid_5', 'mtphr_grid_display_5' );
+
+if( !function_exists('mtphr_grid_render_display') ) {
+function mtphr_grid_render_display( $atts, $content = null ) {
 
 	// Set the defaults
 	$defaults = array(
 		'span' => 12,
 		'start' => false,
 		'end' => false,
-		'class' => ''
+		'class' => '',
+		'level' => 1
 	);
 
 	// Filter the defaults
@@ -43,13 +71,12 @@ function mtphr_grid_display( $atts, $content = null ) {
 
 	return $html;
 }
-add_shortcode( 'grid', 'mtphr_grid_display' );
-add_shortcode( 'mtphr_grid', 'mtphr_grid_display' );
+}
 
 
 
 /* --------------------------------------------------------- */
-/* !Create a post slider - 2.0.8 */
+/* !Create a post slider - 2.0.2 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_slider_display( $atts, $content = null ) {
@@ -176,6 +203,7 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 						
 						// Create the permalink w/query args
 						$permalink = ( $q_taxonomy && $q_terms ) ? add_query_arg( array('taxonomy' => $q_taxonomy, 'terms' => $q_terms), get_permalink() ) : remove_query_arg( array('taxonomy', 'terms'), get_permalink() );
+						$excerpt_more_text = $excerpt_more;
 						
 						$post = get_post( get_the_id() );
 						$post_type = $type;
@@ -185,12 +213,12 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 						if( $excerpt_length > 0 ) {
 
 							$links = array();
-							preg_match('/{(.*?)\}/s', $excerpt_more, $links);
+							preg_match('/{(.*?)\}/s', $excerpt_more_text, $links);
 							if( isset($links[0]) ) {
 								$more_link = '<a href="'.$permalink.'">'.$links[1].'</a>';
-								$excerpt_more = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more);
+								$excerpt_more_text = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more_text);
 							}
-							$excerpt = wp_html_excerpt( get_the_excerpt(), intval($excerpt_length) ).$excerpt_more;
+							$excerpt = wp_html_excerpt( get_the_excerpt(), intval($excerpt_length) ).$excerpt_more_text;
 						}
 
 						// Set the default content
@@ -240,10 +268,12 @@ add_shortcode( 'mtphr_post_slider', 'mtphr_post_slider_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a post block - 2.0.7 */
+/* !Create a post block - 2.0.2 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_block_display( $atts, $content = null ) {
+
+	global $mtphr_post_block_randomids;
 
 	// Set the defaults
 	$defaults = array(
@@ -291,6 +321,11 @@ function mtphr_post_block_display( $atts, $content = null ) {
 			);
 			$query_args['tax_query'] = array( $tax_query );
 		}
+		
+		// Make sure no random post blocks are the same
+		if( $orderby == 'rand' && is_array($mtphr_post_block_randomids) ) {
+			$query_args['post__not_in'] = $mtphr_post_block_randomids;
+		}
 
 	} else {
 
@@ -314,44 +349,57 @@ function mtphr_post_block_display( $atts, $content = null ) {
 	$html = '';
 
 	if ( $wp_query->have_posts() ) : while ( $wp_query->have_posts() ) : $wp_query->the_post();
-
-	if( $class != '' ) {
-		$class = ' '.$class;
-	}
-	if( $id != '' ) {
-		$type = get_post_type();
-	}
-
-	ob_start(); ?>
-
-	<?php if( $thumb_size != 'none' ) {
-		echo get_the_post_thumbnail( get_the_id(), $thumb_size );
-	} ?>
-
-	<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-
-	<?php
-	// Get the excerpt
-	$excerpt = '';
-	if( $excerpt_length > 0 ) {
-
-		$links = array();
-		preg_match('/{(.*?)\}/s', $excerpt_more, $links);
-		if( isset($links[0]) ) {
-			$more_link = '<a href="'.get_permalink().'">'.$links[1].'</a>';
-			$excerpt_more = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more);
+	
+		// Store the random ids
+		if( $orderby == 'rand' ) {
+			if( is_array($mtphr_post_block_randomids) ) {
+				$mtphr_post_block_randomids[] = get_the_id();
+			} else {
+				$mtphr_post_block_randomids = array( get_the_id() );
+			}
 		}
-		$excerpt = wp_html_excerpt( get_the_excerpt(), intval($excerpt_length) ).$excerpt_more;
-	}
-	?>
-	<p><?php echo $excerpt; ?></p>
-
-	<?php
-	$block = ob_get_clean();
-
-	$html .= '<div class="mtphr-post-block mtphr-post-block-'.$type.$class.'">';
-	$html .= apply_filters( "mtphr_{$type}_post_block", $block, $excerpt, $args );
-	$html .= '</div>';
+		
+		// Create the permalink w/query args
+		$permalink = get_permalink();
+		$excerpt_more_text = $excerpt_more;
+	
+		if( $class != '' ) {
+			$class = ' '.$class;
+		}
+		if( $id != '' ) {
+			$type = get_post_type();
+		}
+	
+		ob_start(); ?>
+	
+		<?php if( $thumb_size != 'none' ) {
+			echo get_the_post_thumbnail( get_the_id(), $thumb_size );
+		} ?>
+	
+		<h3><a href="<?php echo $permalink; ?>"><?php the_title(); ?></a></h3>
+	
+		<?php
+		// Get the excerpt
+		$excerpt = '';
+		if( $excerpt_length > 0 ) {
+	
+			$links = array();
+			preg_match('/{(.*?)\}/s', $excerpt_more_text, $links);
+			if( isset($links[0]) ) {
+				$more_link = '<a href="'.$permalink.'">'.$links[1].'</a>';
+				$excerpt_more_text = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more_text);
+			}
+			$excerpt = wp_html_excerpt( get_the_excerpt(), intval($excerpt_length) ).$excerpt_more_text;
+		}
+		?>
+		<p><?php echo $excerpt; ?></p>
+	
+		<?php
+		$block = ob_get_clean();
+	
+		$html .= '<div class="mtphr-post-block mtphr-post-block-'.$type.$class.'">';
+		$html .= apply_filters( "mtphr_{$type}_post_block", $block, $excerpt, $args, $permalink );
+		$html .= '</div>';
 
 	endwhile;
 	else :
@@ -369,7 +417,7 @@ add_shortcode( 'mtphr_post_block', 'mtphr_post_block_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a pricing table - 2.0.6 */
+/* !Create a pricing table - 2.0.2 */
 /* --------------------------------------------------------- */
 
 function mtphr_pricing_table_display( $atts, $content = null ) {
@@ -441,7 +489,7 @@ function mtphr_pricing_table_display( $atts, $content = null ) {
 	$html .= '<div class="mtphr-pricing-table-values">'.mtphr_shortcodes_parse_shortcode_content( $content ).'</div>';
 
 	if( $style != 'list' ) {
-		if( $button != '' ) {
+		if( $button != '' && $button != 'null' ) {
 			$button = apply_filters( 'mtphr_pricing_table_button', $button );
 			$html .= '<p class="mtphr-pricing-table-button"><a href="'.$link.'">'.$button.'</a></p>';
 		}

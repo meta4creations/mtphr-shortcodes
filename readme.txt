@@ -3,7 +3,7 @@ Contributors: metaphorcreations
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSERTX5M7NKES
 Tags: shortcodes, column grid, pricing tables, post sliders, post blocks, posts
 Requires at least: 3.2
-Tested up to: 3.8
+Tested up to: 3.8.1
 Stable tag: /trunk/
 License: GPL2
 
@@ -43,6 +43,13 @@ Documentation is coming soon!
 6. List pricing table sample.
 
 == Changelog ==
+
+= 2.0.2 =
+* Fixed excerpt more links in post slider & post blocks
+* Modified grid shortcode to allow for multiple levels of grid structure. I have added: mtphr_grid, mtphr_grid_2, mtphr_grid_3, mtphr_grid_4, or mtphr_grid_5. You must use a different shortcode for each level in order to render correctly.
+* You can now hide the pricing table button by passing "null" as the button attribute
+* Added code to make sure the same post block doesn't show up when displaying multiple randomly ordered post blocks
+* Set a delay on showing initial tabbed content to render correctly in Firefox
 
 = 2.0.10 =
 * Tabs shorcode bug fix
@@ -115,4 +122,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Bug fixe and updated translations.
+Multiple updates & bug fixes

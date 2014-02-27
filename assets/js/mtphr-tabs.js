@@ -1,9 +1,9 @@
 /**
  * Metaphor Tabs
- * Date: 7/17/2013
+ * Date: 2/27/2014
  *
  * @author Metaphor Creations
- * @version 1.0.1
+ * @version 2.0.2
  *
  **/
 
@@ -97,7 +97,9 @@
         settings.after_load.call(this, $tab_table);
 
         // Load the first tab
-        mtphr_tabs_display_content( 0 );
+        setTimeout( function() {
+        	mtphr_tabs_display_content( 0 );
+        }, 500);
 			});
 		}
 	};
