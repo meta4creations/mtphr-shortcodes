@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------- */
-/* !Create a grid block - 2.0.2 */
+/* !Create a grid block - 2.1.0 */
 /* --------------------------------------------------------- */
 
 function mtphr_grid_display( $atts, $content = null ) {
@@ -76,7 +76,7 @@ function mtphr_grid_render_display( $atts, $content = null ) {
 
 
 /* --------------------------------------------------------- */
-/* !Create a post slider - 2.0.2 */
+/* !Create a post slider - 2.1.0 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_slider_display( $atts, $content = null ) {
@@ -268,7 +268,7 @@ add_shortcode( 'mtphr_post_slider', 'mtphr_post_slider_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a post block - 2.0.2 */
+/* !Create a post block - 2.1.0 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_block_display( $atts, $content = null ) {
@@ -417,7 +417,7 @@ add_shortcode( 'mtphr_post_block', 'mtphr_post_block_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a pricing table - 2.0.2 */
+/* !Create a pricing table - 2.1.0 */
 /* --------------------------------------------------------- */
 
 function mtphr_pricing_table_display( $atts, $content = null ) {

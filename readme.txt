@@ -44,7 +44,7 @@ Documentation is coming soon!
 
 == Changelog ==
 
-= 2.0.2 =
+= 2.1.0 =
 * Fixed excerpt more links in post slider & post blocks
 * Modified grid shortcode to allow for multiple levels of grid structure. I have added: mtphr_grid, mtphr_grid_2, mtphr_grid_3, mtphr_grid_4, or mtphr_grid_5. You must use a different shortcode for each level in order to render correctly.
 * You can now hide the pricing table button by passing "null" as the button attribute
