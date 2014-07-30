@@ -101,14 +101,18 @@
 	margin: 2px;
 	text-decoration: none;
 	opacity: .5;
+	width: 20px;
+	height: 20px;
+	font-size: 16px;
+	border: 1px solid;
+	text-align: center;
+	padding: 5px;
+	line-height: 27px;
 }
 .mtphr-shortcode-gen-icon-group.active,
 .mtphr-shortcode-gen-icon-group.active {
 	color: #000 !important;
 	opacity: 1 !important;
-}
-.mtphr-shortcode-gen-icon-group i {
-	font-size: 24px;
 }
 .mtphr-shortcode-gen-icon-id {
 	display: none;

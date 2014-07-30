@@ -76,7 +76,7 @@ function mtphr_grid_render_display( $atts, $content = null ) {
 
 
 /* --------------------------------------------------------- */
-/* !Create a post slider - 2.1.0 */
+/* !Create a post slider - 2.1.1 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_slider_display( $atts, $content = null ) {
@@ -96,7 +96,8 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 		'class' => '',
 		'taxonomy' => false,
 		'terms' => '',
-		'operator' => 'IN'
+		'operator' => 'IN',
+		'tax_query' => false
 	);
 
 	// Filter the defaults
@@ -144,14 +145,42 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 			'post__not_in' => array( get_the_ID() ),
 			'tax_query' => array()
 		);
+		
+		// Setup taxonomy queries
+		$taxonomy_query = array();
+		if( $tax_query ) {
+
+			$query_taxes = explode('%%', $tax_query);
+			if( is_array($query_taxes) && count($query_taxes) > 0 ) {
+				foreach( $query_taxes as $i=>$query_tax ) {
+					if( $query_tax != '' ) {
+						$query_data = explode('|', $query_tax);
+						$tax = array(
+							'taxonomy' => isset($query_data[0]) ? $query_data[0] : false,
+							'field' => isset($query_data[3]) ? $query_data[3] : 'slug',
+							'terms' => isset($query_data[1]) ? explode(',', $query_data[1]) : false,
+							'operator' => isset($query_data[2]) ? $query_data[2] : false
+						);
+						$taxonomy_query[] = $tax;
+					}
+				}
+			}
+		} 
+		
 		if( $taxonomy && $terms ) {
-			$tax_query = array(
+			
+			$tax = array(
 				'taxonomy' => $taxonomy,
 				'field' => 'slug',
 				'terms' => explode(',', $terms),
 				'operator' => $operator
 			);
-			$query_args['tax_query'][] = $tax_query;
+			$taxonomy_query[] = $tax;
+		}
+		
+		// Add the taxonomy query, if there are some
+		if( count($taxonomy_query) > 0 ) {
+			$query_args['tax_query'] = $taxonomy_query;
 		}
 		
 		// Check for query args
@@ -215,10 +244,10 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 							$links = array();
 							preg_match('/{(.*?)\}/s', $excerpt_more_text, $links);
 							if( isset($links[0]) ) {
-								$more_link = '<a href="'.$permalink.'">'.$links[1].'</a>';
+								$more_link = apply_filters( 'mtphr_post_slider_excerpt_more_link', '<a class="mtphr-post-slider-excerpt-more-link" href="'.$permalink.'">'.$links[1].'</a>', $permalink, $links[1] );
 								$excerpt_more_text = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more_text);
 							}
-							$excerpt = wp_html_excerpt( get_the_excerpt(), intval($excerpt_length) ).$excerpt_more_text;
+							$excerpt = wp_html_excerpt( $post->post_content, intval($excerpt_length) ).'<span class="mtphr-post-slider-excerpt-more">'.$excerpt_more_text.'</span>';
 						}
 
 						// Set the default content
@@ -268,7 +297,7 @@ add_shortcode( 'mtphr_post_slider', 'mtphr_post_slider_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a post block - 2.1.0 */
+/* !Create a post block - 2.1.1 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_block_display( $atts, $content = null ) {
@@ -386,10 +415,10 @@ function mtphr_post_block_display( $atts, $content = null ) {
 			$links = array();
 			preg_match('/{(.*?)\}/s', $excerpt_more_text, $links);
 			if( isset($links[0]) ) {
-				$more_link = '<a href="'.$permalink.'">'.$links[1].'</a>';
+				$more_link = apply_filters( 'mtphr_post_block_excerpt_more_link', '<a class="mtphr-post-block-excerpt-more-link" href="'.$permalink.'">'.$links[1].'</a>', $permalink, $links[1] );
 				$excerpt_more_text = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more_text);
 			}
-			$excerpt = wp_html_excerpt( get_the_excerpt(), intval($excerpt_length) ).$excerpt_more_text;
+			$excerpt = wp_html_excerpt( $post->post_content, intval($excerpt_length) ).'<span class="mtphr-post-block-excerpt-more">'.$excerpt_more_text.'</span>';
 		}
 		?>
 		<p><?php echo $excerpt; ?></p>
@@ -664,7 +693,7 @@ add_shortcode( 'mtphr_toggle', 'mtphr_toggle_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create icons - 2.0.6 */
+/* !Create icons - 2.1.1 */
 /* --------------------------------------------------------- */
 
 function mtphr_icon_display( $atts, $content = null ) {
@@ -672,6 +701,7 @@ function mtphr_icon_display( $atts, $content = null ) {
 	// Set the defaults
 	$defaults = array(
 		'id' => '',
+		'prefix' => 'mtphr-shortcodes-ico',
 		'class' => '',
 		'style' => '',
 		'title' => '',
@@ -692,16 +722,18 @@ function mtphr_icon_display( $atts, $content = null ) {
 
 	$html = '';
 	if( $id != '' ) {
-		$html .= '<span class="metaphor-icon">';
+		$class = ( $class != '' ) ? sanitize_html_class( $class ) : '';
+		$class .= ( $link != '' ) ? ' metaphor-icon-linked' : '';
+		$html .= '<span class="metaphor-icon '.$class.'">';
 		if( $link != '' ) {
 			$link_class = ( $link_class != '' ) ? ' '.sanitize_html_class( $link_class ) : '';
 			$link_style = ( $link_style != '' ) ? ' style="'.sanitize_text_field($link_style).'"' : '';
 			$html .= '<a class="metaphor-icon-link mtphr-clearfix'.$link_class.'"'.$link_style.' href="'.esc_url($link).'" target="'.sanitize_text_field($target).'">';
 		}
-		$icon_class = 'mtphr-icon-'.$id;
-		$class = ( $class == '' ) ? sanitize_html_class( $icon_class ) : sanitize_html_class( $icon_class ).' '.sanitize_html_class( $class );
+		$icon_class = sanitize_html_class( $prefix.'-'.$id );
+		//$class = ( $class == '' ) ? sanitize_html_class( $icon_class ) : sanitize_html_class( $icon_class ).' '.sanitize_html_class( $class );
 		$style = ( $style != '' ) ? ' style="'.sanitize_text_field($style).'"' : '';
-		$html .= '<i class="'.$class.'"'.$style.'></i>';
+		$html .= '<i class="'.$icon_class.'"'.$style.'></i>';
 		if( $title != '' ) {
 			$title_class = ( $title_class != '' ) ? ' '.sanitize_html_class( $title_class ) : '';
 			$title_style = ( $title_style != '' ) ? ' style="'.sanitize_text_field($title_style).'"' : '';
@@ -712,7 +744,8 @@ function mtphr_icon_display( $atts, $content = null ) {
 		}
 		$html .= '</span>';
 	}
-
+	
+	$html = apply_filters( 'mtphr_icon_display', $html, $args );
 
 	return $html;
 }

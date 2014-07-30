@@ -3,7 +3,7 @@ Contributors: metaphorcreations
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSERTX5M7NKES
 Tags: shortcodes, column grid, pricing tables, post sliders, post blocks, posts
 Requires at least: 3.2
-Tested up to: 3.8.1
+Tested up to: 3.9.1
 Stable tag: /trunk/
 License: GPL2
 
@@ -43,6 +43,19 @@ Documentation is coming soon!
 6. List pricing table sample.
 
 == Changelog ==
+
+= 2.1.1 =
+* Moved custom class attribute for the icon shortcode from <i> tag to the outermost wrapper of the icon display
+* Added tax_query argument to post slider for multiple taxonomy filters
+* Modified excerpt creation for Post Blocks & Post Sliders
+* Added class to Post Block & Post Slider excerpts
+* Added class to Post Block & Post Slider excerpt more links
+* Added filter for the Post Block & Post Slider excerpt more links
+* Added custom class filter
+* Converted to new icon font
+* Added social icons to icon shortcode
+* Added "mtphr_icon_display" filter to metaphor icons
+* Added "prefix" argument for metaphor icon classes
 
 = 2.1.0 =
 * Fixed excerpt more links in post slider & post blocks
@@ -122,4 +135,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Multiple updates & bug fixes
+Multiple updates & bug fixes. See changelog.
