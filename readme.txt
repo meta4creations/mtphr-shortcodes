@@ -44,6 +44,9 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 2.1.2 =
+* Added additional filters to the Metaphor Grid shortcode
+
 = 2.1.1 =
 * Moved custom class attribute for the icon shortcode from <i> tag to the outermost wrapper of the icon display
 * Added tax_query argument to post slider for multiple taxonomy filters
@@ -135,4 +138,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Multiple updates & bug fixes. See changelog.
+Added additional filters to the Metaphor Grid shortcode.

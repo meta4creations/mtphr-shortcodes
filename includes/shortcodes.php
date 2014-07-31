@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------- */
-/* !Create a grid block - 2.1.0 */
+/* !Create a grid block - 2.1.2 */
 /* --------------------------------------------------------- */
 
 function mtphr_grid_display( $atts, $content = null ) {
@@ -38,6 +38,7 @@ function mtphr_grid_render_display( $atts, $content = null ) {
 		'span' => 12,
 		'start' => false,
 		'end' => false,
+		'row_class' => '',
 		'class' => '',
 		'level' => 1
 	);
@@ -52,21 +53,52 @@ function mtphr_grid_render_display( $atts, $content = null ) {
 	// Set the responsiveness of the grid
 	$settings = mtphr_shortcodes_settings();
 	$row = apply_filters( 'mtphr_shortcodes_responsive_grid', $settings['responsive'] );
-	$row_class = $row ? 'mtphr-shortcodes-row-responsive' : 'mtphr-shortcodes-row';
 
 	// Check for nested shortcode
 	$content = mtphr_shortcodes_parse_shortcode_content( $content );
 
 	$html ='';
 	if( $start ) {
-		$html .= '<div class="'.$row_class.'">';
+	
+		// Set the row class
+		$row_classes = array();
+		$row_classes[] = $row ? 'mtphr-shortcodes-row-responsive' : 'mtphr-shortcodes-row';
+		
+		if( !empty( $row_class ) ) {
+			if( !is_array( $row_class ) ) {
+				$row_class = preg_split( '#\s+#', $row_class );
+			}
+			$row_classes = array_merge( $row_classes, $row_class );
+		} else {
+			// Ensure that we always coerce class to being an array.
+			$row_class = array();
+		}
+	
+		$row_classes = array_map( 'esc_attr', $row_classes );
+	
+		$html .= apply_filters( 'mtphr_grid_row_open', '<div class="'.join( ' ', $row_classes ).'">', $row_classes, $args );
 	}
-	if( $class != '' ) {
-		$class = ' '.$class;
+	
+	// Set the grid class
+	$classes = array();
+	$classes[] = 'mtphr-shortcodes-grid'.$span;
+	
+	if( !empty( $class ) ) {
+		if( !is_array( $class ) ) {
+			$class = preg_split( '#\s+#', $class );
+		}
+		$classes = array_merge( $classes, $class );
+	} else {
+		// Ensure that we always coerce class to being an array.
+		$class = array();
 	}
-	$html .= '<div class="mtphr-shortcodes-grid'.$span.$class.'">'.$content.'</div>';
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	$html .= apply_filters( 'mtphr_grid_block', '<div class="'.join( ' ', $classes ).'">'.$content.'</div>', $content, $classes, $args );
+	
 	if( $end ) {
-		$html .= '</div>';
+		$html .= apply_filters( 'mtphr_grid_row_close', '</div>', $args );
 	}
 
 	return $html;
