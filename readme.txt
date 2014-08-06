@@ -3,7 +3,7 @@ Contributors: metaphorcreations
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSERTX5M7NKES
 Tags: shortcodes, column grid, pricing tables, post sliders, post blocks, posts
 Requires at least: 3.2
-Tested up to: 3.9.1
+Tested up to: 3.9.2
 Stable tag: /trunk/
 License: GPL2
 
@@ -43,6 +43,9 @@ Documentation is coming soon!
 6. List pricing table sample.
 
 == Changelog ==
+
+= 2.1.3 =
+* Fixed excerpt output of post blocks
 
 = 2.1.2 =
 * Added additional filters to the Metaphor Grid shortcode
@@ -138,4 +141,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Added additional filters to the Metaphor Grid shortcode.
+Fixed excerpt output of post blocks.

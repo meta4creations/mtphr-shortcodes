@@ -108,7 +108,7 @@ function mtphr_grid_render_display( $atts, $content = null ) {
 
 
 /* --------------------------------------------------------- */
-/* !Create a post slider - 2.1.1 */
+/* !Create a post slider - 2.1.3 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_slider_display( $atts, $content = null ) {
@@ -279,7 +279,9 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 								$more_link = apply_filters( 'mtphr_post_slider_excerpt_more_link', '<a class="mtphr-post-slider-excerpt-more-link" href="'.$permalink.'">'.$links[1].'</a>', $permalink, $links[1] );
 								$excerpt_more_text = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more_text);
 							}
-							$excerpt = wp_html_excerpt( $post->post_content, intval($excerpt_length) ).'<span class="mtphr-post-slider-excerpt-more">'.$excerpt_more_text.'</span>';
+							$the_content = get_the_content();
+							$the_content = preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', $the_content);
+							$excerpt = wp_html_excerpt( $the_content, intval($excerpt_length) ).'<span class="mtphr-post-slider-excerpt-more">'.$excerpt_more_text.'</span>';
 						}
 
 						// Set the default content
@@ -329,7 +331,7 @@ add_shortcode( 'mtphr_post_slider', 'mtphr_post_slider_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a post block - 2.1.1 */
+/* !Create a post block - 2.1.3 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_block_display( $atts, $content = null ) {
@@ -411,6 +413,8 @@ function mtphr_post_block_display( $atts, $content = null ) {
 
 	if ( $wp_query->have_posts() ) : while ( $wp_query->have_posts() ) : $wp_query->the_post();
 	
+		$post = get_post( get_the_id() );
+	
 		// Store the random ids
 		if( $orderby == 'rand' ) {
 			if( is_array($mtphr_post_block_randomids) ) {
@@ -450,7 +454,9 @@ function mtphr_post_block_display( $atts, $content = null ) {
 				$more_link = apply_filters( 'mtphr_post_block_excerpt_more_link', '<a class="mtphr-post-block-excerpt-more-link" href="'.$permalink.'">'.$links[1].'</a>', $permalink, $links[1] );
 				$excerpt_more_text = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more_text);
 			}
-			$excerpt = wp_html_excerpt( $post->post_content, intval($excerpt_length) ).'<span class="mtphr-post-block-excerpt-more">'.$excerpt_more_text.'</span>';
+			$the_content = get_the_content();
+			$the_content = preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', $the_content);
+			$excerpt = wp_html_excerpt( $the_content, intval($excerpt_length) ).'<span class="mtphr-post-block-excerpt-more">'.$excerpt_more_text.'</span>';
 		}
 		?>
 		<p><?php echo $excerpt; ?></p>
