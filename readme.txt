@@ -45,7 +45,7 @@ Documentation is coming soon!
 == Changelog ==
 
 = 2.1.4 =
-* Added plugin to GitHub
+* Added plugin to GitHub 
 
 = 2.1.3 =
 * Fixed excerpt output of post blocks
