@@ -28,16 +28,17 @@
 						$navigation = $slider.find('.mtphr-post-slider-navigation'),
 						$prev = $navigation.children('.mtphr-post-slider-prev'),
 						$next = $navigation.children('.mtphr-post-slider-next'),
-						posts = $slider.find( '.mtphr-post-slider-block' );
+						posts = $slider.find( '.mtphr-post-slider-block' ),
+						nav_visible = true;
 
 				// Useful variables.
         var vars = {
-        	slider_width					: $slider.outerWidth(),
+        	slider_width					: 0,
         	slider_position				: 0,
         	slider_current				: 0,
         	slide_count						: 0,
-	        post_width						: $(posts[0]).outerWidth(),
-	        post_margin						: parseInt($(posts[0]).css('marginRight').substr(0, $(posts[0]).css('marginRight').length-2)),
+	        post_width						: 0,
+	        post_margin						: 0,
 	        total_posts						: posts.length,
 	        content_width					: 0,
 	        min_position					: 0
@@ -46,30 +47,45 @@
 				// Add the vars
 				$slider.data('slider:vars', vars);
 
-				// Save vars
-				vars.content_width = (vars.total_posts*(vars.post_width+vars.post_margin));
-				vars.min_position = vars.slider_width-(vars.content_width-vars.post_margin);
-				if( vars.min_position > 0 ) {
-					vars.min_position = 0;
-				}
+				
+				/* --------------------------------------------------------- */
+				/* !Set the content width and min position */
+				/* --------------------------------------------------------- */
+				
+				function mtphr_post_slider_content_width() {
 
-				// Set the content width
-				$content.css('width', vars.content_width+'px');
-
-				$slider.find( '.mtphr-post-slider-block' ).each( function(index) {
-					$(this).delay(index*200).fadeIn();
-				});
-
-				// Remove the nav if less than 2 posts
-				if( vars.num_posts < 2 ) {
-					$navigation.remove();
+					// Save vars
+					vars.slider_width = $slider.outerWidth();
+					vars.post_width = $(posts[0]).outerWidth();
+					vars.post_margin = parseInt($(posts[0]).css('marginRight').substr(0, $(posts[0]).css('marginRight').length-2));
+					vars.content_width = (vars.total_posts*(vars.post_width+vars.post_margin));
+					vars.min_position = vars.slider_width-(vars.content_width-vars.post_margin);
+					if( vars.min_position > 0 ) {
+						vars.min_position = 0;
+					}
+					
+					$content.css('width', vars.content_width+'px');
 				}
 				
-				// Set the slide count
-				mtphr_post_slider_slide_count();
-
-				// Position the slider
-				mtphr_post_slider_position();
+				
+				/* --------------------------------------------------------- */
+				/* !Set the navigation positions */
+				/* --------------------------------------------------------- */
+				function mtphr_post_slider_navigation() {
+					
+					if( nav_visible ) {						
+						if( vars.slider_width >= (vars.content_width-vars.post_margin) ) {
+							$navigation.fadeOut();
+						}
+						nav_visible = false;
+					} else {
+						if( vars.slider_width < (vars.content_width-vars.post_margin) ) {
+							$navigation.fadeIn();
+						}
+						nav_visible = true;
+					}
+				}
+				
 
 				/**
 				 * Find the closest post to the left
@@ -182,19 +198,27 @@
 		     */
 		    $(window).resize( function() {
 
-			    vars.slider_width = $slider.outerWidth();
-			    vars.min_position = vars.slider_width-(vars.content_width-vars.post_margin);
-			    if( vars.min_position > 0 ) {
-						vars.min_position = 0;
-					}
-
-			    // Reset the position
+					mtphr_post_slider_content_width();
+			    mtphr_post_slider_navigation();
 			    mtphr_post_slider_slide_count();
 			    mtphr_post_slider_position();
 		    });
+		     
+		    // Set the content width and min position
+				mtphr_post_slider_content_width();
+				
+				$slider.find( '.mtphr-post-slider-block' ).each( function(index) {
+					$(this).delay(index*200).fadeIn();
+				});
 
+				// Set the navigation visibility
+				mtphr_post_slider_navigation();
+				
+				// Set the slide count
+				mtphr_post_slider_slide_count();
 
-
+				// Position the slider
+				mtphr_post_slider_position();
 
 		    // Trigger the afterLoad callback
         settings.after_load.call(this, $slider);
