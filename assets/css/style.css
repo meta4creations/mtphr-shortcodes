@@ -448,10 +448,6 @@
 .mtphr-tabs-container td.mtphr-tab-content-text {
 	padding-left: 20px;
 }
-.mtphr-tab-content p:last-child,
-.mtphr-tab-content-text p:last-child {
-	/* margin-bottom: 0; */
-}
 
 /* Toggles
 ------------------------------------------------------------ */

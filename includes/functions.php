@@ -8,29 +8,6 @@
 
 
 /**
- * Return a value from the options table if it exists,
- * or return a default value
- *
- * @since 2.0.3
- */
-function mtphr_shortcodes_settings() {
-
-	// Get the options
-	$settings = get_option( 'mtphr_shortcodes_settings', array() );
-
-	$defaults = array(
-		'responsive' => false,
-		'slide_speed' => 500
-	);
-	$defaults = apply_filters( 'mtphr_shortcodes_default_settings', $defaults );
-
-	return wp_parse_args( $settings, $defaults );
-}
-
-
-
-
-/**
  * Parse the shortcode content
  *
  * @since 1.0.0

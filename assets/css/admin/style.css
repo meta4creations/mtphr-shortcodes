@@ -1,0 +1,400 @@
+/* --------------------------------------------------------- */
+/* !General */
+/* --------------------------------------------------------- */
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: " ";
+}
+.clearfix:after {
+  clear: both;
+}
+
+/* --------------------------------------------------------- */
+/* !Settings pages */
+/* --------------------------------------------------------- */
+
+.plugins_page_mtphr_shortcodes_settings .form-table td {
+	background: #FFF;
+}
+.plugins_page_mtphr_shortcodes_settings .subsubsub {
+	float: none;
+}
+.plugins_page_mtphr_shortcodes_settings .form-table {
+	max-width: 1000px;
+	border: 1px solid #dfdfdf;
+	margin-top: 0;
+	margin-bottom: 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.plugins_page_mtphr_shortcodes_settings .form-table > tbody > tr > th {
+	background: #fefefe;
+	border-right: 1px solid #dfdfdf;
+	border-bottom: 1px solid #f7f7f7;
+	padding-left: 10px;
+}
+.plugins_page_mtphr_shortcodes_settings .form-table > tbody > tr > td {
+	border-bottom: 1px solid #f7f7f7;
+}
+.plugins_page_mtphr_shortcodes_settings .form-table > tbody > tr:last-child th,
+.plugins_page_mtphr_shortcodes_settings .form-table > tbody > tr:last-child td {
+	border-bottom: none;
+}
+.plugins_page_mtphr_shortcodes_settings #wpbody-content h3 {
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+	max-width: 1000px;
+	background: #fafafa;
+	border: 1px solid #dfdfdf;
+	border-bottom-width: 0;
+	padding: 10px;
+	margin-bottom: 0;
+}
+.plugins_page_mtphr_shortcodes_settings #wpbody-content h3 input {
+	float: right;
+	font-weight: normal;
+	margin-top: -4px;
+}
+.plugins_page_mtphr_shortcodes_settings #wpbody-content h3 + p {
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+	max-width: 1000px;
+	background: #fafafa;
+	border: 1px solid #dfdfdf;
+	border-top-width: 0;
+	border-bottom-width: 0;
+	padding: 0 10px 10px;
+	margin: 0;
+}
+.plugins_page_mtphr_shortcodes_settings textarea {
+	width: 100%;
+}
+.plugins_page_mtphr_shortcodes_settings #wpbody-content .postbox {
+	margin-bottom: 10px;
+}
+.plugins_page_mtphr_shortcodes_settings #wpbody-content .postbox h3 {
+	font-size: 14px;
+	border: none;
+}
+.plugins_page_mtphr_shortcodes_settings #wpbody-content .postbox p {
+	font-size: 13px;
+	margin-bottom: 15px;
+}
+.plugins_page_mtphr_shortcodes_settings #wpbody-content .postbox .inside {
+	padding-bottom: 3px;
+}
+
+
+/* --------------------------------------------------------- */
+/* !Table */
+/* --------------------------------------------------------- */
+
+.mtphr-shortcodes-table {
+	width: 100%;
+	border-spacing: 0;
+	font-size: 13px;
+}
+.mtphr-shortcodes-table > tbody > tr > td {
+	text-align: left;
+	vertical-align: top;
+	border-bottom: 1px solid #f7f7f7;
+	padding: 10px 2px;
+}
+.mtphr-shortcodes-table > tbody > tr:first-child > td {
+	border-top: 1px solid #dfdfdf;
+}
+.mtphr-shortcodes-table > tbody > tr:last-child > td,
+.mtphr-shortcodes-table > tbody > tr:last-child > td.mtphr-shortcodes-label {
+	border-bottom-color: #dfdfdf;
+}
+.mtphr-shortcodes-table > tbody > tr > td.mtphr-shortcodes-label {
+	width: 20%;
+	max-width: 200px;
+	background: #fefefe;
+	border-left: 1px solid #dfdfdf;
+	border-right: 1px solid #dfdfdf;
+	border-bottom: 1px solid #f7f7f7;
+}
+.mtphr-shortcodes-table > tbody > tr > td:last-child,
+.mtphr-shortcodes-table > tbody > tr > td.mtphr-shortcodes-label {
+	border-right: 1px solid #dfdfdf;
+}
+.mtphr-shortcodes-table > tbody > tr > td:first-child,
+.mtphr-shortcodes-table > tbody > tr > td.mtphr-shortcodes-label + td {
+	padding-left: 10px;
+}
+.mtphr-shortcodes-table > tbody > tr > td:last-child,
+.mtphr-shortcodes-table > tbody > tr > td.mtphr-shortcodes-label {
+	padding-right: 10px;
+}
+.mtphr-shortcodes-table label {
+	display: inline-block;
+	margin: 0 10px 10px 0;
+}
+.mtphr-shortcodes-table label.checkbox-label {
+	font-weight: normal;
+	margin: 0;
+}
+.mtphr-shortcodes-table input[type="text"],
+.mtphr-shortcodes-table textarea {
+	/* width: 100%; */
+}
+.mtphr-shortcodes-table input[type="number"] {
+	width: 60px;
+}
+.mtphr-shortcodes-table .mceIframeContainer {
+	background: #FFF;
+}
+.mtphr-shortcodes-label-alt {
+	display: block;
+	width: auto;
+	padding-right: none !important;
+	margin-bottom: 5px;
+}
+.mtphr-shortcodes-label label,
+.mtphr-shortcodes-label-alt label {
+	display: block;
+	font-weight: bold;
+	font-size: 12px;
+	margin: 0;
+}
+.mtphr-shortcodes-label small,
+.mtphr-shortcodes-label-alt small {
+	display: block;
+	font-size: 10px;
+	line-height: 13px;
+	font-style: italic;
+	font-weight: normal;
+}
+.mtphr-shortcodes-radio,
+.mtphr-shortcodes-table label.mtphr-shortcodes-radio {
+	font-weight: normal;
+	margin-right: 8px;
+	margin-left: 2px;
+}
+.mtphr-shortcodes-radio input,
+.mtphr-shortcodes-table label.mtphr-shortcodes-radio input {
+	margin-top: -1px;
+	margin-right: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+#add_mtphr_shortcode {
+	padding-left: .4em;
+}
+#add_mtphr_shortcode .wp-media-buttons-icon {
+	width: 21px;
+	background: url(../../images/mtphr-shortcodes-icon.png) no-repeat;
+	margin-top: 1px;
+}
+#icon-mtphr-shortcodes {
+	background: url(../../images/mtphr-shortcodes-icon-32.png) no-repeat;
+	margin-top: 8px;
+}
+
+.mtphr-shortcode-gen-content {
+	/*
+background: #EEE;
+	border: 1px solid #DDD;
+	padding: 15px;
+*/
+	margin: 20px 15px 10px 15px;
+	/*
+-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+*/
+}
+.mtphr-shortcode-gen-content.minimal {
+	background: none;
+	border: none;
+	padding: 0;
+	margin: 20px 15px 10px 15px;
+}
+.mtphr-shortcode-gen-clone {
+	background: #EEE;
+	border: 1px solid #DDD;
+	padding: 15px;
+	margin-bottom: 10px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+.mtphr-shortcode-gen-clone:last-child {
+	margin-bottom: 0;
+}
+.mtphr-shortcode-gen-attribute {
+	margin-bottom: 10px;
+}
+.mtphr-shortcode-gen-attribute label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 2px;
+}
+.mtphr-shortcode-gen-attribute label small {
+	font-weight: normal;
+}
+.mtphr-shortcode-gen-attribute .description {
+	display: block;
+	font-size: 11px;
+	margin-bottom: 2px;
+}
+
+
+/* --------------------------------------------------------- */
+/* !Shortcode generator */
+/* --------------------------------------------------------- */
+
+.mtphr-shortcode-gen {
+	background: #FAFAFA;
+	padding: 10px;
+	border-radius: 3px;
+}
+.mtphr-shortcode-gen-group-select-container {
+  margin-bottom: 10px;
+}
+.mtphr-shortcode-gen-select-container {
+  margin: -3px
+}
+.mtphr-shortcode-gen-select {
+	float: left;
+  display: block;
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  text-decoration: none;
+  color: #777;
+  background: #FEFEFE;
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 3px;
+  
+  -webkit-transition: background-color .25s ease, border-color .25s ease, color .25s ease;  
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease; 
+}
+.mtphr-shortcode-gen-select.active {
+	background-color: #01BAD4;
+	border-color: #01BAD4;
+	color: #FFF;
+}
+.mtphr-shortcode-gen-select i {
+  display: block;
+  font-size: 30px;
+  margin: 10px 0 10px;
+}
+.mtphr-shortcode-gen-select span {
+  display: block;
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+
+/* --------------------------------------------------------- */
+/* !Modals */
+/* --------------------------------------------------------- */
+
+.mtphr-shortcodes-modal-backdrop {
+	display: none;
+}
+.mtphr-shortcodes-modal {
+	display: none;
+}
+.mtphr-shortcodes-modal * {
+	box-sizing: border-box;
+}
+.mtphr-shortcodes-frame-title {
+	left: 0;
+}
+.mtphr-shortcodes-frame-content {
+	left: 0;
+	top: 60px;
+}
+
+
+/* --------------------------------------------------------- */
+/* !Icon selects */
+/* --------------------------------------------------------- */
+
+#mtphr-shortcodes-icon-filter {
+	position: relative;
+}
+#mtphr-shortcodes-icon-filter input {
+	float: right;
+	max-width: 200px;
+	padding-right: 28px;
+}
+#mtphr-shortcodes-icon-filter a {
+	display: none;
+	position: absolute;
+	right: 11px;
+	top: 50%;
+	color: #727272;
+	text-decoration: none;
+	margin-top: -8px;
+}
+#mtphr-shortcodes-icon-filter a:hover {
+	color: #444;
+}
+
+
+
+/* --------------------------------------------------------- */
+/* !Icon selects */
+/* --------------------------------------------------------- */
+
+#mtphr-shortcodes-icon-selects {
+	text-align: center;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.mtphr-shortcodes-icon-select {
+	position: relative;
+	display: inline-block;
+	width: 55px;
+	height: 55px;
+	font-size: 25px;
+	line-height: 60px;
+	color: #444;
+	text-align: center;
+	text-decoration: none;
+	margin: 5px;
+	overflow: hidden;
+	border: 1px solid #eaedf0;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	
+	-webkit-transition: border .2s;
+	-moz-transition: border .2s;
+	-o-transition: border .2s;
+	-ms-transition: border .2s;
+	transition: border .2s;
+}
+.mtphr-shortcodes-icon-select:hover {
+	color: #444;
+	background: #f7f7f7;
+	border-color: #a0a0a0;
+}
+.mtphr-shortcodes-icon-select.active {
+	-webkit-box-shadow: inset 0 0 0 1px #fbde4a;
+	box-shadow: inset 0 0 0 1px #fbde4a;
+	border-color: #fbde4a;
+	background: #fffcf2;
+}
+.mtphr-shortcodes-icon-group-title {
+	text-align: left;
+}

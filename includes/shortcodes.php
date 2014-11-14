@@ -108,10 +108,12 @@ function mtphr_grid_render_display( $atts, $content = null ) {
 
 
 /* --------------------------------------------------------- */
-/* !Create a post slider - 2.1.3 */
+/* !Create a post slider - 2.2.0 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_slider_display( $atts, $content = null ) {
+
+	$settings = mtphr_shortcodes_settings();
 
 	// Set the defaults
 	$defaults = array(
@@ -129,7 +131,10 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 		'taxonomy' => false,
 		'terms' => '',
 		'operator' => 'IN',
-		'tax_query' => false
+		'tax_query' => false,
+		'id' => md5(uniqid(rand(), true)),
+		'slide_speed' => intval($settings['slide_speed']),
+		'slide_ease' => sanitize_text_field($settings['slide_ease'])
 	);
 
 	// Filter the defaults
@@ -143,7 +148,7 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 	if( $post_type == 'custom' ) {
 
 		ob_start(); ?>
-		<div class="mtphr-post-slider mtphr-post-slider-<?php echo $type; ?> mtphr-clearfix <?php echo esc_attr($class); ?>">
+		<div id="mtphr-post-slider-<?php echo $id; ?>" class="mtphr-post-slider mtphr-post-slider-<?php echo $type; ?> mtphr-clearfix <?php echo esc_attr($class); ?>">
 
 			<div class="mtphr-post-slider-header mtphr-clearfix">
 				<?php if( $title != '' ) { ?>
@@ -242,8 +247,8 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 		if ( $wp_query->have_posts() ) :
 
 			ob_start(); ?>
-			<div class="mtphr-post-slider mtphr-post-slider-<?php echo $type; ?> mtphr-clearfix <?php echo esc_attr($class); ?>">
-
+			<div id="mtphr-post-slider-<?php echo $id; ?>" class="mtphr-post-slider mtphr-post-slider-<?php echo $type; ?> mtphr-clearfix <?php echo esc_attr($class); ?>">
+			
 				<div class="mtphr-post-slider-header mtphr-clearfix">
 					<?php if( $title != '' ) { ?>
 						<?php echo apply_filters( 'mtphr_post_slider_title', '<h3 class="mtphr-post-slider-title">'.$title.'</h3>', $args ); ?>
@@ -321,7 +326,10 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 
 	// Add the global variable
 	global $mtphr_post_slider;
-	$mtphr_post_slider = true;
+	$mtphr_post_slider['mtphr-post-slider-'.$id] = array(
+		'slide_speed' => $slide_speed,
+		'slide_ease' => $slide_ease
+	);
 
 	return $html;
 }
@@ -625,10 +633,12 @@ add_shortcode( 'mtphr_slide_graph', 'mtphr_slide_graph_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a tabbed area - 2.0.10 */
+/* !Create a tabbed area - 2.2.0 */
 /* --------------------------------------------------------- */
 
 function mtphr_tab_display( $atts, $content = null ) {
+
+	$settings = mtphr_shortcodes_settings();
 
 	// Set the defaults
 	$defaults = array(
@@ -637,7 +647,10 @@ function mtphr_tab_display( $atts, $content = null ) {
 		'image_width' => 100,
 		'image_alt' => '',
 		'start' => false,
-		'end' => false
+		'end' => false,
+		'id' => md5(uniqid(rand(), true)),
+		'tab_speed' => intval($settings['tab_speed']),
+		'tab_ease' => sanitize_text_field($settings['tab_ease'])
 	);
 
 	// Filter the defaults
@@ -649,9 +662,9 @@ function mtphr_tab_display( $atts, $content = null ) {
 
 	$html = '';
 	if( $start ) {
-		$html .= '<table class="mtphr-tabs-container"><tr>';
+		$html .= '<table id="mtphr-tabs-'.$id.'" class="mtphr-tabs mtphr-tabs-container"><tr class="mtphr-tabs-links">';
 	}
-	$tab_content = '<div class="mtphr-tab-content"><table><tr>';
+	$tab_content = '<div class="mtphr-tab-content mtphr-tabs-content"><table><tr>';
 	if( $image ) {
 		$tab_content .= '<td class="mtphr-tab-content-image" style="width:'.intval($image_width).'px"><img src="'.sanitize_text_field($image).'" width="'.intval($image_width).'" alt="'.sanitize_text_field($title).'" /></td>';
 		$tab_content .= '<td class="mtphr-tab-content-text">'.mtphr_shortcodes_parse_shortcode_content( $content ).'</td>';
@@ -661,12 +674,18 @@ function mtphr_tab_display( $atts, $content = null ) {
 	$tab_content .= '</tr></table></div>';
 	$html .= '<td class="mtphr-tab-link"><a href="#" rel="nofollow">'.sanitize_text_field($title).'</a>'.$tab_content.'</td>';
 	if( $end ) {
-		$html .= '</tr><tr><td class="mtphr-tab-content-container" colspan="1"></td></tr></table>';
+		$html .= '</tr><tr><td class="mtphr-tab-content-container mtphr-tabs-content-container" colspan="1"><div class="mtphr-tabs-content-container-inner"></div></td></tr></table>';
 	}
 
+	
 	// Add the global variable
-	global $mtphr_tabs;
-	$mtphr_tabs = true;
+	if( $start ) {
+		global $mtphr_tabs;
+		$mtphr_tabs['mtphr-tabs-'.$id] = array(
+			'tab_speed' => $tab_speed,
+			'tab_ease' => $tab_ease
+		);
+	}
 
 	return $html;
 }

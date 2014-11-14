@@ -129,7 +129,7 @@
 
 					$content.stop().animate( {
 						marginLeft: position+'px'
-					}, settings.slide_speed, 'easeOutExpo', function() {
+					}, settings.slide_speed, settings.slide_ease, function() {
 						// Animation complete.
 					});
 

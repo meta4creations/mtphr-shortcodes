@@ -44,6 +44,13 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 2.2.0 =
+* Complete overhaul of shortcode generator
+* Added post slider easing option on settings page
+* Added slide_speed, slide_ease, and id attributes to post slider shortcode
+* Fixed and modified tabs shortcode,
+* Added tab_speed, tab_ease, and id attributes to tabs shortcode
+
 = 2.1.5 =
 * Modified post slider js to show/hide navigation dynamically depending on browser width
 
@@ -147,4 +154,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Modified post slider js to show/hide navigation dynamically depending on browser width.
+Complete overhaul of shortcode generator. Other updates.

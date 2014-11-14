@@ -10,32 +10,21 @@
 
 jQuery( document ).ready( function($) {
 
-	$(window).resize( function() {
-		mtphr_shortcode_generate_resize();
-	});
-	function mtphr_shortcode_generate_resize() {
-		var $window = $('#TB_window'),
-				$content = $('.mtphr-shortcode-gen-content'),
-				w = $window.width(),
-				h = $window.height();
 
-
-		if( $content.length > 0 ) {
-			$window.css('overflow', 'hidden');
-			$window.find('#TB_ajaxContent').outerWidth(w);
-			$window.find('#TB_ajaxContent').outerHeight(h);
-		}
-	}
-
+	var $button = $('.mtphr-shortcodes-modal-submit');
+		
 
 	/* --------------------------------------------------------- */
-	/* !Shortcode generator initialize - 2.0.5 */
+	/* !Shortcode generator initialize - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	$('body').on('mtphr_shortcode_generator_init', function() {
 
-		var $container = jQuery('.mtphr-shortcode-gen-container'),
+		var $container = $('.mtphr-shortcode-gen'),
 				shortcode = $container.children('input.shortcode').val();
+		
+		// Make sure the button is disabled
+		$button.attr('disabled', 'disabled');
 
 		switch( shortcode ) {
 			case 'mtphr_grid':
@@ -63,17 +52,15 @@ jQuery( document ).ready( function($) {
 				mtphr_shortcode_generate_mtphr_icon_init( $container );
 				break;
 		}
-
-		mtphr_shortcode_generate_resize();
 	});
 
 	/* --------------------------------------------------------- */
-	/* !Shortcode generator trigger - 2.0.5 */
+	/* !Shortcode generator trigger - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	$('body').on('mtphr_shortcode_generator_value', function() {
 
-		var $container = jQuery('.mtphr-shortcode-gen-container'),
+		var $container = jQuery('.mtphr-shortcode-gen'),
 				shortcode = $container.children('input.shortcode').val();
 
 		switch( shortcode ) {
@@ -107,56 +94,72 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_grid init - 2.0.5 */
+	/* !mtphr_grid init - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_grid_init( $container ) {
 
-		var $button = $('.mtphr-shortcode-gen-insert-button'),
-				select = '<select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option selected="selected">12</option></select>';
+		var	$grid_container = $container.find('.mtphr-shortcode-gen-grid-container');
+				column = '<div><select class="mtphr-ui-select"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option selected="selected">12</option></select></div>';
 
-		// Add the first select
-		$container.append( $(select).val('6').css('width','49%') );
-		$container.append( $(select).val('6').css('width','49%') );
-		$button.show();
+		// Add the first column
+		var $new_column = $(column).addClass('col-sm-6');
+		$new_column.children('select').val('6');
+		$grid_container.append( $new_column );
+		
+		// Add the second column
+		var $new_column = $(column).addClass('col-sm-6');
+		$new_column.children('select').val('6');
+		$grid_container.append( $new_column );
+		
+		$button.removeAttr('disabled');
 
 		$container.find('select').live( 'change', function() {
+			
+			var selects = $container.find('select'),
+					$current = $(this),
+					total = parseInt($(this).val());
+			
+			$(this).parent().attr('class', 'col-sm-'+total);
 
-			var val = $(this).val();
-			$(this).css('width',(parseInt((val/12)*100)-1)+'%')
-
-			var total = 0;
-			$container.find('select').each( function(index) {
-				if( total >= 12 ) {
-					$(this).remove();
-				} else {
-					var new_total = total + parseInt($(this).val());
-					if( new_total > 12 ) {
-						var val = 12-total;
-						$(this).val(val).css('width',(parseInt((val/12)*100)-1)+'%');
-						total = 12;
+			selects.each( function(index) {
+			
+				if( this !== $current.get(0) ) {
+					if( total >= 12 ) {
+						$(this).parent().remove();
 					} else {
-						total = new_total;
+						var new_total = total + parseInt($(this).val());
+						if( new_total > 12 ) {
+							var val = 12-total;
+							$(this).val(val);
+							$(this).parent().attr('class', 'col-sm-'+val);
+							total = 12;
+						} else {
+							total = new_total;
+						}
 					}
 				}
 			});
 
 			if( total < 12 ) {
-				var val = 12-total;
-				$container.append( $(select).val(val).css('width',(parseInt((val/12)*100)-1)+'%') );
+				var val = 12-total,
+				$new_column = $(column).addClass('col-sm-'+val);
+				
+				$new_column.children('select').val(val);
+				$grid_container.append( $new_column );
 				total = 12;
 			}
 
 			if( total == 12 ) {
-				$button.show();
+				$button.removeAttr('disabled');
 			} else {
-				$button.hide();
+				$button.attr('disabled', 'disabled');
 			}
 		});
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_grid value - 2.0.5 */
+	/* !mtphr_grid value - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_grid_value( $container ) {
@@ -179,28 +182,61 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_post_slider init - 2.0.5 */
+	/* !mtphr_post_slider init - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_post_slider_init( $container ) {
 
-		var $button = $('.mtphr-shortcode-gen-insert-button')
+		var $type = $container.find('select[name="type"]'),
 				$taxonomy = $container.find('select[name="taxonomy"]'),
-				$set_1 = $container.find('.mtphr-shortcode-gen-set-1').hide();
+				$tax = $container.find('.mtphr-shortcode-gen-taxonomy'),
+				$tax_fields = $container.find('.mtphr-shortcode-gen-taxonomy-fields').hide(),
+				$terms = $container.find('.mtphr-shortcode-gen-terms');
+			
+		// Post type change
+		$type.live('change', function() {
 
+			var data = {
+				action: 'mtphr_shortcode_post_slider_gen_type_change',
+				post_type: $(this).val(),
+				security: mtphr_shortcodes_generator_vars.security
+			};
+			jQuery.post( ajaxurl, data, function( response ) {
+				$taxonomy.html('<option value="">-----</option>'+response);
+				if( response == '' ) {
+					$tax.hide();
+				} else {
+					$tax.show();
+				}
+				$tax_fields.hide();
+			});
+		});
+		
+		// Taxonomy change
 		$taxonomy.live('change', function() {
+		
 			if( $(this).val() == '' ) {
-				$set_1.hide();
+				$tax_fields.hide();
 			} else {
-				$set_1.show();
+			
+				var data = {
+					action: 'mtphr_shortcode_post_slider_gen_tax_change',
+					name: 'mtphr-shortcode-post-slider-terms',
+					taxonomy: $(this).val(),
+					security: mtphr_shortcodes_generator_vars.security
+				};
+				jQuery.post( ajaxurl, data, function( response ) {
+					$terms.html(response);
+				});
+				$tax_fields.show();
 			}
 		});
-
-		$button.show();
+		
+		$button.removeAttr('disabled');
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_post_slider value - 2.0.5 */
+	/* !mtphr_post_slider value - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_post_slider_value( $container ) {
@@ -219,8 +255,11 @@ jQuery( document ).ready( function($) {
 				att_next = $container.find('input[name="next"]').val(),
 				att_class = $container.find('input[name="class"]').val(),
 				att_taxonomy = $container.find('select[name="taxonomy"]').val(),
-				att_terms = $container.find('input[name="terms"]').val(),
+				$terms = $container.find('.mtphr-shortcode-post-slider-terms'),
 				att_operator = $container.find('select[name="operator"]').val(),
+				att_id = $container.find('input[name="id"]').val(),
+				att_slide_speed = $container.find('input[name="slide_speed"]').val(),
+				att_slide_ease = $container.find('select[name="slide_ease"]').val(),
 				value = '[mtphr_post_slider';
 
 		if( att_more_link && att_excerpt_more != '' ) {
@@ -228,7 +267,7 @@ jQuery( document ).ready( function($) {
 		}
 
 		if( att_type != 'post' ) { value += ' type="'+att_type+'"'; }
-		value += ' title="'+att_title+'"';
+		if( att_title != '' ) { value += ' title="'+att_title+'"'; }
 		if( att_orderby != 'rand' ) { value += ' orderby="'+att_orderby+'"'; }
 		if( att_order != 'DESC' ) { value += ' order="'+att_order+'"'; }
 		if( att_limit != '' && att_limit != -1 ) { value += ' limit="'+parseInt(att_limit)+'"'; }
@@ -238,9 +277,22 @@ jQuery( document ).ready( function($) {
 		if( att_prev != '' ) { value += ' prev="'+att_prev+'"'; }
 		if( att_next != '' ) { value += ' next="'+att_next+'"'; }
 		if( att_class != '' ) { value += ' class="'+att_class+'"'; }
-		if( att_taxonomy != '' && att_terms != '' ) {
+		if( att_id != '' ) { value += ' id="'+att_id+'"'; }
+		if( att_slide_speed != '' && att_slide_speed != '1000' ) { value += ' slide_speed="'+att_slide_speed+'"'; }
+		if( att_slide_ease != '' && att_slide_ease != 'easeOutExpo' ) { value += ' slide_ease="'+att_slide_ease+'"'; }
+		if( att_taxonomy != '' && $terms.length > 0 ) {
 			value += ' taxonomy="'+att_taxonomy+'"';
-			value += ' terms="'+att_terms+'"';
+			
+			// Create the term list	
+			var term_list = ''
+			$terms.each( function( index ) {
+				if( $(this).is(':checked') ) {
+					term_list += $(this).val()+',';
+				}
+			});
+			term_list = term_list.substr(0, term_list.length-1);
+			
+			value += ' terms="'+term_list+'"';
 			if( att_operator != 'IN' ) { value += ' operator="'+att_operator+'"'; }
 		}
 		value += ']';
@@ -251,54 +303,93 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_post_block init - 2.0.5 */
+	/* !mtphr_post_block init - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_post_block_init( $container ) {
 
-		var $button = $('.mtphr-shortcode-gen-insert-button'),
-				$type = $container.find('select[name="type"]'),
+		var $type = $container.find('select[name="type"]'),
 				$id = $container.find('input[name="id"]'),
 				$taxonomy = $container.find('select[name="taxonomy"]'),
-				$set_1 = $container.find('.mtphr-shortcode-gen-set-1'),
-				$set_2 = $container.find('.mtphr-shortcode-gen-set-2').hide();
+				$tax = $container.find('.mtphr-shortcode-gen-taxonomy'),
+				$tax_fields = $container.find('.mtphr-shortcode-gen-taxonomy-fields').hide(),
+				$terms = $container.find('.mtphr-shortcode-gen-terms'),
+				$post_id_fields = $container.find('.mtphr-shortcode-gen-post-id-fields'),
+				$post_type_fields = $container.find('.mtphr-shortcode-gen-post-type-fields').hide(),
 				$set_3 = $container.find('.mtphr-shortcode-gen-set-3').hide();
 
 		$type.live( 'change', function() {
 			if( $(this).val() == 'default' ) {
-				$set_1.show();
-				$set_2.hide();
+				$post_id_fields.show();
+				$post_type_fields.hide();
 				if( $id.val() == '' ) {
-					$button.hide();
+					$button.attr('disabled', 'disabled');
 				} else {
-					$button.show();
+					$button.removeAttr('disabled');
 				}
 			} else {
-				$set_1.hide();
-				$set_2.show();
-				$button.show();
+				$post_id_fields.hide();
+				$post_type_fields.show();
+				$button.removeAttr('disabled');
+				
+				var data = {
+					action: 'mtphr_shortcode_post_slider_gen_type_change',
+					post_type: $(this).val(),
+					security: mtphr_shortcodes_generator_vars.security
+				};
+				jQuery.post( ajaxurl, data, function( response ) {
+					$taxonomy.html('<option value="">-----</option>'+response);
+					if( response == '' ) {
+						$tax.hide();
+					} else {
+						$tax.show();
+					}
+					$tax_fields.hide();
+				});
 			}
 		});
 
+		// Taxonomy change
 		$taxonomy.live('change', function() {
+		
 			if( $(this).val() == '' ) {
-				$set_3.hide();
+				$tax_fields.hide();
 			} else {
-				$set_3.show();
+			
+				var data = {
+					action: 'mtphr_shortcode_post_slider_gen_tax_change',
+					name: 'mtphr-shortcode-post-slider-terms',
+					taxonomy: $(this).val(),
+					security: mtphr_shortcodes_generator_vars.security
+				};
+				jQuery.post( ajaxurl, data, function( response ) {
+					$terms.html(response);
+				});
+				$tax_fields.show();
 			}
 		});
+		
+		// Ensure the ID is a number
+		$id.keydown( function(e) {
+      if( $.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 || (e.keyCode == 65 && e.ctrlKey === true) || (e.keyCode >= 35 && e.keyCode <= 39)) {
+				return;
+      }
+      if( (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105) ) {
+	      e.preventDefault();
+      }
+    });
 
 		$id.keyup( function() {
 			if( $(this).val() == '' ) {
-				$button.hide();
+				$button.attr('disabled', 'disabled');
 			} else {
-				$button.show();
+				$button.removeAttr('disabled');
 			}
 		});
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_post_block value - 2.0.9 */
+	/* !mtphr_post_block value - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_post_block_value( $container ) {
@@ -315,7 +406,7 @@ jQuery( document ).ready( function($) {
 				att_more_link = $container.find('input[name="more_link"]').is(':checked'),
 				att_class = $container.find('input[name="class"]').val(),
 				att_taxonomy = $container.find('select[name="taxonomy"]').val(),
-				att_terms = $container.find('input[name="terms"]').val(),
+				$terms = $container.find('.mtphr-shortcode-post-slider-terms'),
 				att_operator = $container.find('select[name="operator"]').val(),
 				value = '[mtphr_post_block';
 
@@ -329,9 +420,19 @@ jQuery( document ).ready( function($) {
 			if( att_orderby != 'date' ) { value += ' orderby="'+att_orderby+'"'; }
 			if( att_order != 'DESC' ) { value += ' order="'+att_order+'"'; }
 			if( att_offset != '0' ) { value += ' offset="'+parseInt(att_offset)+'"'; }
-			if( att_taxonomy != '' && att_terms != '' ) {
+			if( att_taxonomy != '' && $terms.length > 0 ) {
 				value += ' taxonomy="'+att_taxonomy+'"';
-				value += ' terms="'+att_terms+'"';
+				
+				// Create the term list	
+				var term_list = ''
+				$terms.each( function( index ) {
+					if( $(this).is(':checked') ) {
+						term_list += $(this).val()+',';
+					}
+				});
+				term_list = term_list.substr(0, term_list.length-1);
+				
+				value += ' terms="'+term_list+'"';
 				if( att_operator != 'IN' ) { value += ' operator="'+att_operator+'"'; }
 			}
 		}
@@ -347,15 +448,14 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_pricing_table init - 2.0.5 */
+	/* !mtphr_pricing_table init - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_pricing_table_init( $container ) {
 
 		$container.parent().addClass('minimal');
 
-		var $button = $('.mtphr-shortcode-gen-insert-button'),
-				$clone = $container.find('.mtphr-shortcode-gen-clone');
+		var $clone = $container.find('.mtphr-shortcode-gen-clone');
 
 		$container.find('select[name="span"]').live( 'change', function() {
 
@@ -389,9 +489,9 @@ jQuery( document ).ready( function($) {
 			}
 
 			if( total == 12 ) {
-				$button.show();
+				$button.removeAttr('disabled');
 			} else {
-				$button.hide();
+				$button.attr('disabled', 'disabled');
 			}
 		});
 
@@ -404,11 +504,11 @@ jQuery( document ).ready( function($) {
 			}
 		});
 
-		$button.show();
+		$button.removeAttr('disabled');
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_pricing_table value - 2.0.5 */
+	/* !mtphr_pricing_table value - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_pricing_table_value( $container ) {
@@ -455,25 +555,34 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_slide_graph init - 2.0.5 */
+	/* !mtphr_slide_graph init - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_slide_graph_init( $container ) {
 
-		var $button = $('.mtphr-shortcode-gen-insert-button'),
-				$percentage = $container.find('input[name="percent"]');
+		var $percentage = $container.find('input[name="percent"]');
+		
+		// Ensure the percentage is a number
+		$percentage.keydown( function(e) {
+      if( $.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 || (e.keyCode == 65 && e.ctrlKey === true) || (e.keyCode >= 35 && e.keyCode <= 39)) {
+				return;
+      }
+      if( (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105) ) {
+	      e.preventDefault();
+      }
+    });
 
 		$percentage.keyup( function() {
 			if( $(this).val() > 0 ) {
-				$button.show();
+				$button.removeAttr('disabled');
 			} else {
-				$button.hide();
+				$button.attr('disabled', 'disabled');
 			}
 		});
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_slide_graph value - 2.0.5 */
+	/* !mtphr_slide_graph value - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_slide_graph_value( $container ) {
@@ -497,7 +606,7 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_tab init - 2.0.5 */
+	/* !mtphr_tab init - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_tab_init( $container ) {
@@ -505,8 +614,7 @@ jQuery( document ).ready( function($) {
 		$container.parent().addClass('minimal');
 		mtphr_shortcode_generate_mtphr_tab_check_delete($container);
 
-		var $button = $('.mtphr-shortcode-gen-insert-button'),
-				$clone = $container.find('.mtphr-shortcode-gen-clone');
+		var $clone = $container.find('.mtphr-shortcode-gen-clone');
 
 		$clone.find('.mtphr-shortcode-gen-set-1').hide();
 
@@ -546,7 +654,7 @@ jQuery( document ).ready( function($) {
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_tab check the deletes - 2.0.5 */
+	/* !mtphr_tab check the deletes - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_tab_check_delete( $container ) {
@@ -558,12 +666,11 @@ jQuery( document ).ready( function($) {
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_tab check for insert button - 2.0.5 */
+	/* !mtphr_tab check for insert button - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_tab_check_insert( $container ) {
-		var $button = $('.mtphr-shortcode-gen-insert-button'),
-				show_button = true;
+		var show_button = true;
 
 		$container.find('.mtphr-shortcode-gen-clone').each( function(index) {
 			if( $(this).find('input[name="title"]').val() == '' ) {
@@ -572,14 +679,14 @@ jQuery( document ).ready( function($) {
 		});
 
 		if( show_button ) {
-			$button.show();
+			$button.removeAttr('disabled');
 		} else {
-			$button.hide();
+			$button.attr('disabled', 'disabled');
 		}
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_tab value - 2.0.5 */
+	/* !mtphr_tab value - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_tab_value( $container ) {
@@ -615,25 +722,24 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_toggle init - 2.0.5 */
+	/* !mtphr_toggle init - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_toggle_init( $container ) {
 
-		var $button = $('.mtphr-shortcode-gen-insert-button'),
-				$heading = $container.find('input[name="heading"]');
+		var $heading = $container.find('input[name="heading"]');
 
 		$heading.keyup( function() {
 			if( $(this).val() == '' ) {
-				$button.hide();
+				$button.attr('disabled', 'disabled');
 			} else {
-				$button.show();
+				$button.removeAttr('disabled');
 			}
 		});
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_toggle value - 2.0.5 */
+	/* !mtphr_toggle value - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_toggle_value( $container ) {
@@ -648,7 +754,7 @@ jQuery( document ).ready( function($) {
 		value += ' heading="'+att_heading+'"';
 		if( att_condensed ) { value += ' condensed="0"'; }
 		if( att_class != '' ) { value += ' class="'+att_class+'"'; }
-		if( att_id != '' ) { value += ' id="'+att_class+'"'; }
+		//if( att_id != '' ) { value += ' id="'+att_class+'"'; }
 		value += ']'+mtphr_shortcodes_generator_vars.mtphr_toggle_content+'[/mtphr_toggle]';
 
 		$insert.val( value );
@@ -657,29 +763,22 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_icon init - 2.0.6 */
+	/* !mtphr_icon init - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_icon_init( $container ) {
+		
+		// Initialize the icon actions
+		$('body').trigger('mtphr_shortcode_icon_actions_init');
 
-		var $button = $('.mtphr-shortcode-gen-insert-button'),
-				$title = $container.find('input[name="title"]'),
+		var $title = $container.find('input[name="title"]'),
 				$link = $container.find('input[name="link"]'),
 				$set_1 = $container.find('.mtphr-shortcode-gen-set-1').hide(),
 				$set_2 = $container.find('.mtphr-shortcode-gen-set-2').hide();
 
-		$('.mtphr-shortcode-gen-icon-group').live('click', function(e) {
+		$('.mtphr-shortcodes-icon-select').live('click', function(e) {
 			e.preventDefault();
-
-			if( !e.shiftKey ) {
-				$('.mtphr-shortcode-gen-icon-group').removeClass('active');
-			}
-			if( $(this).hasClass('active') ) {
-				$(this).removeClass('active');
-			} else {
-				$(this).addClass('active');
-			}
-			$button.show();
+			$button.removeAttr('disabled');
 		});
 
 		$title.keyup( function() {
@@ -700,7 +799,7 @@ jQuery( document ).ready( function($) {
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_icon value - 2.0.5 */
+	/* !mtphr_icon value - 2.2.0 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_icon_value( $container ) {
@@ -717,11 +816,13 @@ jQuery( document ).ready( function($) {
 				att_target = $container.find('select[name="target"]').val(),
 				value = '';
 
-		$container.find('.mtphr-shortcode-gen-icon-group.active').each( function(index) {
+		$container.find('.mtphr-shortcodes-icon-select.active').each( function(index) {
 
-			var att_id = $(this).find('.mtphr-shortcode-gen-icon-id').text();
+			var att_id = $(this).data('id'),
+					att_prefix = $(this).data('prefix');
 
 			value += '[mtphr_icon id="'+att_id+'"';
+			if( att_prefix != 'mtphr-shortcodes-ico' ) { value += ' prefix="'+att_prefix+'"'; }
 			if( att_class != '' ) { value += ' class="'+att_class+'"'; }
 			if( att_style != '' ) { value += ' style="'+att_style+'"'; }
 			if( att_title != '' ) {

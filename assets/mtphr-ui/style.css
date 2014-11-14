@@ -1,0 +1,136 @@
+/* --------------------------------------------------------- */
+/* !Form Group */
+/* --------------------------------------------------------- */
+
+.mtphr-ui-form-group {
+	background: #F6F6F6;
+	padding: 10px;
+	margin: 4px 0;
+	border-radius: 3px;
+	-webkit-transition: background-color .25s ease;  
+  transition: background-color .25s ease;
+}
+.mtphr-ui-form-group:hover {
+	background-color: #EEE;
+}
+
+
+/* --------------------------------------------------------- */
+/* !Labels */
+/* --------------------------------------------------------- */
+
+.mtphr-ui-label,
+.mtphr-ui-label-top {
+	font-weight: bold;
+}
+.mtphr-ui-label-top {
+	display: block;
+	margin-bottom: 2px;
+}
+
+
+/* --------------------------------------------------------- */
+/* !Text & Number */
+/* --------------------------------------------------------- */
+
+.mtphr-ui-text,
+.mtphr-ui-number {
+	box-sizing: border-box;
+	width: 100%;
+  font-size: 12px;
+  line-height: 14px;
+  text-decoration: none;
+  background: #01BAD4;
+  color: #FFF;
+  padding: 10px 15px;
+  border-radius: 3px;
+  -webkit-transition: opacity .25s ease;  
+  transition: opacity .25s ease;
+}
+
+
+/* --------------------------------------------------------- */
+/* !Checkbox */
+/* --------------------------------------------------------- */
+
+.mtphr-ui-checkbox-label {
+	box-sizing: border-box;
+	display: inline-block;
+	width: 100%;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 14px;
+  padding: 12px 0 13px;
+}
+input[type=checkbox].mtphr-ui-checkbox {
+	margin: -2px 4px 2px 0;
+	border-color: #DDD;
+	border-radius: 3px;
+}
+.mtphr-ui-multi-check {
+	display: inline-block;
+	font-size: 12px;
+	line-height: 14px;
+	background: rgba(255, 255, 255, .5);
+	padding: 6px 6px 5px;
+	margin: 3px;
+	border-radius: 3px;
+}
+.mtphr-ui-multi-check input[type=checkbox] {
+	margin: -1px 4px 0 0;
+}
+
+
+/* --------------------------------------------------------- */
+/* !Button */
+/* --------------------------------------------------------- */
+
+.mtphr-ui-button {
+	display: inline-block;
+  box-sizing: border-box;
+  font-size: 12px;
+  line-height: 14px;
+  text-decoration: none;
+  background: #01BAD4;
+  color: #FFF;
+  padding: 10px 15px;
+  border-radius: 3px;
+  -webkit-transition: opacity .25s ease;  
+  transition: opacity .25s ease; 
+}
+.mtphr-ui-button:hover {
+	color: #FFF;
+	opacity: .8;
+}
+.mtphr-ui-button.disabled,
+.mtphr-ui-button.disabled:hover {
+	opacity: .3;
+}
+.mtphr-ui-button i {
+	font-size: 18px;
+}
+.mtphr-ui-button i:before {
+	vertical-align: middle;
+}
+.mtphr-ui-button.mtphr-ui-icon-left i:before {
+	margin-left: -5px;
+	margin-right: 5px;
+}
+.mtphr-ui-button.mtphr-ui-icon-right i:before {
+	margin-left: 5px;
+	margin-right: -5px;
+}
+
+
+/* --------------------------------------------------------- */
+/* !Select */
+/* --------------------------------------------------------- */
+
+.wp-admin select.mtphr-ui-select {
+	box-sizing: border-box;
+	width: 100%;
+	height: 39px;
+	line-height: 14px;
+}
+
+
