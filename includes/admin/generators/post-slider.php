@@ -241,28 +241,3 @@ function mtphr_shortcode_post_slider_gen_type_change() {
 }
 add_action( 'wp_ajax_mtphr_shortcode_post_slider_gen_type_change', 'mtphr_shortcode_post_slider_gen_type_change' );
 
-
-
-/* --------------------------------------------------------- */
-/* !Taxonomy change - 2.2.0 */
-/* --------------------------------------------------------- */
-
-function mtphr_shortcode_post_slider_gen_tax_change() {
-	
-	// Get access to the database
-	global $wpdb;
-
-	// Check the nonce
-	check_ajax_referer( 'mtphr-shortcodes', 'security' );
-
-	// Get variables
-	$name = $_POST['name'];
-	$taxonomy = $_POST['taxonomy'];
-	
-	$html .= mtphr_shortcodes_select_terms( $name, $taxonomy );
-  
-  echo $html;
-
-	die(); // this is required to return a proper result
-}
-add_action( 'wp_ajax_mtphr_shortcode_post_slider_gen_tax_change', 'mtphr_shortcode_post_slider_gen_tax_change' );

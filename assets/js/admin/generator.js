@@ -182,7 +182,7 @@ jQuery( document ).ready( function($) {
 
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_post_slider init - 2.2.0 */
+	/* !mtphr_post_slider init - 2.2.1 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_post_slider_init( $container ) {
@@ -220,8 +220,7 @@ jQuery( document ).ready( function($) {
 			} else {
 			
 				var data = {
-					action: 'mtphr_shortcode_post_slider_gen_tax_change',
-					name: 'mtphr-shortcode-post-slider-terms',
+					action: 'mtphr_shortcode_gen_tax_change',
 					taxonomy: $(this).val(),
 					security: mtphr_shortcodes_generator_vars.security
 				};
@@ -255,7 +254,7 @@ jQuery( document ).ready( function($) {
 				att_next = $container.find('input[name="next"]').val(),
 				att_class = $container.find('input[name="class"]').val(),
 				att_taxonomy = $container.find('select[name="taxonomy"]').val(),
-				$terms = $container.find('.mtphr-shortcode-post-slider-terms'),
+				$terms = $container.find('.mtphr-shortcode-gen-terms'),
 				att_operator = $container.find('select[name="operator"]').val(),
 				att_id = $container.find('input[name="id"]').val(),
 				att_slide_speed = $container.find('input[name="slide_speed"]').val(),
@@ -357,8 +356,7 @@ jQuery( document ).ready( function($) {
 			} else {
 			
 				var data = {
-					action: 'mtphr_shortcode_post_slider_gen_tax_change',
-					name: 'mtphr-shortcode-post-slider-terms',
+					action: 'mtphr_shortcode_gen_tax_change',
 					taxonomy: $(this).val(),
 					security: mtphr_shortcodes_generator_vars.security
 				};
@@ -406,7 +404,7 @@ jQuery( document ).ready( function($) {
 				att_more_link = $container.find('input[name="more_link"]').is(':checked'),
 				att_class = $container.find('input[name="class"]').val(),
 				att_taxonomy = $container.find('select[name="taxonomy"]').val(),
-				$terms = $container.find('.mtphr-shortcode-post-slider-terms'),
+				$terms = $container.find('.mtphr-shortcode-gen-terms'),
 				att_operator = $container.find('select[name="operator"]').val(),
 				value = '[mtphr_post_block';
 

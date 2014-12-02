@@ -23,11 +23,11 @@ function mtphr_shortcodes_select_taxonomies( $post_type ) {
 
 
 /* --------------------------------------------------------- */
-/* !Return a term check list - 2.2.0 */
+/* !Return a term check list - 2.2.1 */
 /* --------------------------------------------------------- */
 
 if( !function_exists('mtphr_shortcodes_select_terms') ) {
-function mtphr_shortcodes_select_terms( $name, $taxonomy ) {
+function mtphr_shortcodes_select_terms( $taxonomy ) {
 
 	$html = '';
 	
@@ -35,7 +35,7 @@ function mtphr_shortcodes_select_terms( $name, $taxonomy ) {
 	$terms = get_terms( $taxonomy );
 	if( is_array($terms) && count($terms) > 0 ) {
 		foreach( $terms as $slug=>$term ) {
-		  $html .= '<label class="mtphr-ui-multi-check"><input class="'.$name.'" type="checkbox" value="'.$term->slug.'" />'.$term->name.'</label>';
+		  $html .= '<label class="mtphr-ui-multi-check"><input class="mtphr-shortcode-gen-terms" type="checkbox" value="'.$term->slug.'" />'.$term->name.'</label>';
 		}
 	}
   

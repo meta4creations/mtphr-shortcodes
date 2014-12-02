@@ -3,7 +3,7 @@ Contributors: metaphorcreations
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSERTX5M7NKES
 Tags: shortcodes, column grid, pricing tables, post sliders, post blocks, posts
 Requires at least: 3.2
-Tested up to: 4.0
+Tested up to: 4.0.1
 Stable tag: /trunk/
 License: GPL2
 
@@ -43,6 +43,10 @@ Documentation is coming soon!
 6. List pricing table sample.
 
 == Changelog ==
+
+= 2.2.1 =
+* Bug fixes
+* Shortcode generator updates
 
 = 2.2.0 =
 * Complete overhaul of shortcode generator
@@ -154,4 +158,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Complete overhaul of shortcode generator. Other updates.
+Bug fixes & shortcode generator updates.

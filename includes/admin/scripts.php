@@ -22,12 +22,10 @@ function mtphr_shortcodes_admin_scripts( $hook ) {
 	
 	wp_register_style( 'mtphr-ui', MTPHR_SHORTCODES_URL.'/assets/mtphr-ui/style.css', false, MTPHR_SHORTCODES_VERSION );
 	wp_enqueue_style( 'mtphr-ui' );
-	//wp_register_script( 'mtphr-shortcodes', MTPHR_SHORTCODES_URL.'/assets/js/admin/script.js', array('jquery'), MTPHR_SHORTCODES_VERSION, true );
-	//wp_enqueue_script( 'mtphr-shortcodes' );
 
 	wp_register_style( 'mtphr-shortcodes', MTPHR_SHORTCODES_URL.'/assets/css/admin/style.css', false, MTPHR_SHORTCODES_VERSION );
 	wp_enqueue_style( 'mtphr-shortcodes' );
-	wp_register_script( 'mtphr-shortcodes', MTPHR_SHORTCODES_URL.'/assets/js/admin/script.js', array('jquery'), MTPHR_SHORTCODES_VERSION, true );
+	wp_register_script( 'mtphr-shortcodes', MTPHR_SHORTCODES_URL.'/assets/js/admin/script.js', array('jquery', 'jquery-ui-core', 'jquery-ui-draggable'), MTPHR_SHORTCODES_VERSION, true );
 	wp_enqueue_script( 'mtphr-shortcodes' );
 
 	// Shortcode generator
