@@ -1,0 +1,128 @@
+/* Pricing Tables
+------------------------------------------------------------ */
+
+.mtphr-pricing-table-normal .mtphr-pricing-table-dollar {
+	margin-right: 0;
+	margin-left: 10px;
+}
+.mtphr-pricing-table-normal .mtphr-pricing-table-cents {
+	margin-right: 0;
+	margin-left: -35px;
+}
+
+.mtphr-pricing-table-condensed .mtphr-pricing-table-dollar {
+	margin-right: 0;
+	margin-left: 8px;
+}
+
+.mtphr-pricing-table-list p {
+	text-align: right;
+}
+.mtphr-pricing-table-list .mtphr-pricing-table-values p strong {
+	float: left;
+}
+
+/* Post Sliders
+------------------------------------------------------------ */
+
+.mtphr-post-slider-title {
+	float: right;
+}
+.mtphr-post-slider-navigation {
+	float: left;
+}
+.mtphr-post-slider-prev,
+.mtphr-post-slider-next {
+	display: inline-block;
+}
+.mtphr-post-slider-prev {
+	margin-right: 0;
+	margin-left: 10px;
+}
+.mtphr-post-slider-block {
+	float: right;
+	margin-right: 0;
+	margin-left: 20px;
+}
+
+
+/* Slide Graph
+------------------------------------------------------------ */
+
+.mtphr-slide-graph-title {
+	left: auto;
+	right: 0;
+	top: 19px;
+}
+.mtphr-slide-graph-fill {
+	-webkit-border-top-left-radius: 0;
+	-webkit-border-bottom-left-radius: 0;
+	-moz-border-radius-topleft: 0;
+	-moz-border-radius-bottomleft: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.mtphr-slide-graph-percent {
+	margin-left: 0;
+	margin-right: -50px;
+}
+
+/* Tabs
+------------------------------------------------------------ */
+
+.mtphr-tab-link {
+	border-right: none;
+	border-left: 1px solid #c8cdd1;
+}
+.mtphr-tabs-container tr .mtphr-tab-link:first-child {
+	border-left: none;
+}
+.mtphr-tab-content {
+	left: auto;
+	right: 0;
+}
+.mtphr-tabs-container td.mtphr-tab-content-text {
+	padding-left: 0;
+	padding-right: 20px;
+}
+
+/* Toggles
+------------------------------------------------------------ */
+
+.mtphr-toggle-heading {
+	padding-left: 0;
+	padding-right: 35px;
+}
+.mtphr-toggle-content {
+	padding-left: 0;
+	padding-right: 35px;
+}
+.mtphr-toggle-button {
+	left: auto;
+	right: 0;
+}
+
+/* Icons
+------------------------------------------------------------ */
+
+.metaphor-icon i {
+  margin: 0 0 4px 4px;
+}
+.metaphor-icon-link i {
+	float: right;
+}
+.metaphor-icon-title {
+	margin-left: 0;
+	margin-right: 10px;
+}
+.metaphor-icon-link .metaphor-icon-title {
+	float: right;
+}
+

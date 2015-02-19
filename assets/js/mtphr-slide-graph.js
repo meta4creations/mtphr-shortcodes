@@ -32,15 +32,27 @@
 				$fill.stop().animate( {
 					width: p+'%'
 				}, settings.slide_speed*(p/100), settings.slide_ease );
-
-				// Animate the objects
-				$percent.stop().animate( {
-					left: p+'%'
-				}, settings.slide_speed*(p/100), settings.slide_ease, function(){		
-						$percent.stop().animate( {
-							top: '-'+($percent.height()+3)+'px'
-						}, settings.slide_speed*(p/100), settings.slide_ease );
-				});
+				
+				if( mtphr_slide_graph_vars.is_rtl ) {
+					
+					$percent.stop().animate( {
+						right: p+'%'
+					}, settings.slide_speed*(p/100), settings.slide_ease, function(){		
+							$percent.stop().animate( {
+								top: '-'+($percent.height()+3)+'px'
+							}, settings.slide_speed*(p/100), settings.slide_ease );
+					});
+					
+				} else {
+					
+					$percent.stop().animate( {
+						left: p+'%'
+					}, settings.slide_speed*(p/100), settings.slide_ease, function(){		
+							$percent.stop().animate( {
+								top: '-'+($percent.height()+3)+'px'
+							}, settings.slide_speed*(p/100), settings.slide_ease );
+					});
+				}
 
 		    // Trigger the afterLoad callback
         settings.after_load.call(this, $graph);

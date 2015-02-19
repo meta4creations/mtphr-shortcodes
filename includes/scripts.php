@@ -10,15 +10,24 @@ add_action( 'wp_enqueue_scripts', 'mtphr_shortcodes_scripts' );
 /**
  * Load scripts to the font end
  *
- * @since 2.0.5
+ * @since 2.2.3
  */
 function mtphr_shortcodes_scripts() {
+	
+	// Load mtphr tabs scripts
+	wp_register_style( 'mtphr-tabs', MTPHR_SHORTCODES_URL.'/assets/mtphr-tabs/mtphr-tabs.css', false, MTPHR_SHORTCODES_VERSION );
+  wp_enqueue_style( 'mtphr-tabs' );
+  wp_register_script( 'mtphr-tabs', MTPHR_SHORTCODES_URL.'/assets/mtphr-tabs/mtphr-tabs.js', false, MTPHR_SHORTCODES_VERSION, true );
 
 	wp_register_style( 'mtphr-shortcodes-font', MTPHR_SHORTCODES_URL.'/assets/fontastic/styles.css', false, MTPHR_SHORTCODES_VERSION );
 	wp_enqueue_style( 'mtphr-shortcodes-font' );
 
 	wp_register_style( 'mtphr-shortcodes', MTPHR_SHORTCODES_URL.'/assets/css/style.css', false, MTPHR_SHORTCODES_VERSION );
 	wp_enqueue_style( 'mtphr-shortcodes' );
+	if( is_rtl() ) {
+		wp_register_style( 'mtphr-shortcodes-rtl', MTPHR_SHORTCODES_URL.'/assets/css/rtl.css', false, MTPHR_SHORTCODES_VERSION );
+		wp_enqueue_style( 'mtphr-shortcodes-rtl' );
+	}
 
 	wp_register_script( 'respond', MTPHR_SHORTCODES_URL.'/assets/js/respond.min.js', array('jquery'), MTPHR_SHORTCODES_VERSION, true );
 	wp_enqueue_script( 'respond' );
@@ -31,10 +40,14 @@ function mtphr_shortcodes_scripts() {
 	wp_register_script( 'mtphr-slide-graph', MTPHR_SHORTCODES_URL.'/assets/js/mtphr-slide-graph.js', array('jquery', 'jquery-easing'), MTPHR_SHORTCODES_VERSION, true );
 	wp_register_script( 'mtphr-toggles', MTPHR_SHORTCODES_URL.'/assets/js/mtphr-toggles.js', array('jquery', 'jquery-easing'), MTPHR_SHORTCODES_VERSION, true );
 	
-	// Load mtphr tabs scripts
-	wp_register_style( 'mtphr-tabs', MTPHR_SHORTCODES_URL.'/assets/mtphr-tabs/mtphr-tabs.css', false, MTPHR_SHORTCODES_VERSION );
-  wp_enqueue_style( 'mtphr-tabs' );
-  wp_register_script( 'mtphr-tabs', MTPHR_SHORTCODES_URL.'/assets/mtphr-tabs/mtphr-tabs.js', false, MTPHR_SHORTCODES_VERSION, true );
+	wp_localize_script( 'mtphr-post-slider', 'mtphr_post_slider_vars', array(
+			'is_rtl' => is_rtl()
+		)
+	);
+	wp_localize_script( 'mtphr-slide-graph', 'mtphr_slide_graph_vars', array(
+			'is_rtl' => is_rtl()
+		)
+	);
 }
 
 

@@ -57,7 +57,12 @@
 					// Save vars
 					vars.slider_width = $slider.outerWidth();
 					vars.post_width = $(posts[0]).outerWidth();
-					vars.post_margin = parseInt($(posts[0]).css('marginRight').substr(0, $(posts[0]).css('marginRight').length-2));
+					
+					if( mtphr_post_slider_vars.is_rtl ) {
+						vars.post_margin = parseInt($(posts[0]).css('marginLeft').substr(0, $(posts[0]).css('marginLeft').length-2));
+					} else {
+						vars.post_margin = parseInt($(posts[0]).css('marginRight').substr(0, $(posts[0]).css('marginRight').length-2));
+					}
 					vars.content_width = (vars.total_posts*(vars.post_width+vars.post_margin));
 					vars.min_position = vars.slider_width-(vars.content_width-vars.post_margin);
 					if( vars.min_position > 0 ) {
@@ -126,12 +131,20 @@
 
 					// Resave the var
 					vars.slider_position = position;
-
-					$content.stop().animate( {
-						marginLeft: position+'px'
-					}, settings.slide_speed, settings.slide_ease, function() {
-						// Animation complete.
-					});
+					
+					if( mtphr_post_slider_vars.is_rtl ) {
+						$content.stop().animate( {
+							marginRight: position+'px'
+						}, settings.slide_speed, settings.slide_ease, function() {
+							// Animation complete.
+						});
+					} else {
+						$content.stop().animate( {
+							marginLeft: position+'px'
+						}, settings.slide_speed, settings.slide_ease, function() {
+							// Animation complete.
+						});
+					}
 
 					// Return the position
 					return position;
@@ -177,6 +190,7 @@
 				$content_wrapper.swipe( {
 					triggerOnTouchEnd : true,
 					allowPageScroll: 'vertical',
+					excludedElements : 'button, input, select, textarea, .noSwipe',
 					swipeStatus : function(event, phase, direction, distance, duration, fingers) {
 						if ( phase =="end" ) {
 							if (direction == "right") {

@@ -108,7 +108,7 @@ function mtphr_grid_render_display( $atts, $content = null ) {
 
 
 /* --------------------------------------------------------- */
-/* !Create a post slider - 2.2.0 */
+/* !Create a post slider - 2.2.3 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_slider_display( $atts, $content = null ) {
@@ -122,6 +122,11 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 		'orderby' => 'rand',
 		'order' => 'DESC',
 		'limit' => -1,
+		'post_parent' => false,
+		'post_parent__in' => false,
+		'post_parent__not_in' => false,
+		'post__in' => false,
+		'post__not_in' => false,
 		'thumb_size' => 'thumbnail',
 		'excerpt_length' => 80,
 		'excerpt_more' => '&hellip;',
@@ -173,13 +178,33 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 		$html .= ob_get_clean();
 
 	} else {
+		
+		if( $post_parent__in && !is_array($post_parent__in) ) {
+			$post_parent__in = array_map('trim', explode(',', $post_parent__in));
+		}
+		if( $post_parent__not_in && !is_array($post_parent__not_in) ) {
+			$post_parent__not_in = array_map('trim', explode(',', $post_parent__not_in));
+		}
+		if( $post__in && !is_array($post__in) ) {
+			$post__in = array_map('trim', explode(',', $post__in));
+		}
+		if( $post__not_in && !is_array($post__not_in) ) {
+			$post__not_in = array_map('trim', explode(',', $post__not_in));
+			$post__not_in[] = get_the_ID();
+		} else {
+			$post__not_in = array( get_the_ID() );
+		}
 
 		$query_args = array(
 			'post_type'=> $type,
 			'orderby' => $orderby,
 			'order' => $order,
 			'posts_per_page' => $limit,
-			'post__not_in' => array( get_the_ID() ),
+			'post_parent' => intval($post_parent),
+			'post_parent__in' => $post_parent__in,
+			'post_parent__not_in' => $post_parent__not_in,
+			'post__in' => $post__in,
+			'post__not_in' => $post__not_in,
 			'tax_query' => array()
 		);
 		
@@ -284,8 +309,7 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 								$more_link = apply_filters( 'mtphr_post_slider_excerpt_more_link', '<a class="mtphr-post-slider-excerpt-more-link" href="'.$permalink.'">'.$links[1].'</a>', $permalink, $links[1] );
 								$excerpt_more_text = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more_text);
 							}
-							$the_content = get_the_content();
-							$the_content = preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', $the_content);
+							$the_content = ( $post->post_excerpt != '' ) ? $post->post_excerpt : $post->post_content;
 							$excerpt = wp_html_excerpt( $the_content, intval($excerpt_length) ).'<span class="mtphr-post-slider-excerpt-more">'.$excerpt_more_text.'</span>';
 						}
 
@@ -339,7 +363,7 @@ add_shortcode( 'mtphr_post_slider', 'mtphr_post_slider_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a post block - 2.1.3 */
+/* !Create a post block - 2.2.3 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_block_display( $atts, $content = null ) {
@@ -462,8 +486,7 @@ function mtphr_post_block_display( $atts, $content = null ) {
 				$more_link = apply_filters( 'mtphr_post_block_excerpt_more_link', '<a class="mtphr-post-block-excerpt-more-link" href="'.$permalink.'">'.$links[1].'</a>', $permalink, $links[1] );
 				$excerpt_more_text = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more_text);
 			}
-			$the_content = get_the_content();
-			$the_content = preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', $the_content);
+			$the_content = ( $post->post_excerpt != '' ) ? $post->post_excerpt : $post->post_content;
 			$excerpt = wp_html_excerpt( $the_content, intval($excerpt_length) ).'<span class="mtphr-post-block-excerpt-more">'.$excerpt_more_text.'</span>';
 		}
 		?>
@@ -611,7 +634,11 @@ function mtphr_slide_graph_display( $atts, $content = null ) {
 	} else {
 		$title_width = 0;
 	}
-	$html .= '<div class="mtphr-slide-graph-container" style="margin-left:'.intval($title_width).'px">';
+	if( is_rtl() ) {
+		$html .= '<div class="mtphr-slide-graph-container" style="margin-right:'.intval($title_width).'px">';
+	} else {
+		$html .= '<div class="mtphr-slide-graph-container" style="margin-left:'.intval($title_width).'px">';
+	}
 	if( !$percent_label ) {
 		$percent_label = floatval($percent).'%';
 	}

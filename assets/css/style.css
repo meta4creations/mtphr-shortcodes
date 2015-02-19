@@ -349,12 +349,6 @@
 	font-size: 14px;
 	line-height: 14px;
 }
-/*
-.mtphr-slide-graph-bg {
-
-	height: 10px;
-}
-*/
 .mtphr-slide-graph-fill-bg {
 	position: relative;
 	width: 100%;
@@ -387,7 +381,7 @@
 	font-size: 14px;
 	line-height: 14px;
 	text-align: center;
-	/* width: 100px; */
+	width: 100px;
 	/* white-space: nowrap; */
 	margin-left: -50px;
 }
