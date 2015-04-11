@@ -3,7 +3,7 @@ Contributors: metaphorcreations
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSERTX5M7NKES
 Tags: shortcodes, column grid, pricing tables, post sliders, post blocks, posts
 Requires at least: 3.2
-Tested up to: 4.1
+Tested up to: 4.1.1
 Stable tag: /trunk/
 License: GPL2
 
@@ -43,6 +43,9 @@ Documentation is coming soon!
 6. List pricing table sample.
 
 == Changelog ==
+
+= 2.2.4 =
+* Added strip_shortcodes to post block & post slider excerpts
 
 = 2.2.3 =
 * Added RTL support 
@@ -165,4 +168,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Added RTL support. Modified Post Slider & Post Blocks to display custom excerpts.
+Added strip_shortcodes to post block & post slider excerpts.
