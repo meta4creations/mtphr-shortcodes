@@ -108,7 +108,7 @@ function mtphr_grid_render_display( $atts, $content = null ) {
 
 
 /* --------------------------------------------------------- */
-/* !Create a post slider - 2.2.3 */
+/* !Create a post slider - 2.2.4 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_slider_display( $atts, $content = null ) {
@@ -309,7 +309,7 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 								$more_link = apply_filters( 'mtphr_post_slider_excerpt_more_link', '<a class="mtphr-post-slider-excerpt-more-link" href="'.$permalink.'">'.$links[1].'</a>', $permalink, $links[1] );
 								$excerpt_more_text = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more_text);
 							}
-							$the_content = ( $post->post_excerpt != '' ) ? $post->post_excerpt : $post->post_content;
+							$the_content = ( $post->post_excerpt != '' ) ? $post->post_excerpt : strip_shortcodes($post->post_content);
 							$excerpt = wp_html_excerpt( $the_content, intval($excerpt_length) ).'<span class="mtphr-post-slider-excerpt-more">'.$excerpt_more_text.'</span>';
 						}
 
@@ -363,7 +363,7 @@ add_shortcode( 'mtphr_post_slider', 'mtphr_post_slider_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a post block - 2.2.3 */
+/* !Create a post block - 2.2.4 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_block_display( $atts, $content = null ) {
@@ -486,7 +486,7 @@ function mtphr_post_block_display( $atts, $content = null ) {
 				$more_link = apply_filters( 'mtphr_post_block_excerpt_more_link', '<a class="mtphr-post-block-excerpt-more-link" href="'.$permalink.'">'.$links[1].'</a>', $permalink, $links[1] );
 				$excerpt_more_text = preg_replace('/{(.*?)\}/s', $more_link, $excerpt_more_text);
 			}
-			$the_content = ( $post->post_excerpt != '' ) ? $post->post_excerpt : $post->post_content;
+			$the_content = ( $post->post_excerpt != '' ) ? $post->post_excerpt : strip_shortcodes($post->post_content);
 			$excerpt = wp_html_excerpt( $the_content, intval($excerpt_length) ).'<span class="mtphr-post-block-excerpt-more">'.$excerpt_more_text.'</span>';
 		}
 		?>
