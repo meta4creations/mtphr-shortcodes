@@ -108,7 +108,7 @@ function mtphr_grid_render_display( $atts, $content = null ) {
 
 
 /* --------------------------------------------------------- */
-/* !Create a post slider - 2.2.4 */
+/* !Create a post slider - 2.2.5 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_slider_display( $atts, $content = null ) {
@@ -293,7 +293,7 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 					while ( $wp_query->have_posts() ) : $wp_query->the_post();
 						
 						// Create the permalink w/query args
-						$permalink = ( $q_taxonomy && $q_terms ) ? add_query_arg( array('taxonomy' => $q_taxonomy, 'terms' => $q_terms), get_permalink() ) : remove_query_arg( array('taxonomy', 'terms'), get_permalink() );
+						$permalink = ( $q_taxonomy && $q_terms ) ? esc_url( add_query_arg(array('taxonomy' => $q_taxonomy, 'terms' => $q_terms), get_permalink()) ) : esc_url( remove_query_arg(array('taxonomy', 'terms'), get_permalink()) );
 						$excerpt_more_text = $excerpt_more;
 						
 						$post = get_post( get_the_id() );
