@@ -189,18 +189,13 @@
 				 */
 				$content_wrapper.swipe( {
 					triggerOnTouchEnd : true,
-					allowPageScroll: 'vertical',
-					excludedElements : 'button, input, select, textarea, .noSwipe',
-					swipeStatus : function(event, phase, direction, distance, duration, fingers) {
-						if ( phase =="end" ) {
-							if (direction == "right") {
-								mtphr_post_slider_position( 'prev' );
-							} else if (direction == "left") {
-								mtphr_post_slider_position( 'next' );
-							}
-						}
-					}
-				});
+	        swipeLeft: function(event, distance, duration, fingerCount, fingerData) {
+	          mtphr_post_slider_position( 'next' );
+	        },
+	        swipeRight: function(event, distance, duration, fingerCount, fingerData) {
+	          mtphr_post_slider_position( 'prev' );
+	        }
+	      });
 
 
 
