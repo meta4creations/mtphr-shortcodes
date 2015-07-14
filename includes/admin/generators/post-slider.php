@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------- */
-/* !Ajax post slider shortcode - 2.2.0 */
+/* !Ajax post slider shortcode - 2.2.7 */
 /* --------------------------------------------------------- */
 
 function mtphr_shortcode_post_slider_gen() {
@@ -166,6 +166,8 @@ function mtphr_shortcode_post_slider_gen() {
 			</div>
 			
 		</div><!-- .row -->
+		
+		<?php mtphr_shortcodes_gen_author_row(); ?>
 		
 		<div class="row">
 		

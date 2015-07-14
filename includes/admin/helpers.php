@@ -35,7 +35,59 @@ function mtphr_shortcodes_select_terms( $taxonomy ) {
 	$terms = get_terms( $taxonomy );
 	if( is_array($terms) && count($terms) > 0 ) {
 		foreach( $terms as $slug=>$term ) {
-		  $html .= '<label class="mtphr-ui-multi-check"><input class="mtphr-shortcode-gen-terms" type="checkbox" value="'.$term->slug.'" />'.$term->name.'</label>';
+		  $html .= '<label class="mtphr-ui-multi-check"><input class="mtphr-shortcode-gen-term-select" type="checkbox" value="'.$term->slug.'" />'.$term->name.'</label>';
+		}
+	}
+  
+  return $html;
+}
+}
+
+
+/* --------------------------------------------------------- */
+/* !Setup the author select row - 2.2.7 */
+/* --------------------------------------------------------- */
+
+if( !function_exists('mtphr_shortcodes_gen_author_row') ) {
+function mtphr_shortcodes_gen_author_row( $row_class='' ) {
+	?>
+	<div class="row <?php echo $row_class; ?>">
+					
+		<div class="col-md-12">
+			<div class="mtphr-ui-form-group mtphr-shortcode-gen-author">
+				<label class="mtphr-ui-label-top"><?php _e('Authors', 'mtphr-shortcodes'); ?></label>
+				<div class="mtphr-shortcode-gen-authors">
+					<?php echo mtphr_shortcodes_select_authors(); ?>
+				</div>
+			</div>
+		</div>
+		
+	</div><!-- .row -->
+	<?php
+}
+}
+
+
+/* --------------------------------------------------------- */
+/* !Return an author check list - 2.2.7 */
+/* --------------------------------------------------------- */
+
+if( !function_exists('mtphr_shortcodes_select_authors') ) {
+function mtphr_shortcodes_select_authors() {
+
+	$html = '';
+	
+	$authors = get_users( array(
+    'fields'  => array( 'display_name', 'id' ),
+    'orderby' => 'post_count',
+    'order'   => 'DESC',
+    'who'     => 'authors',
+  ));
+	
+	// Get the taxonomy objects
+	if( is_array($authors) && count($authors) > 0 ) {
+		foreach( $authors as $slug=>$author ) {
+		  $html .= '<label class="mtphr-ui-multi-check"><input class="mtphr-shortcode-gen-author-select" type="checkbox" value="'.$author->id.'" />'.$author->display_name.'</label>';
 		}
 	}
   
