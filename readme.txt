@@ -44,9 +44,12 @@ Documentation is coming soon!
 
 == Changelog ==
 
+= 2.2.7 =
+* Added author parameter to post_slider & post_block shortcodes
+
 = 2.2.6 =
 * Updated touchSwipe.js
-* Fixed inactive links on mobile using touchswipe
+* Fixed inactive links on mobile using touchSwipe
 
 = 2.2.5 =
 * Fixed add_query_arg() and remove_query_arg() usage
@@ -175,4 +178,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Fixed inactive links on mobile using touchswipe.
+Added author parameter to post_slider & post_block shortcodes.

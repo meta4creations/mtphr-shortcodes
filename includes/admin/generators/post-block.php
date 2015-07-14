@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------- */
-/* !Ajax post block shortcode - 2.2.0 */
+/* !Ajax post block shortcode - 2.2.7 */
 /* --------------------------------------------------------- */
 
 function mtphr_shortcode_post_block_gen() {
@@ -157,6 +157,8 @@ function mtphr_shortcode_post_block_gen() {
 			</div>
 			
 		</div><!-- .row -->
+		
+		<?php mtphr_shortcodes_gen_author_row( 'mtphr-shortcode-gen-post-type-fields' ); ?>
 
 		<div class="mtphr-ui-form-group">
 			<label class="mtphr-ui-label-top"><?php _e('Class', 'mtphr-shortcodes'); ?></label>

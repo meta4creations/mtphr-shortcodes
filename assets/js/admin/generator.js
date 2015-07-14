@@ -254,8 +254,9 @@ jQuery( document ).ready( function($) {
 				att_next = $container.find('input[name="next"]').val(),
 				att_class = $container.find('input[name="class"]').val(),
 				att_taxonomy = $container.find('select[name="taxonomy"]').val(),
-				$terms = $container.find('.mtphr-shortcode-gen-terms'),
+				$terms = $container.find('.mtphr-shortcode-gen-term-select'),
 				att_operator = $container.find('select[name="operator"]').val(),
+				$authors = $container.find('.mtphr-shortcode-gen-author-select'),
 				att_id = $container.find('input[name="id"]').val(),
 				att_slide_speed = $container.find('input[name="slide_speed"]').val(),
 				att_slide_ease = $container.find('select[name="slide_ease"]').val(),
@@ -293,6 +294,19 @@ jQuery( document ).ready( function($) {
 			
 			value += ' terms="'+term_list+'"';
 			if( att_operator != 'IN' ) { value += ' operator="'+att_operator+'"'; }
+		}
+		if( $authors.length > 0 ) {
+
+			// Create the term list	
+			var author_list = ''
+			$authors.each( function( index ) {
+				if( $(this).is(':checked') ) {
+					author_list += $(this).val()+',';
+				}
+			});
+			author_list = author_list.substr(0, author_list.length-1);
+			
+			value += ' author="'+author_list+'"';
 		}
 		value += ']';
 
@@ -387,7 +401,7 @@ jQuery( document ).ready( function($) {
 	}
 
 	/* --------------------------------------------------------- */
-	/* !mtphr_post_block value - 2.2.0 */
+	/* !mtphr_post_block value - 2.2.7 */
 	/* --------------------------------------------------------- */
 
 	function mtphr_shortcode_generate_mtphr_post_block_value( $container ) {
@@ -404,8 +418,9 @@ jQuery( document ).ready( function($) {
 				att_more_link = $container.find('input[name="more_link"]').is(':checked'),
 				att_class = $container.find('input[name="class"]').val(),
 				att_taxonomy = $container.find('select[name="taxonomy"]').val(),
-				$terms = $container.find('.mtphr-shortcode-gen-terms'),
+				$terms = $container.find('.mtphr-shortcode-gen-term-select'),
 				att_operator = $container.find('select[name="operator"]').val(),
+				$authors = $container.find('.mtphr-shortcode-gen-author-select'),
 				value = '[mtphr_post_block';
 
 		if( att_more_link && att_excerpt_more != '' ) {
@@ -432,6 +447,19 @@ jQuery( document ).ready( function($) {
 				
 				value += ' terms="'+term_list+'"';
 				if( att_operator != 'IN' ) { value += ' operator="'+att_operator+'"'; }
+			}
+			if( $authors.length > 0 ) {
+	
+				// Create the term list	
+				var author_list = ''
+				$authors.each( function( index ) {
+					if( $(this).is(':checked') ) {
+						author_list += $(this).val()+',';
+					}
+				});
+				author_list = author_list.substr(0, author_list.length-1);
+				
+				value += ' author="'+author_list+'"';
 			}
 		}
 		if( att_thumb_size != 'default' ) { value += ' thumb_size="'+att_thumb_size+'"'; }
