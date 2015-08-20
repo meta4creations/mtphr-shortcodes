@@ -3,7 +3,7 @@ Contributors: metaphorcreations
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSERTX5M7NKES
 Tags: shortcodes, column grid, pricing tables, post sliders, post blocks, posts
 Requires at least: 3.2
-Tested up to: 4.2.2
+Tested up to: 4.2
 Stable tag: /trunk/
 License: GPL2
 
@@ -43,13 +43,6 @@ Documentation is coming soon!
 6. List pricing table sample.
 
 == Changelog ==
-
-= 2.2.7 =
-* Added author parameter to post_slider & post_block shortcodes
-
-= 2.2.6 =
-* Updated touchSwipe.js
-* Fixed inactive links on mobile using touchSwipe
 
 = 2.2.5 =
 * Fixed add_query_arg() and remove_query_arg() usage
@@ -178,4 +171,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Added author parameter to post_slider & post_block shortcodes.
+Fixed add_query_arg() and remove_query_arg() usage.

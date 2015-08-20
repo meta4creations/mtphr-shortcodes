@@ -108,7 +108,7 @@ function mtphr_grid_render_display( $atts, $content = null ) {
 
 
 /* --------------------------------------------------------- */
-/* !Create a post slider - 2.2.7 */
+/* !Create a post slider - 2.2.5 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_slider_display( $atts, $content = null ) {
@@ -127,7 +127,6 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 		'post_parent__not_in' => false,
 		'post__in' => false,
 		'post__not_in' => false,
-		'author' => false,
 		'thumb_size' => 'thumbnail',
 		'excerpt_length' => 80,
 		'excerpt_more' => '&hellip;',
@@ -206,7 +205,6 @@ function mtphr_post_slider_display( $atts, $content = null ) {
 			'post_parent__not_in' => $post_parent__not_in,
 			'post__in' => $post__in,
 			'post__not_in' => $post__not_in,
-			'author' => $author,
 			'tax_query' => array()
 		);
 		
@@ -365,7 +363,7 @@ add_shortcode( 'mtphr_post_slider', 'mtphr_post_slider_display' );
 
 
 /* --------------------------------------------------------- */
-/* !Create a post block - 2.2.7 */
+/* !Create a post block - 2.2.4 */
 /* --------------------------------------------------------- */
 
 function mtphr_post_block_display( $atts, $content = null ) {
@@ -380,7 +378,6 @@ function mtphr_post_block_display( $atts, $content = null ) {
 		'orderby' => 'date',
 		'order' => 'DESC',
 		'offset' => '0',
-		'author' => false,
 		'thumb_size' => 'thumbnail',
 		'excerpt_length' => 80,
 		'excerpt_more' => '&hellip;',
@@ -408,7 +405,6 @@ function mtphr_post_block_display( $atts, $content = null ) {
 			'orderby' => $orderby,
 			'order' => $order,
 			'posts_per_page' => 1,
-			'author' => $author,
 			'offset' => $offset
 		);
 		if( $taxonomy && $terms ) {
