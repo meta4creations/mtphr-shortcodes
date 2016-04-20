@@ -3,7 +3,7 @@ Contributors: metaphorcreations
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSERTX5M7NKES
 Tags: shortcodes, column grid, pricing tables, post sliders, post blocks, posts
 Requires at least: 3.2
-Tested up to: 4.3
+Tested up to: 4.5
 Stable tag: /trunk/
 License: GPL2
 
