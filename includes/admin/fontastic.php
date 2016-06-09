@@ -60,7 +60,7 @@ function mtphr_shortcodes_fontastic_icons() {
 
 
 /* --------------------------------------------------------- */
-/* !Grab classes from Fontastic CSS file - 2.2.0 */
+/* !Grab classes from Fontastic CSS file - 2.2.8 */
 /* --------------------------------------------------------- */
 
 if( !function_exists('mtphr_shortcodes_parse_fontastic_css') ) {
@@ -71,6 +71,9 @@ function mtphr_shortcodes_parse_fontastic_css( $stylesheet ) {
 	global $wp_filesystem;
 	
 	$content = $wp_filesystem->get_contents( $stylesheet );
+	if( !$content ) {
+		$content = file_get_contents( $stylesheet );
+	}
 
 	// Get the icon font prefix
 	$start = '[class^="';
