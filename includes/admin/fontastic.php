@@ -9,13 +9,13 @@ function mtphr_shortcodes_icon_classes() {
 	$latest_version = get_option( 'mtphr_shortcodes_version', '1.0.0' );
 	$icon_groups = get_option( 'mtphr_shortcodes_icon_groups', array() );
 	
-	if( version_compare($latest_version, '2.2.0', '<') || empty($icon_groups) ) {
+	if( version_compare($latest_version, '2.3', '<') || empty($icon_groups) ) {
 		
 		// Update the icons
 		mtphr_shortcodes_update_icons();
 		
 		// Update the latest version
-		update_option( 'mtphr_shortcodes_version', '2.2.0' ); 
+		update_option( 'mtphr_shortcodes_version', '2.3' ); 
 	}
 }
 add_action('admin_init', 'mtphr_shortcodes_icon_classes');
@@ -40,6 +40,16 @@ function mtphr_shortcodes_update_icons() {
 		'classes' => $data['classes']
 	);
 	
+	// Add font-awesome!
+	$stylesheet = MTPHR_SHORTCODES_DIR.'assets/font-awesome/css/font-awesome.css';
+	$data = mtphr_shortcodes_parse_fontawesome_css( $stylesheet );
+
+	// Add or update the default group
+	$icon_groups[$data['prefix']] = array(
+		'title' => __('Font Awesome', 'mtphr-shortcodes'),
+		'classes' => $data['classes'],
+	);
+	
 	// Update the icons
 	update_option( 'mtphr_shortcodes_icon_groups', $icon_groups );
 }
@@ -60,11 +70,11 @@ function mtphr_shortcodes_fontastic_icons() {
 
 
 /* --------------------------------------------------------- */
-/* !Grab classes from Fontastic CSS file - 2.2.8 */
+/* !Grab classes from Fontastic CSS file - 2.3 */
 /* --------------------------------------------------------- */
 
 if( !function_exists('mtphr_shortcodes_parse_fontastic_css') ) {
-function mtphr_shortcodes_parse_fontastic_css( $stylesheet ) {
+function mtphr_shortcodes_parse_fontastic_css( $stylesheet, $start='[class^="', $end='-"]:before' ) {
 	
 	WP_Filesystem();
 	
@@ -76,8 +86,6 @@ function mtphr_shortcodes_parse_fontastic_css( $stylesheet ) {
 	}
 
 	// Get the icon font prefix
-	$start = '[class^="';
-	$end = '-"]:before';
 	$prefix = mtphr_shortcodes_get_between( $content, $start, $end );
 	
 	// Get all the classes
@@ -93,118 +101,41 @@ function mtphr_shortcodes_parse_fontastic_css( $stylesheet ) {
 }
 
 
+/* --------------------------------------------------------- */
+/* !Grab classes from Font Awesome CSS file - 2.3 */
+/* --------------------------------------------------------- */
 
-
-
-
-
-
-
-/*
-if( !function_exists('mtphr_shortcodes_update_custom_fonts') ) {
-function mtphr_shortcodes_update_custom_fonts() {
+if( !function_exists('mtphr_shortcodes_parse_fontawesome_css') ) {
+function mtphr_shortcodes_parse_fontawesome_css( $stylesheet, $start='characters that represent icons */', $end='.sr-only {' ) {
 	
-	// Get the upload directory
-	$upload_dir = wp_upload_dir();	
-	$shortcodes_upload_dir = $upload_dir['basedir'].'/mtphr-shortcodes';
-	$shortcodes_upload_url = $upload_dir['baseurl'].'/mtphr-shortcodes';
-	$results = scandir($shortcodes_upload_dir);
+	WP_Filesystem();
 	
-	$stylesheets = array();
+	global $wp_filesystem;
 	
-	if( is_array($results) && count($results) > 0 ) {
-		foreach( $results as $i=>$result ) {
-			if ($result === '.' or $result === '..') continue;
-			if( is_dir($shortcodes_upload_dir.'/'.$result) && file_exists($shortcodes_upload_dir.'/'.$result.'/styles.css') ) {
-				$stylesheets[] = $shortcodes_upload_url.'/'.$result.'/styles.css';
-	    }	
+	$content = $wp_filesystem->get_contents( $stylesheet );
+	if( !$content ) {
+		$content = file_get_contents( $stylesheet );
+	}
+
+	// Get the icon font prefix
+	$content = mtphr_shortcodes_get_between( $content, 'characters that represent icons */', '.sr-only {' );
+	
+	// Get all the classes
+	preg_match_all('/\.fa-(.*?)\:before {/s', $content, $classes);
+	
+	$filtered_classes = array();
+	if( is_array($classes[1]) && count($classes[1]) > 0 ) {
+		foreach( $classes[1] as $i=>$class ) {
+			$multiple = explode( ':before', $class );
+			$filtered_classes[] = $multiple[0];
 		}
 	}
 	
-	if( is_array($stylesheets) && count($stylesheets) > 0 ) {
-		update_option( 'mtphr_shortcodes_custom_icon_stylesheets', $stylesheets );	
-	} else {
-		delete_option( 'mtphr_shortcodes_custom_icon_stylesheets' );
-	}
+	$data = array(
+		'prefix' => 'fa',
+		'classes' => $filtered_classes
+	);
 	
-	echo '<pre>';print_r($stylesheets);echo '</pre>';
-	
-	foreach ($results as $result) {
-	    if ($result === '.' or $result === '..') continue;
-	
-	    if (is_dir($path . '/' . $result)) {
-	        //code to use if directory
-	    }
-	}
+	return $data;
 }
 }
-add_action( 'admin_init', 'mtphr_shortcodes_update_custom_fonts' );
-*/
-
-
-
-
-
-/* --------------------------------------------------------- */
-/* !Process a Fontastic import from a zip file - 2.2.0 */
-/* --------------------------------------------------------- */
-
-/*
-function mtphr_shortcodes_process_fontastic_import() {
-	
-	if( empty($_POST['mtphr_shortcodes_action']) || !isset($_POST['mtphr-shortcodes-import-fontastic']) )
-		return;
-
-	if( ! wp_verify_nonce( $_POST['mtphr_shortcodes_import_nonce'], 'mtphr_shortcodes_import_nonce' ) )
-		return;
-
-	if( ! current_user_can( 'manage_options' ) )
-		return;
-		
-	$filename = $_FILES['import_fontastic_file']['name'];
-	$filename_parts = explode( '.', $filename );
-	$extension = end( $filename_parts );
-
-	if( $extension != 'zip' ) {
-		wp_die( __( 'Please upload a valid .zip file', 'mtphr-shortcodes' ) );
-	}
-	
-	$import_file = $_FILES['import_fontastic_file']['tmp_name'];
-
-	if( empty( $import_file ) ) {
-		wp_die( __( 'Please upload a file to import', 'mtphr-shortcodes' ) );
-	}
-	
-	if( !function_exists('wp_handle_upload') ) require_once( ABSPATH . 'wp-admin/includes/file.php' );
-	
-	// Get the upload directory
-	$upload_dir = wp_upload_dir();
-	
-	$shortcodes_upload_dir = $upload_dir['basedir'].'/mtphr-shortcodes';
-	$shortcodes_upload_url = $upload_dir['baseurl'].'/mtphr-shortcodes';
-	
-	// Create the galleries directory
-	if( !file_exists($shortcodes_upload_dir) ) {
-	  mkdir( $shortcodes_upload_dir );
-	}
-	
-	// Move the zip file
-	$zip = $shortcodes_upload_dir.'/'.$filename;
-	if( move_uploaded_file($import_file, $zip) ) {
-    WP_Filesystem();
-    
-    // Unzip the zip file
-    $unzipfile = unzip_file( $zip, $shortcodes_upload_dir );
-
-		// Delete the zip file
-		unlink( $zip );
-	}
-	
-	mtphr_shortcodes_update_custom_fonts();
-
-	wp_safe_redirect( admin_url( 'plugins.php?page=mtphr_shortcodes_settings' ) ); exit;
-}
-add_action( 'admin_init', 'mtphr_shortcodes_process_fontastic_import' );
-*/
-
-

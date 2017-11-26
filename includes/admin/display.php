@@ -37,7 +37,7 @@ function mtphr_shortcodes_modal( $content='', $args=array() ) {
 	echo '<div id="'.$id.'">';
 		echo '<div class="media-modal-backdrop mtphr-shortcodes-modal-backdrop"></div>';
 			echo '<div class="media-modal mtphr-shortcodes-modal wp-core-ui">';
-				echo '<a class="media-modal-close mtphr-shortcodes-modal-close" href="#" title="Close"><span class="media-modal-icon"></span></a>';		
+				echo '<button type="button" class="media-modal-close mtphr-shortcodes-modal-close"><span class="media-modal-icon"><span class="screen-reader-text">'.__('Close modal', 'mtphr-shortcodes').'</span></span></button>';
 				echo '<div class="media-modal-content mtphr-shortcodes-modal-content">';
 					
 					if( $title != '' ) {

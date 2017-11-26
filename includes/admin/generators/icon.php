@@ -126,7 +126,7 @@ function mtphr_shortcodes_icon_admin_display( $title=' ' ) {
 				$html .= '<h4 class="mtphr-shortcodes-icon-group-title">'.$group['title'].' ('.count($group['classes']).' '.__('icons', 'mtphr-shortcodes').')</h4>';
 				foreach( $group['classes'] as $i=>$class ) {
 					$html .= '<a class="mtphr-shortcodes-icon-select" href="#" data-prefix="'.$prefix.'" data-id="'.$class.'">';
-						$html .= '<i class="'.$prefix.'-'.$class.'"></i>';
+						$html .= '<i class="'.$prefix.' '.$prefix.'-'.$class.'"></i>';
 					$html .= '</a>';
 				}
 			}

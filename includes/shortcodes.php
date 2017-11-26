@@ -729,59 +729,63 @@ add_shortcode( 'mtphr_tab', 'mtphr_tab_display' );
 /* --------------------------------------------------------- */
 
 function mtphr_toggle_display( $atts, $content = null ) {
-
-	// Set the defaults
-	$defaults = array(
-		'id' => '',
-		'heading' => '',
-		'condensed' => '',
-		'class' => ''
-	);
-
-	// Filter the defaults
-	$defaults = apply_filters( 'mtphr_toggle_default_args', $defaults );
-
-	// Extract the atts
-	$args = shortcode_atts( $defaults, $atts );
-	extract( $args );
-	?>
-
-	<?php ob_start(); ?>
-
-	<?php do_action( 'mtphr_toggle_before', $id ); ?>
-	<div class="mtphr-toggle <?php echo sanitize_html_class($class); ?>">
-		<?php do_action( 'mtphr_toggle_top', $id ); ?>
-
-		<?php
-		$heading = sanitize_text_field($heading);
-		$heading = apply_filters( 'mtphr_toggle_heading', '<a href="#"><span class="mtphr-toggle-button mtphr-toggle-button-condensed">+</span><span class="mtphr-toggle-button mtphr-toggle-button-expanded">&ndash;</span>'.$heading.'</a>', $heading, $id );
-		$content = apply_filters( 'mtphr_toggle_content', wpautop(convert_chars(wptexturize(mtphr_shortcodes_parse_shortcode_content($content)))), $id );
+	
+	if( !is_admin() ) {
+	
+		// Set the defaults
+		$defaults = array(
+			'id' => '',
+			'heading' => '',
+			'condensed' => '',
+			'class' => ''
+		);
+	
+		// Filter the defaults
+		$defaults = apply_filters( 'mtphr_toggle_default_args', $defaults );
+	
+		// Extract the atts
+		$args = shortcode_atts( $defaults, $atts );
+		extract( $args );
 		?>
-
-		<?php $active = ( $condensed == 'false' || $condensed == '0' ) ? ' active' : ''; ?>
-		<p class="mtphr-toggle-heading<?php echo $active; ?>"><?php echo $heading; ?></p>
-		<div class="mtphr-toggle-content"><?php echo $content; ?></div>
-
-		<?php do_action( 'mtphr_toggle_bottom', $id ); ?>
-	</div>
-	<?php do_action( 'mtphr_toggle_after', $id ); ?>
-
-	<?php
-	// Add the global variable
-	global $mtphr_toggles;
-	$mtphr_toggles = true;
-	?>
-
-	<?php
-	// Return the output
-	return ob_get_clean();
+	
+		<?php ob_start(); ?>
+	
+		<?php do_action( 'mtphr_toggle_before', $id ); ?>
+		<div class="mtphr-toggle <?php echo sanitize_html_class($class); ?>">
+			<?php do_action( 'mtphr_toggle_top', $id ); ?>
+	
+			<?php
+			$heading = sanitize_text_field($heading);
+			$heading = apply_filters( 'mtphr_toggle_heading', '<a href="#"><span class="mtphr-toggle-button mtphr-toggle-button-condensed">+</span><span class="mtphr-toggle-button mtphr-toggle-button-expanded">&ndash;</span>'.$heading.'</a>', $heading, $id );
+			$content = apply_filters( 'mtphr_toggle_content', wpautop(convert_chars(wptexturize(mtphr_shortcodes_parse_shortcode_content($content)))), $id );
+			?>
+	
+			<?php $active = ( $condensed == 'false' || $condensed == '0' ) ? ' active' : ''; ?>
+			<p class="mtphr-toggle-heading<?php echo $active; ?>"><?php echo $heading; ?></p>
+			<div class="mtphr-toggle-content"><?php echo $content; ?></div>
+	
+			<?php do_action( 'mtphr_toggle_bottom', $id ); ?>
+		</div>
+		<?php do_action( 'mtphr_toggle_after', $id ); ?>
+	
+		<?php
+		// Add the global variable
+		global $mtphr_toggles;
+		$mtphr_toggles = true;
+		?>
+	
+		<?php
+		// Return the output
+		return ob_get_clean();
+	
+	}
 }
 add_shortcode( 'mtphr_toggle', 'mtphr_toggle_display' );
 
 
 
 /* --------------------------------------------------------- */
-/* !Create icons - 2.1.1 */
+/* !Create icons - 2.3 */
 /* --------------------------------------------------------- */
 
 function mtphr_icon_display( $atts, $content = null ) {
@@ -821,7 +825,7 @@ function mtphr_icon_display( $atts, $content = null ) {
 		$icon_class = sanitize_html_class( $prefix.'-'.$id );
 		//$class = ( $class == '' ) ? sanitize_html_class( $icon_class ) : sanitize_html_class( $icon_class ).' '.sanitize_html_class( $class );
 		$style = ( $style != '' ) ? ' style="'.sanitize_text_field($style).'"' : '';
-		$html .= '<i class="'.$icon_class.'"'.$style.'></i>';
+		$html .= '<i class="'.esc_attr($prefix).' '.$icon_class.'"'.$style.'></i>';
 		if( $title != '' ) {
 			$title_class = ( $title_class != '' ) ? ' '.sanitize_html_class( $title_class ) : '';
 			$title_style = ( $title_style != '' ) ? ' style="'.sanitize_text_field($title_style).'"' : '';

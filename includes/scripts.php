@@ -10,35 +10,30 @@ add_action( 'wp_enqueue_scripts', 'mtphr_shortcodes_scripts' );
 /**
  * Load scripts to the font end
  *
- * @since 2.2.3
+ * @since 2.3
  */
 function mtphr_shortcodes_scripts() {
 	
 	// Load mtphr tabs scripts
-	wp_register_style( 'mtphr-tabs', MTPHR_SHORTCODES_URL.'/assets/mtphr-tabs/mtphr-tabs.css', false, MTPHR_SHORTCODES_VERSION );
-  wp_enqueue_style( 'mtphr-tabs' );
-  wp_register_script( 'mtphr-tabs', MTPHR_SHORTCODES_URL.'/assets/mtphr-tabs/mtphr-tabs.js', false, MTPHR_SHORTCODES_VERSION, true );
+	wp_enqueue_style( 'mtphr-tabs', MTPHR_SHORTCODES_URL.'assets/mtphr-tabs/mtphr-tabs.css', false, filemtime(MTPHR_SHORTCODES_DIR.'assets/mtphr-tabs/mtphr-tabs.css') );
+  wp_register_script( 'mtphr-tabs', MTPHR_SHORTCODES_URL.'assets/mtphr-tabs/mtphr-tabs.js', false, filemtime(MTPHR_SHORTCODES_DIR.'assets/mtphr-tabs/mtphr-tabs.js'), true );
 
-	wp_register_style( 'mtphr-shortcodes-font', MTPHR_SHORTCODES_URL.'/assets/fontastic/styles.css', false, MTPHR_SHORTCODES_VERSION );
-	wp_enqueue_style( 'mtphr-shortcodes-font' );
+	wp_enqueue_style( 'mtphr-shortcodes-font', MTPHR_SHORTCODES_URL.'assets/fontastic/styles.css', false, filemtime(MTPHR_SHORTCODES_DIR.'assets/fontastic/styles.css') );	
+	wp_enqueue_style( 'mtphr-shortcodes-fontawesome', MTPHR_SHORTCODES_URL.'assets/font-awesome/css/font-awesome.min.css', false, '4.7.0' );
 
-	wp_register_style( 'mtphr-shortcodes', MTPHR_SHORTCODES_URL.'/assets/css/style.css', false, MTPHR_SHORTCODES_VERSION );
-	wp_enqueue_style( 'mtphr-shortcodes' );
+	wp_enqueue_style( 'mtphr-shortcodes', MTPHR_SHORTCODES_URL.'assets/css/style.css', false, filemtime(MTPHR_SHORTCODES_DIR.'assets/css/style.css') );
 	if( is_rtl() ) {
-		wp_register_style( 'mtphr-shortcodes-rtl', MTPHR_SHORTCODES_URL.'/assets/css/rtl.css', false, MTPHR_SHORTCODES_VERSION );
-		wp_enqueue_style( 'mtphr-shortcodes-rtl' );
+		wp_enqueue_style( 'mtphr-shortcodes-rtl', MTPHR_SHORTCODES_URL.'assets/css/rtl.css', false, filemtime(MTPHR_SHORTCODES_DIR.'assets/css/rtl.css') );
 	}
 
-	wp_register_script( 'respond', MTPHR_SHORTCODES_URL.'/assets/js/respond.min.js', array('jquery'), MTPHR_SHORTCODES_VERSION, true );
-	wp_enqueue_script( 'respond' );
+	wp_enqueue_script( 'respond', MTPHR_SHORTCODES_URL.'assets/js/respond.min.js', array('jquery'), '1.1.0', true );
 
-	wp_register_script( 'touchSwipe', MTPHR_SHORTCODES_URL.'/assets/js/jquery.touchSwipe.min.js', array('jquery'), MTPHR_SHORTCODES_VERSION, true );
-	wp_enqueue_script( 'touchSwipe' );
+	wp_enqueue_script( 'touchSwipe', MTPHR_SHORTCODES_URL.'assets/js/jquery.touchSwipe.min.js', array('jquery'), filemtime(MTPHR_SHORTCODES_DIR.'assets/js/jquery.touchSwipe.min.js'), true );
 
-	wp_register_script( 'jquery-easing', MTPHR_SHORTCODES_URL.'/assets/js/jquery.easing.1.3.js', array('jquery'), MTPHR_SHORTCODES_VERSION, true );
-	wp_register_script( 'mtphr-post-slider', MTPHR_SHORTCODES_URL.'/assets/js/mtphr-post-slider.js', array('jquery', 'jquery-easing'), MTPHR_SHORTCODES_VERSION, true );
-	wp_register_script( 'mtphr-slide-graph', MTPHR_SHORTCODES_URL.'/assets/js/mtphr-slide-graph.js', array('jquery', 'jquery-easing'), MTPHR_SHORTCODES_VERSION, true );
-	wp_register_script( 'mtphr-toggles', MTPHR_SHORTCODES_URL.'/assets/js/mtphr-toggles.js', array('jquery', 'jquery-easing'), MTPHR_SHORTCODES_VERSION, true );
+	wp_register_script( 'jquery-easing', MTPHR_SHORTCODES_URL.'assets/js/jquery.easing.1.3.js', array('jquery'), '1.3', true );
+	wp_register_script( 'mtphr-post-slider', MTPHR_SHORTCODES_URL.'assets/js/mtphr-post-slider.js', array('jquery', 'jquery-easing'), filemtime(MTPHR_SHORTCODES_DIR.'assets/js/mtphr-post-slider.js'), true );
+	wp_register_script( 'mtphr-slide-graph', MTPHR_SHORTCODES_URL.'assets/js/mtphr-slide-graph.js', array('jquery', 'jquery-easing'), filemtime(MTPHR_SHORTCODES_DIR.'assets/js/mtphr-slide-graph.js'), true );
+	wp_register_script( 'mtphr-toggles', MTPHR_SHORTCODES_URL.'assets/js/mtphr-toggles.js', array('jquery', 'jquery-easing'), filemtime(MTPHR_SHORTCODES_DIR.'assets/js/mtphr-toggles.js'), true );
 	
 	wp_localize_script( 'mtphr-post-slider', 'mtphr_post_slider_vars', array(
 			'is_rtl' => is_rtl()
