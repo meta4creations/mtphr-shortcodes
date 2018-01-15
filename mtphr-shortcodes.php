@@ -2,7 +2,7 @@
 /*
 Plugin Name: Metaphor Shortcodes
 Description: Includes Column Grids, Pricing Tables, Post Sliders & Post Blocks.
-Version: 2.3
+Version: 2.3.1
 Author: Metaphor Creations
 Author URI: http://www.metaphorcreations.com
 License: GPL2
