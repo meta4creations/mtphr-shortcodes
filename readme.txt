@@ -7,11 +7,11 @@ Tested up to: 5.5
 Stable tag: /trunk/
 License: GPL2
 
-Custom pack of shortcodes including a shortcode generator.
+Custom pack of shortcodes for the Classic Editor, including a shortcode generator. 
 
 == Description ==
 
-Custom pack of shortcodes including a shortcode generator.
+Custom pack of shortcodes for the Classic Editor, including a shortcode generator. 
 
 * Grid Shortcode
 * Post Slider Shortcode

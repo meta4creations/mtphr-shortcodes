@@ -115,5 +115,4 @@ jQuery( document ).ready( function($) {
 	});
 	mtphr_shortcode_icon_actions_init();
 	
-	
 });

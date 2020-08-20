@@ -1,11 +1,9 @@
 /* Table of Contents
-
 * jQuery triggers
 * mtphr_grid
 * mtphr_post_slider
 * mtphr_post_block
 * mtphr_toggle
-
 */
 
 jQuery( document ).ready( function($) {

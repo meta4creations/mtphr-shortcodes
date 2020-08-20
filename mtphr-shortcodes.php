@@ -26,8 +26,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 
-
-
 // Check if the old plugin is installed
 $active_plugins = get_option( 'active_plugins', array() );
 if( in_array('mtphr-shortcodes-pack-1/mtphr-shortcodes-pack-1.php', $active_plugins) ) {
