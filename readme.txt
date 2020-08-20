@@ -3,7 +3,7 @@ Contributors: metaphorcreations
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSERTX5M7NKES
 Tags: shortcodes, column grid, pricing tables, post sliders, post blocks, posts
 Requires at least: 4.0
-Tested up to: 4.9.1
+Tested up to: 5.5
 Stable tag: /trunk/
 License: GPL2
 
@@ -43,6 +43,9 @@ Documentation is coming soon!
 6. List pricing table sample.
 
 == Changelog ==
+
+= 2.4 =
+* Resolved javascript errors with WP 5.5
 
 = 2.3.1 =
 * Resolved font-awesome css loading bug
@@ -189,4 +192,4 @@ Documentation is coming soon!
 
 == Upgrade Notice ==
 
-Resolved font-awesome css loading bug
+Resolved javascript errors with WP 5.5

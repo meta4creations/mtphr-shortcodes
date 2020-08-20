@@ -17,24 +17,24 @@ jQuery( document ).ready( function($) {
 		$('.mtphr-shortcodes-modal').hide();
 	}
 
-	$('.mtphr-shortcodes-modal-link').live( 'click', function(e) {
+	$('body').on( 'click', '.mtphr-shortcodes-modal-link', function(e) {
 		e.preventDefault();
 		
 		var $modal = $($(this).attr('href'));	
 		mtphr_shortcodes_add_modal( $modal );
 	});
 	
-	$('.mtphr-shortcodes-modal-backdrop').live( 'click', function(e) {
+	$('body').on( 'click', '.mtphr-shortcodes-modal-backdrop', function(e) {
 		e.preventDefault();
 		mtphr_shortcodes_remove_modal();
 	});
 	
-	$('.mtphr-shortcodes-modal-close').live( 'click', function(e) {
+	$('body').on( 'click', '.mtphr-shortcodes-modal-close', function(e) {
 		e.preventDefault();	
 		mtphr_shortcodes_remove_modal();
 	});
 	
-	$('.mtphr-shortcodes-modal-submit').live( 'click', function(e) {
+	$('body').on( 'click', '.mtphr-shortcodes-modal-submit', function(e) {
 		e.preventDefault();
 		mtphr_shortcodes_remove_modal();
 	});
@@ -75,7 +75,7 @@ jQuery( document ).ready( function($) {
 				$icon_filter_reset = $('#mtphr-shortcodes-icon-filter-reset'),
 				icons = $('.mtphr-shortcodes-icon-select');
 				
-		$('.mtphr-shortcodes-icon-select').live('click', function(e) {
+		$('body').on('click', '.mtphr-shortcodes-icon-select', function(e) {
 			e.preventDefault();
 	
 			if( !e.shiftKey ) {
@@ -103,7 +103,7 @@ jQuery( document ).ready( function($) {
 			}
 		});
 		
-		$icon_filter_reset.live( 'click', function(e) {
+		$( 'body' ).on( 'click', '#mtphr-shortcodes-icon-filter-reset', function(e) {
 			e.preventDefault();
 			$icon_filter.val('');
 			icons.show();

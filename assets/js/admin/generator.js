@@ -114,7 +114,7 @@ jQuery( document ).ready( function($) {
 		
 		$button.removeAttr('disabled');
 
-		$container.find('select').live( 'change', function() {
+		$container.on( 'change', 'select', function() {
 			
 			var selects = $container.find('select'),
 					$current = $(this),
@@ -194,7 +194,7 @@ jQuery( document ).ready( function($) {
 				$terms = $container.find('.mtphr-shortcode-gen-terms');
 			
 		// Post type change
-		$type.live('change', function() {
+		$type.on('change', function() {
 
 			var data = {
 				action: 'mtphr_shortcode_post_slider_gen_type_change',
@@ -213,7 +213,7 @@ jQuery( document ).ready( function($) {
 		});
 		
 		// Taxonomy change
-		$taxonomy.live('change', function() {
+		$taxonomy.on('change', function() {
 		
 			if( $(this).val() == '' ) {
 				$tax_fields.hide();
@@ -331,7 +331,7 @@ jQuery( document ).ready( function($) {
 				$post_type_fields = $container.find('.mtphr-shortcode-gen-post-type-fields').hide(),
 				$set_3 = $container.find('.mtphr-shortcode-gen-set-3').hide();
 
-		$type.live( 'change', function() {
+		$type.on( 'change', function() {
 			if( $(this).val() == 'default' ) {
 				$post_id_fields.show();
 				$post_type_fields.hide();
@@ -363,7 +363,7 @@ jQuery( document ).ready( function($) {
 		});
 
 		// Taxonomy change
-		$taxonomy.live('change', function() {
+		$taxonomy.on('change', function() {
 		
 			if( $(this).val() == '' ) {
 				$tax_fields.hide();
@@ -483,7 +483,7 @@ jQuery( document ).ready( function($) {
 
 		var $clone = $container.find('.mtphr-shortcode-gen-clone');
 
-		$container.find('select[name="span"]').live( 'change', function() {
+		$container.on( 'change', 'select[name="span"]', function() {
 
 			var val = $(this).val();
 			var total = 0;
@@ -521,7 +521,7 @@ jQuery( document ).ready( function($) {
 			}
 		});
 
-		$container.find('select[name="style"]').live( 'change', function() {
+		$container.on( 'change', 'select[name="style"]', function() {
 			var $set_1 = $(this).parents('.mtphr-shortcode-gen-clone').find('.mtphr-shortcode-gen-set-1');
 			if( $(this).val() == 'list' ) {
 				$set_1.hide();
@@ -653,7 +653,7 @@ jQuery( document ).ready( function($) {
 			}
 		});
 
-		$container.find('.mtphr-shortcode-gen-clone-add').live('click', function(e) {
+		$container.on('click', '.mtphr-shortcode-gen-clone-add', function(e) {
 			e.preventDefault();
 
 			var $parent = $(this).parents('.mtphr-shortcode-gen-clone'),
@@ -667,7 +667,7 @@ jQuery( document ).ready( function($) {
 			mtphr_shortcode_generate_mtphr_tab_check_insert($container);
 		});
 
-		$container.find('.mtphr-shortcode-gen-clone-delete').live('click', function(e) {
+		$container.on('click', '.mtphr-shortcode-gen-clone-delete', function(e) {
 			e.preventDefault();
 
 			$(this).parents('.mtphr-shortcode-gen-clone').remove();
@@ -802,7 +802,7 @@ jQuery( document ).ready( function($) {
 				$set_1 = $container.find('.mtphr-shortcode-gen-set-1').hide(),
 				$set_2 = $container.find('.mtphr-shortcode-gen-set-2').hide();
 
-		$('.mtphr-shortcodes-icon-select').live('click', function(e) {
+		$('body').on('click', '.mtphr-shortcodes-icon-select', function(e) {
 			e.preventDefault();
 			$button.removeAttr('disabled');
 		});
